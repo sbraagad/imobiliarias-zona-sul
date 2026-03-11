@@ -1,141 +1,96 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>As melhores agências imobiliárias da Zona Sul você encontra aqui</title>
-    <style>
-        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --star: #fbc02d; --blue: #2563eb; --red: #ef4444; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
+let imobiliariaAtual = ""; 
+    let zapAtual = "";
+
+    // Bloqueia datas passadas
+    document.getElementById('data_visita').setAttribute('min', new Date().toISOString().split('T')[0]);
+
+    // FUNÇÃO DE BUSCA REFINADA
+    function filtrar() {
+        let input = document.getElementById('busca').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        let lista = document.getElementById('lista');
+        let encontrou = false;
+
+        for (let card of cards) {
+            // Puxa o nome e o bairro do card para comparar
+            let nomeImobiliaria = card.querySelector('h3').innerText.toLowerCase();
+            let bairroImobiliaria = card.getAttribute('data-bairro').toLowerCase();
+
+            // Se o que foi digitado estiver no nome OU no bairro, mostra o card
+            if (nomeImobiliaria.includes(input) || bairroImobiliaria.includes(input)) {
+                card.style.display = "flex";
+                encontrou = true;
+            } else {
+                card.style.display = "none"; // Faz as outras sumirem
+            }
+        }
+
+        // Se não encontrar nada, exibe um aviso (opcional)
+        if (!encontrou) {
+            if(!document.getElementById('no-results')) {
+                let msg = document.createElement('p');
+                msg.id = 'no-results';
+                msg.style.textAlign = 'center';
+                msg.style.gridColumn = '1 / -1';
+                msg.style.padding = '20px';
+                msg.innerText = 'Nenhuma imobiliária encontrada com este nome ou bairro.';
+                lista.appendChild(msg);
+            }
+        } else {
+            let msg = document.getElementById('no-results');
+            if(msg) msg.remove();
+        }
+    }
+
+    // Lógica do Modal
+    function abrirAgendamento(nome, zap) {
+        imobiliariaAtual = nome; 
+        zapAtual = zap;
+        document.getElementById('modal-subtitulo').innerText = "Agendando para: " + nome;
+        document.getElementById('modal-agendar').style.display = "flex";
+    }
+
+    function fecharModal() { 
+        document.getElementById('modal-agendar').style.display = "none"; 
+    }
+
+    // Envio do Formulário com Validações
+    document.getElementById('formAgendamento').onsubmit = function(e) {
+        e.preventDefault();
         
-        header { background: var(--primary); color: white; padding: 2.5rem 1rem; text-align: center; }
-        .top-bar { position: sticky; top: 0; z-index: 10; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding-bottom: 10px; }
-        .search-bar { max-width: 600px; margin: 0 auto; padding: 15px 20px 5px; }
-        input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; }
+        const dataIn = document.getElementById('data_visita').value;
+        const horaIn = document.getElementById('hora_visita').value;
+        const nomeCli = document.getElementById('nome_cliente').value;
+        const telCli = document.getElementById('tel_cliente').value;
 
-        .container { max-width: 1200px; margin: 30px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        // Validação Final de Semana
+        const dataObj = new Date(dataIn + 'T00:00:00');
+        const diaSemana = dataObj.getDay();
+        if (diaSemana === 0 || diaSemana === 6) { 
+            alert("⚠️ Atenção: Visitas apenas de Segunda a Sexta!"); 
+            return; 
+        }
+
+        // Validação Horário Comercial
+        const horaH = parseInt(horaIn.split(':')[0]);
+        if (horaH < 9 || horaH >= 18) { 
+            alert("⚠️ Atenção: Horário de atendimento das 09:00 às 18:00."); 
+            return; 
+        }
         
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
-        
-        .card-img { width: 100%; height: 160px; object-fit: cover; background: #cbd5e1; }
-        .card-content { padding: 20px; flex-grow: 1; }
-        
-        .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        .stars-row { margin: 10px 0 4px; color: var(--star); font-size: 0.8rem; }
+        // Formata link do WhatsApp
+        const msgFinal = `Olá! Gostaria de confirmar um agendamento via Catálogo Zona Sul:%0A%0A` +
+                         `*Imobiliária:* ${imobiliariaAtual}%0A` +
+                         `*Cliente:* ${nomeCli}%0A` +
+                         `*Telefone:* ${telCli}%0A` +
+                         `*Data:* ${dataObj.toLocaleDateString('pt-BR')}%0A` +
+                         `*Hora:* ${horaIn}`;
 
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 8px; font-size: 0.9rem; }
-        .btn-agendar { width: 100%; padding: 10px; background: white; color: var(--blue); border: 2px solid var(--blue); border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.2s; }
-        .btn-agendar:hover { background: var(--blue); color: white; }
+        window.open(`https://wa.me/${zapAtual}?text=${msgFinal}`, '_blank');
+        fecharModal();
+    };
 
-        #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 25px; border-radius: 15px; width: 90%; max-width: 400px; position: relative; }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; }
-        form label { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: bold; }
-        form input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .horario-info { font-size: 0.75rem; color: var(--red); margin-top: 4px; font-weight: 600; }
-        .submit-agendar { width: 100%; background: var(--blue); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Catálogo Imobiliário Zona Sul RJ</h1>
-    <p>As melhores agências de Ipanema ao Flamengo em um só lugar</p>
-</header>
-
-<div class="top-bar">
-    <div class="search-bar">
-        <input type="text" id="busca" placeholder="Busque por bairro (Ex: Leblon) ou nome..." onkeyup="filtrar()">
-    </div>
-</div>
-
-<div class="container" id="lista">
-    
-    <div class="card" data-bairro="Ipanema">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Ipanema</span>
-            <h3>Judice & Araujo</h3>
-            <div class="stars-row">★★★★★</div>
-            <p>📍 Rua Visconde de Pirajá, 434</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Judice & Araujo', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Leblon">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Leblon</span>
-            <h3>Bossa Nova Sotheby's</h3>
-            <div class="stars-row">★★★★★</div>
-            <p>📍 Av. Ataulfo de Paiva, 135</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Bossa Nova Sotheby\'s', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Ipanema">
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Ipanema</span>
-            <h3>Paulo Rodrigues Imóveis</h3>
-            <div class="stars-row">★★★★☆</div>
-            <p>📍 Rua Visconde de Pirajá, 547</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Paulo Rodrigues', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Copacabana">
-        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Copacabana</span>
-            <h3>Sergio Castro Imóveis</h3>
-            <div class="stars-row">★★★★★</div>
-            <p>📍 Av. Nossa Sra. de Copacabana, 542</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Sergio Castro', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Botafogo">
-        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Botafogo</span>
-            <h3>Julio Bogoricin</h3>
-            <div class="stars-row">★★★★☆</div>
-            <p>📍 Rua Voluntários da Pátria, 126</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Julio Bogoricin', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Flamengo">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Flamengo</span>
-            <h3>Nova Época Imobiliária</h3>
-            <div class="stars-row">★★★★★</div>
-            <p>📍 Rua Marquês de Abrantes, 115</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Nova Epoca', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Botafogo">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Botafogo</span>
-            <h3>Lopes Rio</h3>
-            <div class="stars-row">★★★★☆</div>
-            <p>📍 Praia de Botafogo, 228</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Lopes Rio', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card" data-bairro="Jardim Botânico">
-        <img src="
-
+    // Fechar ao clicar fora
+    window.onclick = (e) => { 
+        if(e.target == document.getElementById('modal-agendar')) fecharModal(); 
+    }
