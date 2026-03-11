@@ -5,118 +5,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Imobiliárias Zona Sul</title>
     <style>
-        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --green: #ecfdf5; --green-text: #059669; --border: #e2e8f0; }
+        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
 
-        /* HERO - Baseado no seu print */
-        .hero { height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; padding: 0 8%; color: white; }
-        .hero h4 { color: #facc15; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
-        .hero h1 { font-size: 3rem; margin: 0; font-weight: bold; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+        /* HERO */
+        .hero { height: 350px; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; padding: 0 8%; color: white; }
+        .hero h1 { font-size: 2.8rem; margin: 0; font-weight: bold; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; max-width: 600px; }
 
         /* STATS BAR */
-        .stats-bar { background: #1e3a8a; color: white; display: flex; justify-content: space-around; padding: 20px; border-bottom: 4px solid #facc15; }
-        .stat-item strong { display: block; font-size: 1.2rem; }
-        .stat-item span { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; }
+        .stats-bar { background: #1e3a8a; color: white; display: flex; justify-content: space-around; padding: 15px; border-bottom: 4px solid #facc15; flex-wrap: wrap; gap: 15px; }
+        .stat-item { text-align: center; }
+        .stat-item strong { display: block; font-size: 1.1rem; }
+        .stat-item span { font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; }
+
+        /* BARRA DE BUSCA */
+        .search-section { background: white; padding: 25px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .search-container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        input#busca { width: 100%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--border); outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        input#busca:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
 
         /* GRID */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
 
-        /* NOVO CARD ESTILO "WHEREINRIO" */
+        /* CARD ESTILO "WHEREINRIO" */
         .card { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; }
         .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; }
         .card.excelente::before { background: #22c55e; }
         .card.bom::before { background: #facc15; }
+        .card.regular::before { background: #ef4444; }
         
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-        .card-header h3 { margin: 0; font-size: 1.6rem; font-family: 'Georgia', serif; color: #0f172a; }
-        .badge-status { padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; }
+        .card-header h3 { margin: 0; font-size: 1.4rem; font-family: 'Georgia', serif; color: #0f172a; }
+        .badge-status { padding: 4px 10px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; text-transform: uppercase; }
         .excelente .badge-status { background: #f0fdf4; color: #16a34a; }
+        .bom .badge-status { background: #fffbeb; color: #d97706; }
+        .regular .badge-status { background: #fef2f2; color: #dc2626; }
 
-        .creci { background: #f1f5f9; color: #64748b; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; }
-        
-        .info-row { display: flex; align-items: center; gap: 8px; color: var(--text-sub); font-size: 0.95rem; margin-bottom: 12px; line-height: 1.4; }
+        .creci { background: #f1f5f9; color: #64748b; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; display: inline-block; margin-bottom: 12px; }
+        .address { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; display: block; min-height: 40px; }
         .rating { color: #22c55e; font-weight: bold; display: flex; align-items: center; gap: 5px; margin-bottom: 15px; }
-        .stars { color: #fbbf24; }
+        .stars { color: #fbbf24; letter-spacing: 1px; }
 
         .tags-venda { display: flex; gap: 8px; margin-bottom: 15px; }
-        .tag-blue { background: #dbeafe; color: #2563eb; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; }
-        .tag-green { background: #dcfce7; color: #16a34a; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; }
+        .tag-blue { background: #dbeafe; color: #2563eb; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+        .tag-green { background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
 
-        .market-time { color: #d97706; font-size: 0.9rem; font-weight: 500; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+        .market-time { color: #d97706; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; }
+        .description { font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 15px; border-top: 1px solid #f1f5f9; padding-top: 12px; min-height: 60px; }
 
-        .description { font-size: 0.95rem; color: #475569; line-height: 1.6; margin-bottom: 20px; border-top: 1px solid #f1f5f9; padding-top: 15px; }
+        .specialties { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; flex-grow: 1; }
+        .spec-tag { background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; }
 
-        .specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; }
-        .spec-tag { background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
-
-        .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; flex-direction: column; gap: 10px; }
-        .phone { color: #64748b; font-weight: 500; text-decoration: none; }
-        .visit-site { color: #2563eb; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+        .phone { color: #475569; font-weight: 500; text-decoration: none; font-size: 0.85rem; }
+        .visit-site { color: #2563eb; text-decoration: none; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; }
     </style>
 </head>
 <body>
 
 <section class="hero">
-    <h4>Rio de Janeiro · Zona Sul</h4>
-    <h1>Imobiliárias de Copacabana</h1>
-    <p>Guia completo com as melhores imobiliárias do bairro mais famoso do Rio de Janeiro.</p>
+    <h1>Imobiliárias da Zona Sul</h1>
+    <p>Seleção premium das melhores agências imobiliárias do Rio de Janeiro.</p>
 </section>
 
 <section class="stats-bar">
-    <div class="stat-item"><span>Imobiliárias</span><strong>40</strong></div>
-    <div class="stat-item"><span>Imóveis Listados</span><strong>6.896+</strong></div>
-    <div class="stat-item"><span>Avaliação Média</span><strong>4.2★</strong></div>
-    <div class="stat-item"><span>Exp. Média</span><strong>13 anos</strong></div>
+    <div class="stat-item"><span>Agências</span><strong>10 Selecionadas</strong></div>
+    <div class="stat-item"><span>Imóveis</span><strong>+12.000</strong></div>
+    <div class="stat-item"><span>Avaliação</span><strong>4.5★ Média</strong></div>
+    <div class="stat-item"><span>Região</span><strong>RJ</strong></div>
 </section>
 
-<div class="container">
-    <div class="card excelente">
-        <div class="card-header">
-            <h3>WhereInRio</h3>
-            <span class="badge-status">Excelente</span>
-        </div>
-        
-        <span class="creci">CRECI: 6820-J-RJ</span>
-
-        <div class="info-row">
-            <span>📍 Rua Francisco Otaviano - Copacabana, Rio de Janeiro - RJ</span>
-        </div>
-
-        <div class="rating">
-            <span class="stars">★★★★★</span> 4.7
-        </div>
-
-        <div class="tags-venda">
-            <span class="tag-blue">Venda</span>
-            <span class="tag-green">Locação</span>
-            <span style="color:#94a3b8; font-size: 0.8rem;">+2 mais</span>
-        </div>
-
-        <div class="market-time">
-            🏅 13 anos no mercado
-        </div>
-
-        <div class="description">
-            Imobiliária de luxo especializada em imóveis de alto padrão no Rio de Janeiro. Gestão completa de propriedades, aluguel e venda.
-        </div>
-
-        <div style="font-size: 0.7rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px;">Especialidades</div>
-        <div class="specialties">
-            <span class="spec-tag">Imóveis de Luxo</span>
-            <span class="spec-tag">Coberturas</span>
-            <span class="spec-tag">Apartamentos Premium</span>
-            <span class="spec-tag">Copacabana</span>
-            <span class="spec-tag">Ipanema</span>
-            <span class="spec-tag">Leblon</span>
-        </div>
-
-        <div class="card-footer">
-            <a href="tel:21969460000" class="phone">📞 (21) 96946-0000</a>
-            <a href="#" class="visit-site">🌐 Visitar site ↗</a>
-        </div>
+<div class="search-section">
+    <div class="search-container">
+        <input type="text" id="busca" placeholder="Buscar por nome, bairro ou especialidade..." onkeyup="filtrar()">
     </div>
 </div>
+
+<div class="container" id="lista">
+    <div class="card excelente">
+        <div class="card-header"><h3>WhereInRio</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 6820-J-RJ</span>
+        <span class="address">📍 Rua Francisco Otaviano - Copacabana, RJ</span>
+        <div class="rating"><span class="stars">★★★★★</span> 4.7</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 13 anos no mercado</div>
+        <p class="description">Especializada em alto padrão e gestão de propriedades de luxo.</p>
+        <div class="specialties"><span class="spec-tag">Luxo</span><span class="spec-tag">Copacabana</span><span class="spec-tag">Gestão</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521969460000" class="phone">📞 (21) 96946-0000</a><a href="https://www.google.com/search?q=WhereInRio+Copacabana" target="_blank" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card excelente">
+        <div class="card-header"><h3>Judice & Araujo</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 2544-J-RJ</span>
+        <span class="address">📍 R. Visconde de Pirajá, 434 - Ipanema, RJ</span>
+        <div class="rating"><span class="stars">★★★★★</span> 4.8</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Temporada</span></div>
+        <div class="market-time">🏅 45 anos no mercado</div>
+        <p class="description">Líder em imóveis exclusivos na Zona Sul e Região Serrana.</p>
+        <div class="specialties"><span class="spec-tag">Ipanema</span><span class="spec-tag">Serra</span><span class="spec-tag">Exclusivos</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521996255150" class="phone">📞 (21) 99625-5150</a><a href="https://g.page/judice-araujo-ipanema?share" target="_blank" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card excelente">
+        <div class="card-header"><h3>Bossa Nova</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 3512-J-RJ</span>
+        <span class="address">📍 Av. Ataulfo de Paiva, 135 - Leblon, RJ</span>
+        <div class="rating"><span class="stars">★★★★★</span> 4.9</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 15 anos no mercado</div>
+        <p class="description">Parte da maior rede de imobiliárias de luxo do mundo.</p>
+        <div class="specialties"><span class="spec-tag">Leblon</span><span class="spec-tag">Global</span><span class="spec-tag">Design</span></div>
+        <div class="card-footer"><a href="https://wa.me/551130610000" class="phone">📞 (11) 3061-0000</a><a href="https://g.page/bossa-nova-sotheby-s-rj?share" target="_blank" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card excelente">
+        <div class="card-header"><h3>Sergio Castro</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 1540-J-RJ</span>
+        <span class="address">📍 Av. N. Sra. Copacabana, 542 - Copacabana, RJ</span>
+        <div class="rating"><span class="stars">★★★★</span> 4.5</div>
+        <div class="tags-venda"><span class="tag-blue">Comercial</span><span class="tag-green">Venda</span></div>
+        <div class="market-time">🏅 70 anos no mercado</div>
+        <p class="description">Histórica e tradicional, especialista em prédios e pontos comerciais.</p>
+        <div class="specialties"><span class="spec-tag">Comercial</span><span class="spec-tag">Tradição</span><span class="spec-tag">Centro</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521997312100" class="phone">📞 (21) 99731-2100</a><a href="https://www.google.com/search?q=Sergio+Castro+Copacabana" target="_blank" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card bom">
+        <div class="card-header"><h3>Paulo Rodrigues</h3><span class="badge-status">Bom</span></div>
+        <span class="creci">CRECI: 4890-J-RJ</span>
+        <span class="address">📍 R. Visconde de Pirajá, 547 - Ipanema, RJ</span>
+        <div class="rating"><span class="stars">★★★★</span> 4.2</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 25 anos no mercado</div>
+        <p class="description">Atendimento personalizado com foco no triângulo de Ipanema.</p>
+        <div class="specialties"><span class="spec-tag">Ipanema</span><span class="spec-tag">Residencial</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521998555470" class="phone">📞 (21) 99855-5470</a><a href="#" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card bom">
+        <div class="card-header"><h3>Julio Bogoricin</h3><span class="badge-status">Bom</span></div>
+        <span class="creci">CRECI: 2100-J-RJ</span>
+        <span class="address">📍 R. Voluntários da Pátria, 126 - Botafogo, RJ</span>
+        <div class="rating"><span class="stars">★★★★</span> 4.0</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 60 anos no mercado</div>
+        <p class="description">Uma das maiores redes do Rio, com forte presença em Botafogo.</p>
+        <div class="specialties"><span class="spec-tag">Botafogo</span><span class="spec-tag">Volume</span><span class="spec-tag">Rede</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521998511260" class="phone">📞 (21) 99851-1260</a><a href="#" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card excelente">
+        <div class="card-header"><h3>Nova Época</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 5320-J-RJ</span>
+        <span class="address">📍 R. Marquês de Abrantes, 115 - Flamengo, RJ</span>
+        <div class="rating"><span class="stars">★★★★★</span> 4.6</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 20 anos no mercado</div>
+        <p class="description">Especialista em Flamengo e Laranjeiras com grande estoque.</p>
+        <div class="specialties"><span class="spec-tag">Flamengo</span><span class="spec-tag">Laranjeiras</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521999120115" class="phone">📞 (21) 99912-0115</a><a href="https://g.page/nova-epoca-flamengo?share" target="_blank" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card bom">
+        <div class="card-header"><h3>Lopes Rio</h3><span class="badge-status">Bom</span></div>
+        <span class="creci">CRECI: 6010-J-RJ</span>
+        <span class="address">📍 Praia de Botafogo, 228 - Botafogo, RJ</span>
+        <div class="rating"><span class="stars">★★★★</span> 4.3</div>
+        <div class="tags-venda"><span class="tag-blue">Lançamento</span><span class="tag-green">Venda</span></div>
+        <div class="market-time">🏅 40 anos no mercado</div>
+        <p class="description">Líder nacional, focada em novos empreendimentos na orla.</p>
+        <div class="specialties"><span class="spec-tag">Lançamentos</span><span class="spec-tag">Orla</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521998412280" class="phone">📞 (21) 99841-2280</a><a href="#" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card excelente">
+        <div class="card-header"><h3>Ficha Imob</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 7100-J-RJ</span>
+        <span class="address">📍 R. Jardim Botânico, 635 - J. Botânico, RJ</span>
+        <div class="rating"><span class="stars">★★★★★</span> 4.7</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 18 anos no mercado</div>
+        <p class="description">Foco exclusivo em imóveis bucólicos e luxuosos no Jardim Botânico.</p>
+        <div class="specialties"><span class="spec-tag">J. Botânico</span><span class="spec-tag">Bucólico</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521998635000" class="phone">📞 (21) 99863-5000</a><a href="#" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+
+    <div class="card excelente">
+        <div class="card-header"><h3>Gávea Sul</h3><span class="badge-status">Excelente</span></div>
+        <span class="creci">CRECI: 3900-J-RJ</span>
+        <span class="address">📍 R. Marquês de São Vicente, 124 - Gávea, RJ</span>
+        <div class="rating"><span class="stars">★★★★★</span> 4.8</div>
+        <div class="tags-venda"><span class="tag-blue">Venda</span><span class="tag-green">Locação</span></div>
+        <div class="market-time">🏅 30 anos no mercado</div>
+        <p class="description">A agência mais tradicional da Gávea, especialista no bairro.</p>
+        <div class="specialties"><span class="spec-tag">Gávea</span><span class="spec-tag">Casas</span></div>
+        <div class="card-footer"><a href="https://wa.me/5521998741240" class="phone">📞 (21) 99874-1240</a><a href="#" class="visit-site">Ver no Google ↗</a></div>
+    </div>
+</div>
+
+<script>
+    function filtrar() {
+        let input = document.getElementById('busca').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        for (let card of cards) {
+            let content = card.innerText.toLowerCase();
+            card.style.display = content.includes(input) ? "flex" : "none";
+        }
+    }
+</script>
 
 </body>
 </html>
