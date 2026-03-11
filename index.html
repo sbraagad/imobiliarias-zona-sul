@@ -94,7 +94,7 @@ footer { background: #0f172a; color: #94a3b8; padding: 60px 10% 30px; text-align
 <body onload="atualizarContador()">
 
 <section class="hero">
-<h1>Todas as imobiliárias do Rio em um só lugar</h1>
+<h1>Todas as imobiliárias do Rio em um só lugar.</h1>
 <p>O radar definitivo para investimentos e moradia de alto padrão no Rio de Janeiro.</p>
 </section>
 
@@ -235,8 +235,68 @@ Visitar o site ↗
 </div>
 </div>
 
-<!-- resto do script permanece igual -->
+<a href="#" class="site-link">
+Visitar o site ↗
+</a>
+
+</div>
+</div>
+</div>
+
+<script>
+
+function toggleAnalysis(tipo){
+
+const panel = document.getElementById("panel-analysis");
+
+if(panel.style.display === "block"){
+panel.style.display = "none";
+return;
+}
+
+panel.style.display = "block";
+
+if(tipo === "preco"){
+panel.innerHTML = `
+<h3>Preço médio do m² — Zona Sul RJ</h3>
+
+<p><strong>Leblon:</strong> R$ 24.000 / m²</p>
+<p><strong>Ipanema:</strong> R$ 22.000 / m²</p>
+<p><strong>Lagoa:</strong> R$ 20.000 / m²</p>
+<p><strong>Gávea:</strong> R$ 17.000 / m²</p>
+<p><strong>Jardim Botânico:</strong> R$ 18.000 / m²</p>
+<p><strong>Copacabana:</strong> R$ 13.000 / m²</p>
+<p><strong>Botafogo:</strong> R$ 11.500 / m²</p>
+<p><strong>Flamengo:</strong> R$ 10.800 / m²</p>
+`;
+}
+
+if(tipo === "rent"){
+panel.innerHTML = `
+<h3>Rentabilidade média Airbnb</h3>
+
+<p><strong>Leblon:</strong> 0.45% ao mês</p>
+<p><strong>Ipanema:</strong> 0.50% ao mês</p>
+<p><strong>Copacabana:</strong> 0.65% ao mês</p>
+<p><strong>Botafogo:</strong> 0.60% ao mês</p>
+`;
+}
+
+if(tipo === "life"){
+panel.innerHTML = `
+<h3>Lifestyle Zona Sul</h3>
+
+<p><strong>Leblon:</strong> alto padrão e restaurantes premium.</p>
+<p><strong>Ipanema:</strong> turismo internacional e lifestyle sofisticado.</p>
+<p><strong>Copacabana:</strong> bairro mais turístico do Rio.</p>
+<p><strong>Botafogo:</strong> polo gastronômico e jovem.</p>
+<p><strong>Lagoa:</strong> qualidade de vida e natureza.</p>
+`;
+}
+
+}
+
+</script>
 
 </body>
 </html>
-
