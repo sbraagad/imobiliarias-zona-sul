@@ -1,172 +1,355 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Oficial Imobiliárias Zona Sul</title>
-    <style>
-        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); line-height: 1.6; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Oficial Imobiliárias Zona Sul</title>
 
-        /* HERO - AGORA É O TOPO DO SITE */
-        .hero { 
-            height: 400px; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; 
-        }
-        .hero h1 { font-size: 3.2rem; margin: 0; font-family: 'Georgia', serif; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 650px; }
+<style>
 
-        /* SEÇÃO DE VANTAGENS */
-        .vantagens { padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; background: white; text-align: center; }
-        .vantagem-item h3 { color: var(--primary); margin-bottom: 10px; }
-        .vantagem-item p { color: var(--text-sub); font-size: 0.9rem; }
+:root { 
+--primary: #1e3a8a; 
+--bg: #f8fafc; 
+--text-main: #1e293b; 
+--text-sub: #64748b; 
+--border: #e2e8f0; 
+--accent: #2563eb; 
+}
 
-        /* FILTROS E DASHBOARD FIXO NO SCROLL */
-        .filter-section { background: #f1f5f9; padding: 35px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .filter-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        .dashboard-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .info-item { display: flex; align-items: center; gap: 12px; background: white; padding: 15px; border-radius: 10px; }
-        .info-icon { font-size: 1.4rem; color: var(--accent); }
-        .info-text span { display: block; font-size: 0.7rem; color: var(--text-sub); text-transform: uppercase; font-weight: bold; }
-        .info-text strong { font-size: 1rem; color: var(--primary); }
+body {
+font-family: 'Segoe UI', Tahoma, sans-serif;
+margin:0;
+background:var(--bg);
+color:var(--text-main);
+line-height:1.6;
+}
 
-        /* ANÁLISES */
-        .analysis-trigger { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
-        .btn-analysis { background: white; border: 1px solid var(--border); padding: 9px 16px; border-radius: 50px; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--primary); transition: 0.3s; }
-        #panel-analysis { display: none; margin-bottom: 20px; background: #fffbeb; border: 1px solid #fef3c7; padding: 20px; border-radius: 12px; font-size: 0.9rem; }
+/* HERO */
 
-        /* BUSCA E SELECTS */
-        input#busca { width: 100%; padding: 14px 22px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; box-sizing: border-box; outline: none; margin-bottom: 15px; }
-        .options-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        select { padding: 11px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; font-weight: 500; font-size: 0.85rem; }
+.hero{
+height:400px;
+background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)),
+url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
 
-        /* CARDS */
-        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; display: flex; flex-direction: column; transition: 0.4s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .card.excelente::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #22c55e; border-radius: 12px 12px 0 0; }
-        
-        .logo-container { width: 60px; height: 60px; background: #f1f5f9; border-radius: 50%; position: absolute; top: 25px; right: 25px; border: 1px solid var(--border); overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .logo-container img { width: 100%; height: 100%; object-fit: contain; }
+.hero h1{
+font-size:3.2rem;
+margin:0;
+font-family:'Georgia',serif;
+}
 
-        .card-header { padding-right: 70px; min-height: 65px; }
-        .card h3 { margin: 0; font-family: 'Georgia', serif; font-size: 1.3rem; }
-        .badge-excelente { font-size: 0.65rem; color: #16a34a; background: #f0fdf4; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; margin-top: 5px; display: inline-block; }
+.hero p{
+font-size:1.2rem;
+opacity:0.9;
+max-width:650px;
+}
 
-        .creci { font-size: 0.65rem; color: var(--text-sub); background: #f1f5f9; padding: 3px 8px; border-radius: 4px; display: inline-block; margin: 10px 0; font-weight: bold; }
-        .address { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 12px; display: block; }
-        
-        .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
-        .phone-whatsapp { color: #16a34a; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-        .site-link { color: var(--accent); font-weight: bold; text-decoration: none; font-size: 0.9rem; }
+/* VANTAGENS */
 
-        /* FOOTER PROFISSIONAL */
-        footer { background: #0f172a; color: #94a3b8; padding: 60px 10% 30px; text-align: center; margin-top: 80px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px; }
-        .footer-grid h4 { color: white; margin-bottom: 15px; }
-        .footer-grid ul { list-style: none; padding: 0; font-size: 0.9rem; }
-        .footer-grid ul li { margin-bottom: 8px; }
+.vantagens{
+padding:60px 10%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+background:white;
+text-align:center;
+}
 
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-            .dashboard-info { grid-template-columns: repeat(2, 1fr); }
-            .options-row { grid-template-columns: 1fr; }
-            .filter-section { position: relative; }
-        }
-    </style>
+.vantagem-item h3{
+color:var(--primary);
+margin-bottom:10px;
+}
+
+.vantagem-item p{
+color:var(--text-sub);
+font-size:0.9rem;
+}
+
+/* FILTROS */
+
+.filter-section{
+background:#f1f5f9;
+padding:35px 0;
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 4px 15px rgba(0,0,0,0.05);
+}
+
+.filter-container{
+max-width:1200px;
+margin:0 auto;
+padding:0 20px;
+}
+
+.dashboard-info{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:25px;
+}
+
+.info-item{
+display:flex;
+align-items:center;
+gap:12px;
+background:white;
+padding:15px;
+border-radius:10px;
+}
+
+.info-icon{
+font-size:1.4rem;
+color:var(--accent);
+}
+
+.info-text span{
+display:block;
+font-size:0.7rem;
+color:var(--text-sub);
+text-transform:uppercase;
+font-weight:bold;
+}
+
+.info-text strong{
+font-size:1rem;
+color:var(--primary);
+}
+
+/* ANÁLISES */
+
+.analysis-trigger{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:15px;
+}
+
+.btn-analysis{
+background:white;
+border:1px solid var(--border);
+padding:9px 16px;
+border-radius:50px;
+cursor:pointer;
+font-size:0.8rem;
+font-weight:600;
+color:var(--primary);
+}
+
+#panel-analysis{
+display:none;
+margin-bottom:20px;
+background:#fffbeb;
+border:1px solid #fef3c7;
+padding:20px;
+border-radius:12px;
+font-size:0.9rem;
+}
+
+/* BUSCA */
+
+input#busca{
+width:100%;
+padding:14px 22px;
+border-radius:50px;
+border:1px solid var(--border);
+font-size:1rem;
+margin-bottom:15px;
+}
+
+.options-row{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+select{
+padding:11px;
+border-radius:8px;
+border:1px solid var(--border);
+background:#f8fafc;
+font-weight:500;
+font-size:0.85rem;
+}
+
+/* CARDS */
+
+.container{
+max-width:1200px;
+margin:60px auto;
+padding:0 20px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+border:1px solid var(--border);
+padding:25px;
+position:relative;
+display:flex;
+flex-direction:column;
+}
+
+.card.excelente::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:6px;
+background:#22c55e;
+border-radius:12px 12px 0 0;
+}
+
+.logo-container{
+width:60px;
+height:60px;
+background:#f1f5f9;
+border-radius:50%;
+position:absolute;
+top:25px;
+right:25px;
+border:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.card-header{
+padding-right:70px;
+min-height:65px;
+}
+
+.card h3{
+margin:0;
+font-family:'Georgia',serif;
+font-size:1.3rem;
+}
+
+.badge-excelente{
+font-size:0.65rem;
+color:#16a34a;
+background:#f0fdf4;
+padding:4px 8px;
+border-radius:4px;
+font-weight:bold;
+margin-top:5px;
+display:inline-block;
+}
+
+.creci{
+font-size:0.65rem;
+color:var(--text-sub);
+background:#f1f5f9;
+padding:3px 8px;
+border-radius:4px;
+display:inline-block;
+margin:10px 0;
+font-weight:bold;
+}
+
+.address{
+font-size:0.8rem;
+color:var(--text-sub);
+margin-bottom:12px;
+display:block;
+}
+
+.card-footer{
+border-top:1px solid #f1f5f9;
+padding-top:15px;
+margin-top:auto;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+/* BOTÃO WHATSAPP MELHORADO */
+
+.phone-whatsapp{
+display:flex;
+align-items:center;
+gap:8px;
+background:#25D366;
+color:white;
+padding:8px 12px;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+font-size:0.9rem;
+width:fit-content;
+}
+
+.site-link{
+color:var(--accent);
+font-weight:bold;
+text-decoration:none;
+font-size:0.9rem;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f172a;
+color:#94a3b8;
+padding:60px 10% 30px;
+text-align:center;
+margin-top:80px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:40px;
+text-align:left;
+margin-bottom:40px;
+}
+
+.footer-grid h4{
+color:white;
+margin-bottom:15px;
+}
+
+</style>
 </head>
-<body onload="atualizarContador()">
+
+<body>
 
 <section class="hero">
-    <h1>Excelência Imobiliária</h1>
-    <p>O radar definitivo para investimentos e moradia de alto padrão no Rio de Janeiro.</p>
+<h1>Excelência Imobiliária</h1>
+<p>O radar definitivo para investimentos e moradia de alto padrão no Rio de Janeiro.</p>
 </section>
 
-<section class="vantagens">
-    <div class="vantagem-item">
-        <h3>🛡️ Curadoria Rigorosa</h3>
-        <p>Apenas imobiliárias com histórico comprovado e CRECI ativo são listadas no guia.</p>
-    </div>
-    <div class="vantagem-item">
-        <h3>📊 Dados do Mercado</h3>
-        <p>Acesse o valor médio do metro quadrado por bairro atualizado trimestralmente.</p>
-    </div>
-    <div class="vantagem-item">
-        <h3>🎯 Especialistas</h3>
-        <p>Encontre o parceiro ideal para compra, venda ou locação por temporada.</p>
-    </div>
-</section>
+<div class="container">
 
-<div class="filter-section">
-    <div class="filter-container">
-        <div class="dashboard-info">
-            <div class="info-item">
-                <div class="info-icon">🏢</div>
-                <div class="info-text"><span>Cadastradas</span><strong id="contador-imob">0 Imobiliárias</strong></div>
-            </div>
-            <div class="info-item"><div class="info-icon">🏠</div><div class="info-text"><span>Imóveis</span><strong>+12.000</strong></div></div>
-            <div class="info-item"><div class="info-icon">⭐</div><div class="info-text"><span>Google</span><strong>4.6 Estrelas</strong></div></div>
-            <div class="info-item"><div class="info-icon">⏳</div><div class="info-text"><span>Tradição</span><strong>25 Anos</strong></div></div>
-        </div>
+<div class="card excelente">
 
-        <div class="analysis-trigger">
-            <button class="btn-analysis" onclick="toggleAnalysis('preco')">📈 Preço m² p/ Bairro</button>
-            <button class="btn-analysis" onclick="toggleAnalysis('rent')">💰 Airbnb</button>
-            <button class="btn-analysis" onclick="toggleAnalysis('life')">📍 Lifestyle Z.S.</button>
-        </div>
+<div class="logo-container">🏢</div>
 
-        <div id="panel-analysis"></div>
-
-        <div class="search-row"><input type="text" id="busca" placeholder="Busque por nome ou endereço..." onkeyup="filtrar()"></div>
-        
-        <div class="options-row">
-            <select id="f-bairro" onchange="filtrar()">
-                <option value="">Todos os Bairros</option>
-                <option value="Leblon">Leblon</option>
-                <option value="Ipanema">Ipanema</option>
-                <option value="Copacabana">Copacabana</option>
-                <option value="Botafogo">Botafogo</option>
-                <option value="Flamengo">Flamengo</option>
-                <option value="Lagoa">Lagoa</option>
-                <option value="Gávea">Gávea</option>
-                <option value="Jardim Botânico">Jardim Botânico</option>
-                <option value="Urca">Urca</option>
-                <option value="São Conrado">São Conrado</option>
-            </select>
-            <select id="f-espec" onchange="filtrar()">
-                <option value="">Especialidades</option>
-                <option value="Luxo">Alto Padrão / Luxo</option>
-                <option value="Padrao">Residencial Padrão</option>
-                <option value="Comercial">Comercial</option>
-            </select>
-            <select id="f-servico" onchange="filtrar()">
-                <option value="">Serviços</option>
-                <option value="Venda">Venda</option>
-                <option value="Locacao">Locação</option>
-                <option value="Temporada">Temporada</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="container" id="lista">
-    
-    <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda Temporada">
-        <div class="logo-container"><span style="font-size: 1.5rem; color: #cbd5e1;">🏢</span></div>
-        <div class="card-header">
-            <h3>Judice & Araujo</h3>
-          <span class="badge-excelente">Excelente</span>
+<div class="card-header">
+<h3>Judice & Araujo</h3>
+<span class="badge-excelente">Excelente</span>
 </div>
 
 <span class="creci">CRECI: 2544-J-RJ</span>
+
 <span class="address">📍 R. Visconde de Pirajá, Ipanema</span>
 
 <div class="card-footer">
 
-<a href="tel:2125445000" style="text-decoration:none; color:#475569; font-size:0.85rem;">
+<a href="tel:2125445000">
 📞 (21) 2544-5000
 </a>
 
@@ -181,69 +364,8 @@ Visitar o site ↗
 
 </div>
 </div>
+
 </div>
 
-<footer>
-    <div class="footer-grid">
-        <div>
-            <h4>Curadoria Zona Sul</h4>
-            <p style="font-size: 0.85rem;">A maior base de dados e classificação imobiliária do Rio de Janeiro.</p>
-        </div>
-        <div>
-            <h4>Links Úteis</h4>
-            <ul>
-                <li>Como ser listado</li>
-                <li>Tabela de Preços 2026</li>
-                <li>Políticas de Privacidade</li>
-            </ul>
-        </div>
-        <div>
-            <h4>Contato Institucional</h4>
-            <ul>
-                <li>📧 contato@guiazonasul.com.br</li>
-                <li>📍 Rio de Janeiro, Brasil</li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        &copy; 2026 Catálogo Imobiliário - Todos os direitos reservados.
-    </div>
-</footer>
-
-<script>
-    function atualizarContador() {
-        const total = document.getElementsByClassName('card').length;
-        document.getElementById('contador-imob').innerText = total + " Imobiliárias";
-    }
-
-    function toggleAnalysis(tipo) {
-        const panel = document.getElementById('panel-analysis');
-        panel.style.display = 'block';
-        const dados = {
-            'preco': '<strong>📊 Preço Médio m²:</strong> Leblon R$ 22.500 | Ipanema R$ 20.200 | Lagoa R$ 17.800 | Copacabana R$ 12.800 | Botafogo R$ 13.200 | Flamengo R$ 11.500.',
-            'rent': '<strong>💰 Rentabilidade Airbnb:</strong> Ipanema e Copacabana possuem a maior taxa de ocupação da cidade.',
-            'life': '<strong>📍 Lifestyle:</strong> Leblon (Sofisticação), Urca (Tranquilidade), Botafogo (Cultura).'
-        };
-        panel.innerHTML = dados[tipo] + '<br><button onclick="this.parentElement.style.display=\'none\'" style="margin-top:10px; color:red; border:none; background:none; cursor:pointer; font-weight:bold;">[ FECHAR ]</button>';
-    }
-
-    function filtrar() {
-        const busca = document.getElementById('busca').value.toLowerCase();
-        const bairro = document.getElementById('f-bairro').value;
-        const espec = document.getElementById('f-espec').value;
-        const servico = document.getElementById('f-servico').value;
-        const cards = document.getElementsByClassName('card');
-
-        for (let card of cards) {
-            const mBairro = !bairro || card.getAttribute('data-bairro') === bairro;
-            const mEspec = !espec || card.getAttribute('data-espec') === espec;
-            const mServ = !servico || card.getAttribute('data-servico').includes(servico);
-            const mBusca = card.innerText.toLowerCase().includes(busca);
-            card.style.display = (mBairro && mEspec && mServ && mBusca) ? "flex" : "none";
-        }
-    }
-</script>
 </body>
 </html>
-
-
