@@ -10,7 +10,7 @@
 
         /* HERO */
         .hero { 
-            height: 400px; 
+            height: 380px; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
                         url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); 
             background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; color: white; 
@@ -19,28 +19,35 @@
         .hero h1 { font-size: 3rem; margin: 0; font-family: 'Georgia', serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.2rem; max-width: 650px; margin-top: 15px; opacity: 0.9; }
 
-        /* FILTROS */
-        .filter-section { background: white; padding: 25px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* SEÇÃO DE FILTROS E DASHBOARD */
+        .filter-section { background: white; padding: 30px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .filter-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .options-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 15px; }
-        input#busca { width: 100%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; outline: none; box-sizing: border-box; }
-        select { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; cursor: pointer; color: var(--text-main); font-weight: 500; }
 
-        /* GRID E CARDS */
+        /* NOVO DASHBOARD DE INFORMAÇÕES (ACIMA DA BUSCA) */
+        .dashboard-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; }
+        .info-item { display: flex; align-items: center; gap: 12px; }
+        .info-icon { font-size: 1.5rem; background: #eff6ff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--accent); }
+        .info-text span { display: block; font-size: 0.75rem; color: var(--text-sub); text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
+        .info-text strong { font-size: 1.1rem; color: var(--primary); }
+
+        /* BUSCA E SELETORES */
+        .search-row { margin-bottom: 15px; }
+        input#busca { width: 100%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; outline: none; box-sizing: border-box; transition: 0.3s; background: #f8fafc; }
+        input#busca:focus { border-color: var(--accent); background: white; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+
+        .options-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+        select { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; cursor: pointer; color: var(--text-main); font-weight: 500; outline: none; }
+
+        /* GRID DE CARDS */
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; display: flex; flex-direction: column; transition: 0.3s; }
         .card.excelente::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; border-radius: 12px 12px 0 0; background: #22c55e; }
-        
         .card-header h3 { margin: 0; font-family: 'Georgia', serif; font-size: 1.4rem; color: #0f172a; }
         .badge { font-size: 0.65rem; font-weight: bold; padding: 4px 8px; border-radius: 5px; text-transform: uppercase; background: #f0fdf4; color: #16a34a; }
         .creci { font-size: 0.7rem; color: var(--text-sub); background: #f1f5f9; padding: 3px 8px; border-radius: 4px; display: inline-block; margin: 10px 0; }
-        
-        .specialties-title { font-size: 0.7rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; margin: 15px 0 8px; display: block; }
         .spec-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; flex-grow: 1; }
         .tag { background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; color: #64748b; }
-
         .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; flex-direction: column; gap: 8px; }
-        .phone-fixo { color: #475569; font-size: 0.85rem; text-decoration: none; }
         .phone-whatsapp { color: #16a34a; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         .phone-whatsapp img { width: 18px; }
         .site-link { color: var(--accent); font-weight: bold; text-decoration: none; font-size: 0.9rem; margin-top: 5px; }
@@ -56,38 +63,50 @@
 
 <div class="filter-section">
     <div class="filter-container">
-        <input type="text" id="busca" placeholder="Busque por nome, rua ou palavra-chave..." onkeyup="filtrar()">
+        
+        <div class="dashboard-info">
+            <div class="info-item">
+                <div class="info-icon">🏢</div>
+                <div class="info-text"><span>Cadastradas</span><strong>10 Agências</strong></div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🏠</div>
+                <div class="info-text"><span>Acervo Total</span><strong>+12.450 Imóveis</strong></div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">⭐</div>
+                <div class="info-text"><span>Avaliação Média</span><strong>4.6 / 5.0 Google</strong></div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">⏳</div>
+                <div class="info-text"><span>Experiência</span><strong>25 Anos de Mercado</strong></div>
+            </div>
+        </div>
+
+        <div class="search-row">
+            <input type="text" id="busca" placeholder="Busque por nome da imobiliária ou rua específica..." onkeyup="filtrar()">
+        </div>
+        
         <div class="options-row">
             <select id="f-bairro" onchange="filtrar()">
                 <option value="">Todos os Bairros (Zona Sul)</option>
                 <option value="Botafogo">Botafogo</option>
-                <option value="Catete">Catete</option>
                 <option value="Copacabana">Copacabana</option>
-                <option value="Cosme Velho">Cosme Velho</option>
                 <option value="Flamengo">Flamengo</option>
                 <option value="Gávea">Gávea</option>
-                <option value="Glória">Glória</option>
-                <option value="Humaitá">Humaitá</option>
                 <option value="Ipanema">Ipanema</option>
-                <option value="Jardim Botânico">Jardim Botânico</option>
                 <option value="Lagoa">Lagoa</option>
-                <option value="Laranjeiras">Laranjeiras</option>
                 <option value="Leblon">Leblon</option>
-                <option value="Leme">Leme</option>
                 <option value="São Conrado">São Conrado</option>
-                <option value="Urca">Urca</option>
             </select>
-
             <select id="f-espec" onchange="filtrar()">
                 <option value="">Especialidades</option>
                 <option value="Residencial Padrao">Residencial Padrão</option>
                 <option value="Luxo">Alto Padrão / Luxo</option>
                 <option value="Comercial">Comercial</option>
-                <option value="Lancamento">Lançamentos</option>
             </select>
-
             <select id="f-servico" onchange="filtrar()">
-                <option value="">Todos os Serviços</option>
+                <option value="">Serviços</option>
                 <option value="Venda">Venda</option>
                 <option value="Locacao">Locação Anual</option>
                 <option value="Temporada">Gestão de Temporada</option>
@@ -98,135 +117,20 @@
 
 <div class="container" id="lista">
     <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda Temporada">
-        <div class="card-header"><h3>Judice & Araujo</h3><span class="badge">Excelente</span></div>
+        <div class="card-header" style="display:flex; justify-content: space-between;">
+            <h3>Judice & Araujo</h3><span class="badge">Excelente</span>
+        </div>
         <span class="creci">CRECI: 2544-J-RJ</span>
-        <span class="address">📍 R. Visconde de Pirajá, Ipanema</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Ipanema</span><span class="tag">Gestão de Temporada</span></div>
+        <span class="address" style="font-size: 0.85rem; color: #64748b;">📍 R. Visconde de Pirajá, Ipanema</span>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Exclusivos</span><span class="tag">Gestão de Temporada</span></div>
         <div class="card-footer">
-            <a href="tel:2125445000" class="phone-fixo">📞 (21) 2544-5000</a>
+            <a href="tel:2125445000" style="color:#475569; text-decoration:none; font-size:0.85rem;">📞 (21) 2544-5000</a>
             <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99625-5150</a>
             <a href="#" class="site-link">Visitar o site ↗</a>
         </div>
     </div>
 
-    <div class="card excelente" data-bairro="Leblon" data-espec="Luxo" data-servico="Venda">
-        <div class="card-header"><h3>Bossa Nova Sotheby's</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 3512-J-RJ</span>
-        <span class="address">📍 Av. Ataulfo de Paiva, Leblon</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Alto Padrão</span><span class="tag">Design</span><span class="tag">Global</span></div>
-        <div class="card-footer">
-            <a href="tel:2130610000" class="phone-fixo">📞 (21) 3061-0000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 97100-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
     </div>
-
-    <div class="card excelente" data-bairro="Copacabana" data-espec="Luxo" data-servico="Temporada Venda">
-        <div class="card-header"><h3>WhereInRio</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 6820-J-RJ</span>
-        <span class="address">📍 Rua Francisco Otaviano, Copacabana</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Gestão de Temporada</span><span class="tag">Coberturas</span></div>
-        <div class="card-footer">
-            <a href="tel:2132530000" class="phone-fixo">📞 (21) 3253-0000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 96946-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Flamengo" data-espec="Residencial Padrao" data-servico="Venda Locacao">
-        <div class="card-header"><h3>Nova Época</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 5320-J-RJ</span>
-        <span class="address">📍 R. Marquês de Abrantes, Flamengo</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Residencial Padrão</span><span class="tag">Flamengo</span><span class="tag">Apartamentos</span></div>
-        <div class="card-footer">
-            <a href="tel:2125551000" class="phone-fixo">📞 (21) 2555-1000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 98888-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Botafogo" data-espec="Lancamento" data-servico="Venda">
-        <div class="card-header"><h3>Lopes Rio</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 6010-J-RJ</span>
-        <span class="address">📍 Praia de Botafogo, Botafogo</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Lançamentos</span><span class="tag">Investimento</span><span class="tag">Novos</span></div>
-        <div class="card-footer">
-            <a href="tel:2121550000" class="phone-fixo">📞 (21) 2155-0000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99841-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Lagoa" data-espec="Luxo" data-servico="Venda">
-        <div class="card-header"><h3>Sergio Castro (Premium)</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 1540-J-RJ</span>
-        <span class="address">📍 Av. Epitácio Pessoa, Lagoa</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Vista Lagoa</span><span class="tag">Luxo</span><span class="tag">Tradição</span></div>
-        <div class="card-footer">
-            <a href="tel:2121320000" class="phone-fixo">📞 (21) 2132-0000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99731-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Gávea" data-espec="Residencial Padrao" data-servico="Venda Locacao">
-        <div class="card-header"><h3>Gávea Sul</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 3900-J-RJ</span>
-        <span class="address">📍 R. Marquês de São Vicente, Gávea</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Gávea</span><span class="tag">Casas</span><span class="tag">Residencial</span></div>
-        <div class="card-footer">
-            <a href="tel:2125128000" class="phone-fixo">📞 (21) 2512-8000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99874-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Jardim Botânico" data-espec="Luxo" data-servico="Venda">
-        <div class="card-header"><h3>Ficha Imob</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 7100-J-RJ</span>
-        <span class="address">📍 R. Jardim Botânico, J. Botânico</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Luxo Bucólico</span><span class="tag">Casas</span><span class="tag">Exclusividade</span></div>
-        <div class="card-footer">
-            <a href="tel:2135006000" class="phone-fixo">📞 (21) 3500-6000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99863-0000</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Urca" data-espec="Comercial" data-servico="Venda Locacao">
-        <div class="card-header"><h3>Imobiliária Urca</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 8200-J-RJ</span>
-        <span class="address">📍 Av. Portugal, Urca</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Urca</span><span class="tag">Comercial</span><span class="tag">Padrão</span></div>
-        <div class="card-footer">
-            <a href="tel:2122750000" class="phone-fixo">📞 (21) 2275-0000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99999-1111</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="São Conrado" data-espec="Luxo" data-servico="Venda Temporada">
-        <div class="card-header"><h3>Royal Imóveis</h3><span class="badge">Excelente</span></div>
-        <span class="creci">CRECI: 9100-J-RJ</span>
-        <span class="address">📍 Estrada da Gávea, São Conrado</span>
-        <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Mansões</span><span class="tag">São Conrado</span><span class="tag">Luxo</span></div>
-        <div class="card-footer">
-            <a href="tel:2133220000" class="phone-fixo">📞 (21) 3322-0000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 98877-6655</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
-        </div>
-    </div>
-</div>
 
 <script>
     function filtrar() {
@@ -251,5 +155,6 @@
         }
     }
 </script>
+
 </body>
 </html>
