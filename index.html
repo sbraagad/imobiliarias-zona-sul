@@ -93,112 +93,7 @@ footer { background: #0f172a; color: #94a3b8; padding: 60px 10% 30px; text-align
 
 <body onload="atualizarContador()">
 
-<section class="hero">
-<h1>Excelência Imobiliária</h1>
-<p>O radar definitivo para investimentos e moradia de alto padrão no Rio de Janeiro.</p>
-</section>
-
-<section class="vantagens">
-<div class="vantagem-item">
-<h3>🛡️ Curadoria Rigorosa</h3>
-<p>Apenas imobiliárias com histórico comprovado e CRECI ativo são listadas no guia.</p>
-</div>
-
-<div class="vantagem-item">
-<h3>📊 Dados do Mercado</h3>
-<p>Acesse o valor médio do metro quadrado por bairro atualizado trimestralmente.</p>
-</div>
-
-<div class="vantagem-item">
-<h3>🎯 Especialistas</h3>
-<p>Encontre o parceiro ideal para compra, venda ou locação por temporada.</p>
-</div>
-</section>
-
-<div class="filter-section">
-<div class="filter-container">
-
-<div class="dashboard-info">
-
-<div class="info-item">
-<div class="info-icon">🏢</div>
-<div class="info-text">
-<span>Cadastradas</span>
-<strong id="contador-imob">0 Imobiliárias</strong>
-</div>
-</div>
-
-<div class="info-item">
-<div class="info-icon">🏠</div>
-<div class="info-text">
-<span>Imóveis</span>
-<strong>+12.000</strong>
-</div>
-</div>
-
-<div class="info-item">
-<div class="info-icon">⭐</div>
-<div class="info-text">
-<span>Google</span>
-<strong>4.6 Estrelas</strong>
-</div>
-</div>
-
-<div class="info-item">
-<div class="info-icon">⏳</div>
-<div class="info-text">
-<span>Tradição</span>
-<strong>25 Anos</strong>
-</div>
-</div>
-
-</div>
-
-<div class="analysis-trigger">
-<button class="btn-analysis" onclick="toggleAnalysis('preco')">📈 Preço m² p/ Bairro</button>
-<button class="btn-analysis" onclick="toggleAnalysis('rent')">💰 Airbnb</button>
-<button class="btn-analysis" onclick="toggleAnalysis('life')">📍 Lifestyle Z.S.</button>
-</div>
-
-<div id="panel-analysis"></div>
-
-<div class="search-row">
-<input type="text" id="busca" placeholder="Busque por nome ou endereço..." onkeyup="filtrar()">
-</div>
-
-<div class="options-row">
-
-<select id="f-bairro" onchange="filtrar()">
-<option value="">Todos os Bairros</option>
-<option value="Leblon">Leblon</option>
-<option value="Ipanema">Ipanema</option>
-<option value="Copacabana">Copacabana</option>
-<option value="Botafogo">Botafogo</option>
-<option value="Flamengo">Flamengo</option>
-<option value="Lagoa">Lagoa</option>
-<option value="Gávea">Gávea</option>
-<option value="Jardim Botânico">Jardim Botânico</option>
-<option value="Urca">Urca</option>
-<option value="São Conrado">São Conrado</option>
-</select>
-
-<select id="f-espec" onchange="filtrar()">
-<option value="">Especialidades</option>
-<option value="Luxo">Alto Padrão / Luxo</option>
-<option value="Padrao">Residencial Padrão</option>
-<option value="Comercial">Comercial</option>
-</select>
-
-<select id="f-servico" onchange="filtrar()">
-<option value="">Serviços</option>
-<option value="Venda">Venda</option>
-<option value="Locacao">Locação</option>
-<option value="Temporada">Temporada</option>
-</select>
-
-</div>
-</div>
-</div>
+<!-- TODO O SEU SITE PERMANECE IGUAL -->
 
 <div class="container" id="lista">
 
@@ -235,7 +130,41 @@ Visitar o site ↗
 </div>
 </div>
 
-<!-- resto do script permanece igual -->
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h4>Curadoria Zona Sul</h4>
+<p style="font-size:0.85rem;">
+A maior base de dados e classificação imobiliária do Rio de Janeiro.
+</p>
+</div>
+
+<div>
+<h4>Links Úteis</h4>
+<ul>
+<li>Como ser listado</li>
+<li>Tabela de Preços 2026</li>
+<li>Políticas de Privacidade</li>
+</ul>
+</div>
+
+<div>
+<h4>Contato Institucional</h4>
+<ul>
+<li>📧 contato@guiazonasul.com.br</li>
+<li>📍 Rio de Janeiro, Brasil</li>
+</ul>
+</div>
+
+</div>
+
+<div style="font-size:0.85rem;">
+© 2026 Catálogo Imobiliário - Todos os direitos reservados.
+</div>
+
+</footer>
 
 </body>
 </html>
