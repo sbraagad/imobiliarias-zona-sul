@@ -5,25 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Oficial Imobiliárias Zona Sul</title>
     <style>
-        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --star: #fbc02d; --blue: #2563eb; --red: #ef4444; --yellow: #facc15; --green: #22c55e; }
+        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --blue: #2563eb; --red: #ef4444; --yellow: #facc15; --green: #22c55e; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
-        header { background: var(--primary); color: white; padding: 2.5rem 1rem; text-align: center; }
+        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
+        
         .top-bar { position: sticky; top: 0; z-index: 10; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding-bottom: 5px; }
         .search-bar { max-width: 600px; margin: 0 auto; padding: 15px 20px 5px; }
         input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; }
-        .status-legend { display: flex; justify-content: center; gap: 15px; padding: 10px; background: #f1f5f9; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+        
+        /* SISTEMA DE AVALIAÇÕES NA LEGENDA */
+        .status-legend-container { background: #f1f5f9; padding: 15px 10px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .legend-title { font-weight: bold; margin-bottom: 8px; display: block; color: var(--primary); }
+        .status-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 0.8rem; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
         .dot-ex { background: var(--green); } .dot-bom { background: var(--yellow); } .dot-reg { background: var(--red); }
+
         .container { max-width: 1200px; margin: 20px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border-top: 5px solid #cbd5e1; }
-        .card.excelente { border-top-color: var(--green); } .card.bom { border-top-color: var(--yellow); } .card.regular { border-top-color: var(--red); }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
+        
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border-top: 6px solid #cbd5e1; }
+        .card.excelente { border-top-color: var(--green); } 
+        .card.bom { border-top-color: var(--yellow); } 
+        .card.regular { border-top-color: var(--red); }
+        
         .card-img { width: 100%; height: 140px; object-fit: cover; background: #e2e8f0; }
         .card-content { padding: 15px; flex-grow: 1; }
         .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; }
-        .stars-row { margin: 8px 0; color: var(--star); font-size: 0.8rem; font-weight: bold; }
+        
+        /* ESTILO DA AVALIAÇÃO E LINK GOOGLE */
+        .rating-info { margin: 10px 0 5px; font-weight: bold; font-size: 0.9rem; display: block; }
+        .excelente .rating-info { color: var(--green); }
+        .bom .rating-info { color: #b45309; } /* Amarelo escuro para leitura */
+        .regular .rating-info { color: var(--red); }
+        
+        .google-link { font-size: 0.75rem; color: var(--blue); text-decoration: none; display: block; margin-bottom: 15px; }
+        .google-link:hover { text-decoration: underline; }
+
         .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 8px; font-size: 0.85rem; }
         .btn-agendar { width: 100%; padding: 10px; background: white; color: var(--blue); border: 2px solid var(--blue); border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
+
+        /* MODAL */
         #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
         .modal-content { background: white; padding: 25px; border-radius: 15px; width: 90%; max-width: 380px; position: relative; }
         .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
@@ -43,10 +63,13 @@
     <div class="search-bar">
         <input type="text" id="busca" placeholder="Busque por nome ou bairro..." onkeyup="filtrar()">
     </div>
-    <div class="status-legend">
-        <span><span class="dot dot-ex"></span>Excelente</span>
-        <span><span class="dot dot-bom"></span>Bom</span>
-        <span><span class="dot dot-reg"></span>Regular</span>
+    <div class="status-legend-container">
+        <span class="legend-title">Sistema de Avaliações</span>
+        <div class="status-legend">
+            <span><span class="dot dot-ex"></span>Verde (4.5+) — Excelente</span>
+            <span><span class="dot dot-bom"></span>Amarelo (4.0-4.4) — Bom</span>
+            <span><span class="dot dot-reg"></span>Vermelho (<4.0) — Regular</span>
+        </div>
     </div>
 </div>
 
@@ -56,171 +79,7 @@
         <div class="card-content">
             <span class="tag-bairro">Ipanema</span>
             <h3>Judice & Araujo</h3>
-            <div class="stars-row">★★★★★ EXCELENTE</div>
+            <span class="rating-info">Excelente</span>
+            <a href="#" target="_blank" class="google-link">Ver avaliações no Google →</a>
             <p>📍 R. Visconde de Pirajá, 434</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Judice & Araujo', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Leblon">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Leblon</span>
-            <h3>Bossa Nova Sotheby's</h3>
-            <div class="stars-row">★★★★★ EXCELENTE</div>
-            <p>📍 Av. Ataulfo de Paiva, 135</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Bossa Nova', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card bom" data-bairro="Ipanema">
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Ipanema</span>
-            <h3>Paulo Rodrigues</h3>
-            <div class="stars-row">★★★★☆ BOM</div>
-            <p>📍 R. Visconde de Pirajá, 547</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Paulo Rodrigues', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Copacabana">
-        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Copacabana</span>
-            <h3>Sergio Castro</h3>
-            <div class="stars-row">★★★★★ EXCELENTE</div>
-            <p>📍 Av. N. Sra. Copacabana, 542</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Sergio Castro', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card bom" data-bairro="Botafogo">
-        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Botafogo</span>
-            <h3>Julio Bogoricin</h3>
-            <div class="stars-row">★★★★☆ BOM</div>
-            <p>📍 R. Voluntários da Pátria, 126</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Julio Bogoricin', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Flamengo">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Flamengo</span>
-            <h3>Nova Época</h3>
-            <div class="stars-row">★★★★★ EXCELENTE</div>
-            <p>📍 R. Marquês de Abrantes, 115</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Nova Epoca', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card bom" data-bairro="Botafogo">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Botafogo</span>
-            <h3>Lopes Rio</h3>
-            <div class="stars-row">★★★★☆ BOM</div>
-            <p>📍 Praia de Botafogo, 228</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Lopes Rio', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Jardim Botânico">
-        <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Jardim Botânico</span>
-            <h3>Ficha Imobiliária</h3>
-            <div class="stars-row">★★★★★ EXCELENTE</div>
-            <p>📍 R. Jardim Botânico, 635</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Ficha Imobiliaria', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card regular" data-bairro="Copacabana">
-        <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Copacabana</span>
-            <h3>Their Imóveis</h3>
-            <div class="stars-row">★★★☆☆ REGULAR</div>
-            <p>📍 R. Figueiredo Magalhães, 226</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Their Imoveis', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Gávea">
-        <img src="https://images.unsplash.com/photo-1454165833767-027508496b4f?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Gávea</span>
-            <h3>Gávea Sul</h3>
-            <div class="stars-row">★★★★★ EXCELENTE</div>
-            <p>📍 R. Marquês de São Vicente, 124</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Gavea Sul', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-</div>
-
-<div id="modal-agendar">
-    <div class="modal-content">
-        <span class="close-btn" onclick="fecharModal()">&times;</span>
-        <h2 id="modal-titulo" style="margin:0">Agendar Visita</h2>
-        <p id="modal-subtitulo" style="font-size:0.8rem; color:#666"></p>
-        <form id="formAgendamento">
-            <input type="text" id="nome_cliente" placeholder="Seu Nome" required>
-            <input type="tel" id="tel_cliente" placeholder="Seu Telefone" required>
-            <label>Data:</label>
-            <input type="date" id="data_visita" required>
-            <label>Hora:</label>
-            <input type="time" id="hora_visita" min="09:00" max="18:00" required>
-            <button type="submit" class="submit-agendar">Confirmar via WhatsApp</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    let imobiliariaAtual = ""; let zapAtual = "";
-    document.getElementById('data_visita').setAttribute('min', new Date().toISOString().split('T')[0]);
-
-    function filtrar() {
-        let input = document.getElementById('busca').value.toLowerCase();
-        let cards = document.getElementsByClassName('card');
-        for (let card of cards) {
-            card.style.display = card.innerText.toLowerCase().includes(input) ? "flex" : "none";
-        }
-    }
-
-    function abrirAgendamento(nome, zap) {
-        imobiliariaAtual = nome; zapAtual = zap;
-        document.getElementById('modal-subtitulo').innerText = nome;
-        document.getElementById('modal-agendar').style.display = "flex";
-    }
-
-    function fecharModal() { document.getElementById('modal-agendar').style.display = "none"; }
-
-    document.getElementById('formAgendamento').onsubmit = function(e) {
-        e.preventDefault();
-        const dataIn = document.getElementById('data_visita').value;
-        const horaIn = document.getElementById('hora_visita').value;
-        const dt = new Date(dataIn + 'T00:00:00');
-        if (dt.getDay() === 0 || dt.getDay() === 6) { alert("Visitas apenas de Segunda a Sexta!"); return; }
-        const h = parseInt(horaIn.split(':')[0]);
-        if (h < 9 || h >= 18) { alert("Horário: 09h às 18h"); return; }
-        const msg = `Olá! Agendamento via Catálogo Zona Sul:%0A*Imob:* ${imobiliariaAtual}%0A*Cliente:* ${document.getElementById('nome_cliente').value}%0A*Data:* ${dt.toLocaleDateString('pt-BR')}%0A*Hora:* ${horaIn}`;
-        window.open(`https://wa.me/${zapAtual}?text=${msg}`, '_blank');
-        fecharModal();
-    };
-</script>
-</body>
-</html>
+            <a href="
