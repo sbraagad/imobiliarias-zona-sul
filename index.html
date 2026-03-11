@@ -121,7 +121,7 @@ footer { background: #0f172a; color: #94a3b8; padding: 60px 10% 30px; text-align
 </style>
 </head>
 
-<body onload="atualizarContador()">
+<body>
 
 <section class="hero">
 <h1>Todas as imobiliárias do Rio em um só lugar</h1>
@@ -265,14 +265,6 @@ Visitar o site ↗
 </div>
 </div>
 
-<a href="#" class="site-link">
-Visitar o site ↗
-</a>
-
-</div>
-</div>
-</div>
-
 <script>
 
 function toggleAnalysis(tipo){
@@ -346,45 +338,12 @@ Riotur – Turismo da Cidade do Rio de Janeiro
 
 }
 
-<script>
-
-function toggleAnalysis(tipo){
-
-const panel = document.getElementById("panel-analysis");
-
-if(panel.style.display === "block"){
-panel.style.display = "none";
-return;
-}
-
-panel.style.display = "block";
-
-if(tipo === "preco"){
-panel.innerHTML = `
-<button class="close-panel" onclick="fecharAnalise()">✕</button>
-
-<h3>Preço médio do m² — Zona Sul RJ</h3>
-
-<p><strong>Leblon:</strong> R$ 24.000 / m²</p>
-<p><strong>Ipanema:</strong> R$ 22.000 / m²</p>
-<p><strong>Lagoa:</strong> R$ 20.000 / m²</p>
-<p><strong>Gávea:</strong> R$ 17.000 / m²</p>
-<p><strong>Jardim Botânico:</strong> R$ 18.000 / m²</p>
-<p><strong>Copacabana:</strong> R$ 13.000 / m²</p>
-<p><strong>Botafogo:</strong> R$ 11.500 / m²</p>
-<p><strong>Flamengo:</strong> R$ 10.800 / m²</p>
-
-<p style="margin-top:12px;font-size:0.8rem;color:#64748b;">
-Fonte: <a href="https://www.fipe.org.br/pt-br/indices/fipezap/" target="_blank">Índice FipeZap</a>
-</p>
-`;
-}
-
-}
-
 function fecharAnalise(){
 const panel = document.getElementById("panel-analysis");
 panel.style.display = "none";
 }
 
 </script>
+
+</body>
+</html>
