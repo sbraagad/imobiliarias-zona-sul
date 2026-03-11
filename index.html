@@ -8,140 +8,252 @@
         :root { --primary: #1e3a8a; --accent: #22c55e; --bg: #f8fafc; --gold: #facc15; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #1e293b; }
 
-        /* HERO & STATS (Mantidos conforme sua escolha anterior) */
-        .hero { height: 450px; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center 30%; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; color: white; }
-        .hero h1 { font-size: 3rem; margin: 0; font-family: 'Georgia', serif; }
-        .stats-bar { background: var(--primary); color: white; display: flex; justify-content: space-around; padding: 20px 5%; flex-wrap: wrap; border-bottom: 5px solid var(--gold); }
+        .hero { 
+            height: 500px; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover; 
+            background-position: center 30%; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 0 10%; 
+            color: white; 
+        }
+        .hero h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 5px; font-weight: bold; }
+        .hero h1 { font-size: 3.5rem; margin: 0; font-family: 'Georgia', serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-top: 15px; opacity: 0.9; }
 
-        /* GRID & CARDS */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; border-top: 8px solid #cbd5e1; transition: 0.3s; }
-        .card.excelente { border-top-color: #22c55e; }
-        .card-content { padding: 20px; }
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 8px; }
-        .btn-agendar { width: 100%; padding: 12px; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .stats-bar { background: var(--primary); color: white; display: flex; justify-content: space-around; padding: 25px 5%; flex-wrap: wrap; gap: 20px; border-bottom: 5px solid var(--gold); }
+        .stat-item { display: flex; align-items: center; gap: 15px; }
+        .stat-icon { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px; font-size: 1.8rem; }
+        .stat-text span { display: block; font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-text strong { font-size: 1.4rem; }
 
-        /* MODAL DE COMPARTILHAMENTO / ROTA */
-        #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 30px; border-radius: 25px; width: 90%; max-width: 400px; position: relative; text-align: center; }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; }
+        .top-bar { background: white; padding: 30px 0; border-bottom: 1px solid #e2e8f0; }
+        .search-container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        input#busca { width: 100%; padding: 18px 30px; border-radius: 50px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
-        /* BOTÕES DE COMPARTILHAMENTO */
-        .share-section { margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; }
-        .share-title { font-size: 0.9rem; font-weight: bold; color: #64748b; margin-bottom: 15px; display: block; }
-        .share-buttons { display: flex; justify-content: center; gap: 15px; }
-        .share-btn { width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-size: 1.2rem; }
-        .btn-sh-wa { background: #25d366; color: white; }
-        .btn-sh-mail { background: #ea4335; color: white; }
-        .btn-sh-copy { background: #64748b; color: white; }
-        .share-btn:hover { transform: scale(1.1); }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.4s; display: flex; flex-direction: column; border-top: 10px solid #cbd5e1; }
+        .card.excelente { border-top-color: #22c55e; } .card.bom { border-top-color: #facc15; } .card.regular { border-top-color: #ef4444; }
+        
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-content { padding: 25px; flex-grow: 1; }
+        .tag-bairro { background: #f1f5f9; color: #475569; padding: 5px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+        .rating-info { margin: 15px 0 5px; font-weight: 900; font-size: 0.9rem; text-transform: uppercase; }
+        .excelente .rating-info { color: #22c55e; } .bom .rating-info { color: #b45309; } .regular .rating-info { color: #ef4444; }
+        
+        .google-link { font-size: 0.8rem; color: #3b82f6; text-decoration: none; display: block; margin-bottom: 20px; font-weight: bold; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 10px; font-size: 0.9rem; }
+        .btn-agendar { width: 100%; padding: 13px; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
 
-        /* TOAST NOTIFICATION */
-        #toast { visibility: hidden; min-width: 250px; background-color: #1e293b; color: #fff; text-align: center; border-radius: 10px; padding: 16px; position: fixed; z-index: 1100; left: 50%; top: 30px; transform: translateX(-50%); font-weight: bold; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-
-        @keyframes fadein { from {top: 0; opacity: 0;} to {top: 30px; opacity: 1;} }
-        @keyframes fadeout { from {top: 30px; opacity: 1;} to {top: 0; opacity: 0;} }
+        #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 35px; border-radius: 25px; width: 90%; max-width: 400px; position: relative; }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; }
+        form label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85rem; color: var(--primary); }
+        form input { width: 100%; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; margin-top: 5px; box-sizing: border-box; }
+        .submit-agendar { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; margin-top: 25px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div id="toast">✅ Link copiado para a área de transferência!</div>
-
 <section class="hero">
     <h4>Rio de Janeiro · Zona Sul</h4>
-    <h1>Excelência Imobiliária</h1>
-    <p>Agende visitas e compartilhe rotas com facilidade.</p>
+    <h1>Encontre a Excelência Imobiliária</h1>
+    <p>O amanhecer do seu novo investimento começa aqui. Selecionamos apenas as agências com os melhores históricos da região.</p>
 </section>
 
+<section class="stats-bar">
+    <div class="stat-item"><div class="stat-icon">🏢</div><div class="stat-text"><span>Imobiliárias</span><strong>10 Sedes</strong></div></div>
+    <div class="stat-item"><div class="stat-icon">🏠</div><div class="stat-text"><span>Imóveis</span><strong>8.450+</strong></div></div>
+    <div class="stat-item"><div class="stat-icon">⭐</div><div class="stat-text"><span>Média Google</span><strong>4.4★</strong></div></div>
+    <div class="stat-item"><div class="stat-icon">📈</div><div class="stat-text"><span>Região</span><strong>Zona Sul</strong></div></div>
+</section>
+
+<div class="top-bar">
+    <div class="search-container">
+        <input type="text" id="busca" placeholder="Busque por bairro ou imobiliária..." onkeyup="filtrar()">
+    </div>
+</div>
+
 <div class="container" id="lista">
-    <div class="card excelente">
+    <div class="card excelente" data-bairro="Ipanema">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400" class="card-img">
         <div class="card-content">
             <span class="tag-bairro">Ipanema</span>
             <h3>Judice & Araujo</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://g.page/judice-araujo-ipanema?share" target="_blank" class="google-link">Ver avaliações no Google →</a>
             <p>📍 R. Visconde de Pirajá, 434</p>
-            <a href="https://wa.me/5521996255150" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirCompartilhamento('Judice & Araujo', 'R. Visconde de Pirajá, 434')">📍 Compartilhar Rota</button>
+            <a href="https://wa.me/5521996255150" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Judice & Araujo', '5521996255150')">📅 Agendar Visita</button>
         </div>
     </div>
+
+    <div class="card excelente" data-bairro="Leblon">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Leblon</span>
+            <h3>Bossa Nova Sotheby's</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://g.page/bossa-nova-sotheby-s-rj?share" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 Av. Ataulfo de Paiva, 135</p>
+            <a href="https://wa.me/551130610000" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Bossa Nova', '551130610000')">📅 Agendar Visita</button>
+        </div>
     </div>
+
+    <div class="card bom" data-bairro="Ipanema">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Ipanema</span>
+            <h3>Paulo Rodrigues</h3>
+            <span class="rating-info">Bom</span>
+            <a href="https://www.google.com/search?q=Paulo+Rodrigues+Imoveis+Ipanema" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Visconde de Pirajá, 547</p>
+            <a href="https://wa.me/5521998555470" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Paulo Rodrigues', '5521998555470')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Copacabana">
+        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Copacabana</span>
+            <h3>Sergio Castro</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://www.google.com/search?q=Sergio+Castro+Imoveis+Copacabana" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 Av. N. Sra. Copacabana, 542</p>
+            <a href="https://wa.me/5521997312100" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Sergio Castro', '5521997312100')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card bom" data-bairro="Botafogo">
+        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Botafogo</span>
+            <h3>Julio Bogoricin</h3>
+            <span class="rating-info">Bom</span>
+            <a href="https://www.google.com/search?q=Julio+Bogoricin+Botafogo" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Voluntários da Pátria, 126</p>
+            <a href="https://wa.me/5521998511260" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Julio Bogoricin', '5521998511260')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Flamengo">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Flamengo</span>
+            <h3>Nova Época</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://g.page/nova-epoca-flamengo?share" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Marquês de Abrantes, 115</p>
+            <a href="https://wa.me/5521999120115" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Nova Epoca', '5521999120115')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card bom" data-bairro="Botafogo">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Botafogo</span>
+            <h3>Lopes Rio</h3>
+            <span class="rating-info">Bom</span>
+            <a href="https://www.google.com/search?q=Lopes+Rio+Botafogo" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 Praia de Botafogo, 228</p>
+            <a href="https://wa.me/5521998412280" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Lopes Rio', '5521998412280')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Jardim Botânico">
+        <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Jardim Botânico</span>
+            <h3>Ficha Imobiliária</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://www.google.com/search?q=Ficha+Imobiliaria+Jardim+Botanico" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Jardim Botânico, 635</p>
+            <a href="https://wa.me/5521998635000" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Ficha Imobiliaria', '5521998635000')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card regular" data-bairro="Copacabana">
+        <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Copacabana</span>
+            <h3>Their Imóveis</h3>
+            <span class="rating-info">Regular</span>
+            <a href="https://www.google.com/search?q=Their+Imoveis+Copacabana" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Figueiredo Magalhães, 226</p>
+            <a href="https://wa.me/552125482626" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Their Imoveis', '552125482626')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Gávea">
+        <img src="https://images.unsplash.com/photo-1454165833767-027508496b4f?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Gávea</span>
+            <h3>Gávea Sul</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://www.google.com/search?q=Gavea+Sul+Imoveis" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Marquês de São Vicente, 124</p>
+            <a href="https://wa.me/5521998741240" class="btn-whatsapp">📱 WhatsApp Oficial</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Gavea Sul', '5521998741240')">📅 Agendar Visita</button>
+        </div>
+    </div>
+</div>
 
 <div id="modal-agendar">
     <div class="modal-content">
         <span class="close-btn" onclick="fecharModal()">×</span>
-        <h2 id="modal-titulo" style="color: var(--primary); margin: 0;">Compartilhar Rota</h2>
-        <p id="modal-endereco" style="font-size: 0.9rem; color: #64748b; margin-top: 10px;"></p>
-        
-        <div class="share-section">
-            <span class="share-title">ESCOLHA COMO COMPARTILHAR:</span>
-            <div class="share-buttons">
-                <button class="share-btn btn-sh-wa" id="shareWa" title="WhatsApp">
-                    <span style="font-size: 1.5rem;">💬</span>
-                </button>
-                <button class="share-btn btn-sh-mail" id="shareMail" title="E-mail">
-                    <span style="font-size: 1.5rem;">✉️</span>
-                </button>
-                <button class="share-btn btn-sh-copy" onclick="copiarLink()" title="Copiar Link">
-                    <span style="font-size: 1.5rem;">🔗</span>
-                </button>
-            </div>
-        </div>
-        
-        <button class="btn-agendar" style="margin-top: 20px; width: 100%;" onclick="irParaGoogleMaps()">Abrir no Google Maps</button>
+        <h2 id="modal-titulo" style="color: var(--primary);">Solicitar Visita</h2>
+        <p id="modal-subtitulo" style="font-size:0.9rem; color:#64748b;"></p>
+        <form id="formAgendamento">
+            <label>Seu Nome Completo:</label>
+            <input type="text" id="nome_cliente" placeholder="Ex: Maria Souza" required>
+            <label>Data da Visita:</label>
+            <input type="date" id="data_visita" required>
+            <label>Horário (09h às 18h):</label>
+            <input type="time" id="hora_visita" min="09:00" max="18:00" required>
+            <button type="submit" class="submit-agendar">Confirmar via WhatsApp</button>
+        </form>
     </div>
 </div>
 
 <script>
-    let imobiliariaAtual = "";
-    let enderecoAtual = "";
+    let imobiliariaAtual = ""; let zapAtual = "";
+    document.getElementById('data_visita').setAttribute('min', new Date().toISOString().split('T')[0]);
 
-    function abrirCompartilhamento(nome, endereco) {
-        imobiliariaAtual = nome;
-        enderecoAtual = endereco;
-        document.getElementById('modal-endereco').innerText = endereco;
-        
-        // Configura link WhatsApp
-        const msgWa = `Olá! Veja a localização da imobiliária *${nome}* na Zona Sul: https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`;
-        document.getElementById('shareWa').onclick = () => window.open(`https://wa.me/?text=${msgWa}`, '_blank');
+    function filtrar() {
+        let input = document.getElementById('busca').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        for (let card of cards) {
+            card.style.display = card.innerText.toLowerCase().includes(input) ? "flex" : "none";
+        }
+    }
 
-        // Configura link Email
-        const subject = encodeURIComponent(`Rota para imobiliária: ${nome}`);
-        const body = encodeURIComponent(`Olá, segue o endereço da ${nome}:\n\n${endereco}\n\nVeja no mapa: https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`);
-        document.getElementById('shareMail').onclick = () => window.location.href = `mailto:?subject=${subject}&body=${body}`;
-
+    function abrirAgendamento(nome, zap) {
+        imobiliariaAtual = nome; zapAtual = zap;
+        document.getElementById('modal-subtitulo').innerText = "Unidade: " + nome;
         document.getElementById('modal-agendar').style.display = "flex";
     }
 
-    function fecharModal() {
-        document.getElementById('modal-agendar').style.display = "none";
-    }
+    function fecharModal() { document.getElementById('modal-agendar').style.display = "none"; }
 
-    function irParaGoogleMaps() {
-        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoAtual)}`, '_blank');
-    }
-
-    function copiarLink() {
-        const urlRota = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoAtual)}`;
-        
-        // Copia para o clipboard
-        navigator.clipboard.writeText(urlRota).then(() => {
-            showToast();
-        });
-    }
-
-    function showToast() {
-        const x = document.getElementById("toast");
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    }
-
-    // Fechar modal ao clicar fora dele
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('modal-agendar')) {
-            fecharModal();
-        }
-    }
+    document.getElementById('formAgendamento').onsubmit = function(e) {
+        e.preventDefault();
+        const dataIn = document.getElementById('data_visita').value;
+        const horaIn = document.getElementById('hora_visita').value;
+        const msg = `Olá! Gostaria de agendar uma visita via Catálogo Zona Sul:%0A*Imobiliária:* ${imobiliariaAtual}%0A*Cliente:* ${document.getElementById('nome_cliente').value}%0A*Data:* ${dataIn}%0A*Hora:* ${horaIn}`;
+        window.open(`https://wa.me/${zapAtual}?text=${msg}`, '_blank');
+        fecharModal();
+    };
 </script>
-
 </body>
 </html>
