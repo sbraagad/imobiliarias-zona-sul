@@ -13,7 +13,6 @@
         .search-bar { max-width: 600px; margin: 0 auto; padding: 15px 20px 5px; }
         input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; }
         
-        /* SISTEMA DE AVALIAÇÕES NA LEGENDA */
         .status-legend-container { background: #f1f5f9; padding: 15px 10px; text-align: center; border-bottom: 1px solid #e2e8f0; }
         .legend-title { font-weight: bold; margin-bottom: 8px; display: block; color: var(--primary); }
         .status-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 0.8rem; }
@@ -31,19 +30,17 @@
         .card-content { padding: 15px; flex-grow: 1; }
         .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; }
         
-        /* ESTILO DA AVALIAÇÃO E LINK GOOGLE */
-        .rating-info { margin: 10px 0 5px; font-weight: bold; font-size: 0.9rem; display: block; }
+        .rating-info { margin: 10px 0 2px; font-weight: bold; font-size: 0.9rem; display: block; }
         .excelente .rating-info { color: var(--green); }
-        .bom .rating-info { color: #b45309; } /* Amarelo escuro para leitura */
+        .bom .rating-info { color: #b45309; }
         .regular .rating-info { color: var(--red); }
         
-        .google-link { font-size: 0.75rem; color: var(--blue); text-decoration: none; display: block; margin-bottom: 15px; }
-        .google-link:hover { text-decoration: underline; }
+        .google-link { font-size: 0.75rem; color: var(--blue); text-decoration: none; display: block; margin-bottom: 15px; font-weight: 500; }
+        .google-link:hover { text-decoration: underline; color: var(--primary); }
 
         .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 8px; font-size: 0.85rem; }
         .btn-agendar { width: 100%; padding: 10px; background: white; color: var(--blue); border: 2px solid var(--blue); border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
 
-        /* MODAL */
         #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
         .modal-content { background: white; padding: 25px; border-radius: 15px; width: 90%; max-width: 380px; position: relative; }
         .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
@@ -80,6 +77,56 @@
             <span class="tag-bairro">Ipanema</span>
             <h3>Judice & Araujo</h3>
             <span class="rating-info">Excelente</span>
-            <a href="#" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <a href="https://www.google.com/maps/search/Judice+Araujo+Ipanema+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
             <p>📍 R. Visconde de Pirajá, 434</p>
+            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Judice & Araujo', '5521999999999')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Leblon">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Leblon</span>
+            <h3>Bossa Nova Sotheby's</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://www.google.com/maps/search/Bossa+Nova+Sothebys+Leblon+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 Av. Ataulfo de Paiva, 135</p>
+            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Bossa Nova', '5521999999999')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card bom" data-bairro="Ipanema">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Ipanema</span>
+            <h3>Paulo Rodrigues</h3>
+            <span class="rating-info">Bom</span>
+            <a href="https://www.google.com/maps/search/Paulo+Rodrigues+Imoveis+Ipanema+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 R. Visconde de Pirajá, 547</p>
+            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Paulo Rodrigues', '5521999999999')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Copacabana">
+        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Copacabana</span>
+            <h3>Sergio Castro</h3>
+            <span class="rating-info">Excelente</span>
+            <a href="https://www.google.com/maps/search/Sergio+Castro+Imoveis+Copacabana+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
+            <p>📍 Av. N. Sra. Copacabana, 542</p>
+            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
+            <button class="btn-agendar" onclick="abrirAgendamento('Sergio Castro', '5521999999999')">📅 Agendar Visita</button>
+        </div>
+    </div>
+
+    <div class="card bom" data-bairro="Botafogo">
+        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400" class="card-img">
+        <div class="card-content">
+            <span class="tag-bairro">Botafogo</span>
+            <h3>Julio Bogoricin</h3>
+            <span class="rating-info">Bom</span>
             <a href="
