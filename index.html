@@ -6,111 +6,116 @@
     <title>Catálogo Imobiliárias Zona Sul</title>
     <style>
         :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
 
-        .hero { height: 350px; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; padding: 0 8%; color: white; }
-        .hero h1 { font-size: 2.8rem; margin: 0; font-weight: bold; }
+        /* HERO REDUZIDO PARA FOCO NOS FILTROS */
+        .hero { height: 200px; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1200'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        
+        /* BARRA DE FILTROS PROFISSIONAL */
+        .filter-section { background: white; padding: 20px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .filter-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* LINHA SUPERIOR: BUSCA */
+        .search-row { margin-bottom: 15px; }
+        input#busca { width: 100%; padding: 14px 25px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; outline: none; transition: 0.3s; box-sizing: border-box; }
+        input#busca:focus { border-color: var(--accent); }
 
-        .stats-bar { background: #1e3a8a; color: white; display: flex; justify-content: space-around; padding: 15px; border-bottom: 4px solid #facc15; }
+        /* LINHA INFERIOR: DROPDOWNS */
+        .options-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+        select { padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; color: var(--text-main); cursor: pointer; font-size: 0.85rem; outline: none; }
+        
+        .results-bar { margin-top: 15px; font-size: 0.8rem; color: var(--text-sub); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-        .search-section { background: white; padding: 25px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-        .search-container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
-        input#busca { width: 100%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--border); outline: none; }
-
+        /* GRID DE CARDS */
         .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
 
-        .card { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; position: relative; padding: 25px; display: flex; flex-direction: column; }
-        .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; }
+        /* CARD ESTILO WHEREINRIO */
+        .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; display: flex; flex-direction: column; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; border-radius: 12px 12px 0 0; }
         .card.excelente::before { background: #22c55e; }
-        .card.bom::before { background: #facc15; }
         
-        .card-header h3 { margin: 0; font-size: 1.4rem; font-family: 'Georgia', serif; color: #0f172a; }
-        .badge-status { padding: 4px 10px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; text-transform: uppercase; }
-        .excelente .badge-status { background: #f0fdf4; color: #16a34a; }
+        .card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 5px; }
+        .card-header h3 { margin: 0; font-family: 'Georgia', serif; font-size: 1.4rem; }
+        .badge { font-size: 0.65rem; font-weight: bold; padding: 4px 8px; border-radius: 5px; text-transform: uppercase; }
+        .excelente .badge { background: #f0fdf4; color: #16a34a; }
 
-        .creci { background: #f1f5f9; color: #64748b; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; margin-bottom: 12px; display: inline-block; }
-        .address { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 12px; display: block; min-height: 40px; }
-        .rating { color: #22c55e; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
-        .stars { color: #fbbf24; }
+        .creci { font-size: 0.7rem; color: var(--text-sub); margin-bottom: 15px; display: block; }
+        .specialties-title { font-size: 0.7rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; margin: 15px 0 8px; }
+        .spec-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; flex-grow: 1; }
+        .tag { background: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; color: #475569; }
 
-        .description { font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 15px; border-top: 1px solid #f1f5f9; padding-top: 12px; }
-
-        /* SEÇÃO DE ESPECIALIDADES */
-        .specialties-title { font-size: 0.7rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        .specialties-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; flex-grow: 1; }
-        .spec-tag { background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; }
-
-        /* FOOTER CONTATOS */
-        .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; flex-direction: column; gap: 8px; }
-        .phone-fixo { color: #475569; font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .phone-whatsapp { color: #16a34a; font-weight: 600; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-        .phone-whatsapp img { width: 18px; height: 18px; }
-        .visit-site { color: #2563eb; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-top: 5px; display: inline-block; }
+        .footer { border-top: 1px solid #f1f5f9; padding-top: 15px; }
+        .phone-link { display: flex; align-items: center; gap: 8px; text-decoration: none; margin-bottom: 5px; font-size: 0.85rem; }
+        .whatsapp { color: #16a34a; font-weight: bold; }
+        .whatsapp img { width: 16px; }
+        .site-link { color: var(--accent); font-weight: bold; text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: block; }
     </style>
 </head>
 <body>
 
 <section class="hero">
-    <h1>Imobiliárias da Zona Sul</h1>
-    <p>O guia definitivo para encontrar excelência no Rio de Janeiro.</p>
+    <h1>Encontre a Imobiliária Ideal</h1>
 </section>
 
-<div class="search-section">
-    <div class="search-container">
-        <input type="text" id="busca" placeholder="Buscar por bairro ou especialidade..." onkeyup="filtrar()">
+<div class="filter-section">
+    <div class="filter-container">
+        <div class="search-row">
+            <input type="text" id="busca" placeholder="Busque por nome ou palavra-chave..." onkeyup="filtrar()">
+        </div>
+        
+        <div class="options-row">
+            <select id="f-bairro" onchange="filtrar()">
+                <option value="">Todos os Bairros</option>
+                <option value="Copacabana">Copacabana</option>
+                <option value="Ipanema">Ipanema</option>
+                <option value="Leblon">Leblon</option>
+            </select>
+
+            <select id="f-especialidade" onchange="filtrar()">
+                <option value="">Todas Especialidades</option>
+                <option value="Luxo">Alto Padrão / Luxo</option>
+                <option value="Comercial">Imóveis Comerciais</option>
+                <option value="Lancamento">Lançamentos</option>
+            </select>
+
+            <select id="f-status" onchange="filtrar()">
+                <option value="">Todas as Notas</option>
+                <option value="excelente">Excelente (Selo Verde)</option>
+                <option value="bom">Bom (Selo Amarelo)</option>
+            </select>
+
+            <select id="f-servico" onchange="filtrar()">
+                <option value="">Venda e Locação</option>
+                <option value="Venda">Foco em Venda</option>
+                <option value="Locacao">Foco em Locação</option>
+            </select>
+        </div>
+
+        <div class="results-bar" id="contador">Carregando agências...</div>
     </div>
 </div>
 
 <div class="container" id="lista">
-    <div class="card excelente">
-        <div class="card-header" style="display: flex; justify-content: space-between;">
-            <h3>WhereInRio</h3><span class="badge-status">Excelente</span>
+    <div class="card excelente" data-bairro="Copacabana" data-status="excelente" data-especialidade="Luxo" data-servico="Venda Locacao">
+        <div class="card-header">
+            <h3>WhereInRio</h3>
+            <span class="badge">Excelente</span>
         </div>
         <span class="creci">CRECI: 6820-J-RJ</span>
-        <span class="address">📍 R. Francisco Otaviano - Copacabana, RJ</span>
-        <div class="rating"><span class="stars">★★★★★</span> 4.7</div>
         
-        <p class="description">Líder em alto padrão e gestão de propriedades de luxo no Rio.</p>
-        
-        <span class="specialties-title">Especialidades</span>
-        <div class="specialties-list">
-            <span class="spec-tag">Imóveis de Luxo</span>
-            <span class="spec-tag">Coberturas</span>
-            <span class="spec-tag">Gestão</span>
+        <div class="specialties-title">Especialidades</div>
+        <div class="spec-tags">
+            <span class="tag">Luxo</span>
+            <span class="tag">Coberturas</span>
+            <span class="tag">Gestão de Bens</span>
         </div>
 
-        <div class="card-footer">
-            <a href="tel:2132530000" class="phone-fixo">📞 (21) 3253-0000</a>
-            <a href="https://wa.me/5521969460000" class="phone-whatsapp">
+        <div class="footer">
+            <a href="tel:2132530000" class="phone-link" style="color:#64748b;">📞 (21) 3253-0000</a>
+            <a href="#" class="phone-link whatsapp">
                 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 96946-0000
             </a>
-            <a href="#" class="visit-site">Visitar o site ↗</a>
-        </div>
-    </div>
-
-    <div class="card excelente">
-        <div class="card-header" style="display: flex; justify-content: space-between;">
-            <h3>Judice & Araujo</h3><span class="badge-status">Excelente</span>
-        </div>
-        <span class="creci">CRECI: 2544-J-RJ</span>
-        <span class="address">📍 R. Visconde de Pirajá, 434 - Ipanema, RJ</span>
-        <div class="rating"><span class="stars">★★★★★</span> 4.8</div>
-        
-        <p class="description">Referência histórica em exclusividade na Zona Sul e Serra.</p>
-        
-        <span class="specialties-title">Especialidades</span>
-        <div class="specialties-list">
-            <span class="spec-tag">Ipanema</span>
-            <span class="spec-tag">Casas de Campo</span>
-            <span class="spec-tag">Exclusivos</span>
-        </div>
-
-        <div class="card-footer">
-            <a href="tel:2125445000" class="phone-fixo">📞 (21) 2544-5000</a>
-            <a href="https://wa.me/5521996255150" class="phone-whatsapp">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99625-5150
-            </a>
-            <a href="#" class="visit-site">Visitar o site ↗</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
         </div>
     </div>
 
@@ -118,13 +123,39 @@
 
 <script>
     function filtrar() {
-        let input = document.getElementById('busca').value.toLowerCase();
-        let cards = document.getElementsByClassName('card');
+        const busca = document.getElementById('busca').value.toLowerCase();
+        const bairro = document.getElementById('f-bairro').value;
+        const espec = document.getElementById('f-especialidade').value;
+        const status = document.getElementById('f-status').value;
+        const servico = document.getElementById('f-servico').value;
+        
+        const cards = document.getElementsByClassName('card');
+        let cont = 0;
+
         for (let card of cards) {
-            let content = card.innerText.toLowerCase();
-            card.style.display = content.includes(input) ? "flex" : "none";
+            const txt = card.innerText.toLowerCase();
+            const cBairro = card.getAttribute('data-bairro');
+            const cStatus = card.getAttribute('data-status');
+            const cEspec = card.getAttribute('data-especialidade');
+            const cServico = card.getAttribute('data-servico');
+
+            const matchBusca = txt.includes(busca);
+            const matchBairro = !bairro || cBairro === bairro;
+            const matchStatus = !status || cStatus === status;
+            const matchEspec = !espec || cEspec.includes(espec);
+            const matchServico = !servico || cServico.includes(servico);
+
+            if(matchBusca && matchBairro && matchStatus && matchEspec && matchServico) {
+                card.style.display = "flex";
+                cont++;
+            } else {
+                card.style.display = "none";
+            }
         }
+        document.getElementById('contador').innerText = cont + " imobiliárias encontradas";
     }
+    // Inicia contador
+    filtrar();
 </script>
 
 </body>
