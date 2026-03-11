@@ -5,128 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Oficial Imobiliárias Zona Sul</title>
     <style>
-        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --blue: #2563eb; --red: #ef4444; --yellow: #facc15; --green: #22c55e; }
+        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --blue: #1e3a8a; --red: #ef4444; --yellow: #facc15; --green: #22c55e; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
-        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
-        
-        .top-bar { position: sticky; top: 0; z-index: 10; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding-bottom: 5px; }
-        .search-bar { max-width: 600px; margin: 0 auto; padding: 15px 20px 5px; }
-        input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; }
-        
-        .status-legend-container { background: #f1f5f9; padding: 15px 10px; text-align: center; border-bottom: 1px solid #e2e8f0; }
-        .legend-title { font-weight: bold; margin-bottom: 8px; display: block; color: var(--primary); }
+
+        /* TOPO COM FOTO DE FUNDO (HERO) */
+        .hero { 
+            position: relative; 
+            height: 450px; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1200'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 0 10%; 
+            color: white; 
+        }
+        .hero h4 { color: #facc15; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .hero h1 { font-size: 3.5rem; margin: 0; font-family: 'Georgia', serif; }
+        .hero p { font-size: 1.2rem; max-width: 500px; opacity: 0.9; }
+
+        /* BARRA DE ESTATÍSTICAS (AZUL) */
+        .stats-bar { 
+            background: #1e3a8a; 
+            color: white; 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 20px 5%; 
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .stat-item { display: flex; align-items: center; gap: 15px; }
+        .stat-icon { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; font-size: 1.5rem; }
+        .stat-text span { display: block; font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; }
+        .stat-text strong { font-size: 1.2rem; }
+
+        /* BUSCA E LEGENDA */
+        .top-bar { background: white; padding: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .search-container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        input#busca { width: 100%; padding: 15px 25px; border-radius: 30px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+
+        .status-legend-container { background: #fff; padding: 15px 10px; text-align: center; }
+        .legend-title { font-weight: bold; margin-bottom: 8px; display: block; color: var(--primary); font-size: 0.8rem; text-transform: uppercase; }
         .status-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 0.8rem; }
         .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
         .dot-ex { background: var(--green); } .dot-bom { background: var(--yellow); } .dot-reg { background: var(--red); }
 
+        /* GRID DE CARDS */
         .container { max-width: 1200px; margin: 20px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        
         .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border-top: 6px solid #cbd5e1; }
         .card.excelente { border-top-color: var(--green); } 
         .card.bom { border-top-color: var(--yellow); } 
         .card.regular { border-top-color: var(--red); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
         
-        .card-img { width: 100%; height: 140px; object-fit: cover; background: #e2e8f0; }
+        .card-img { width: 100%; height: 150px; object-fit: cover; background: #e2e8f0; }
         .card-content { padding: 15px; flex-grow: 1; }
         .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; }
-        
         .rating-info { margin: 10px 0 2px; font-weight: bold; font-size: 0.9rem; display: block; }
         .excelente .rating-info { color: var(--green); }
         .bom .rating-info { color: #b45309; }
         .regular .rating-info { color: var(--red); }
         
-        .google-link { font-size: 0.75rem; color: var(--blue); text-decoration: none; display: block; margin-bottom: 15px; font-weight: 500; }
-        .google-link:hover { text-decoration: underline; color: var(--primary); }
-
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 8px; font-size: 0.85rem; }
-        .btn-agendar { width: 100%; padding: 10px; background: white; color: var(--blue); border: 2px solid var(--blue); border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
-
-        #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 25px; border-radius: 15px; width: 90%; max-width: 380px; position: relative; }
-        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
-        form input, form label { display: block; width: 100%; margin-top: 8px; }
-        form input { padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .submit-agendar { width: 100%; background: var(--blue); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 15px; cursor: pointer; }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Catálogo Zona Sul RJ</h1>
-    <p>Agendamentos de Segunda a Sexta, 09h às 18h</p>
-</header>
-
-<div class="top-bar">
-    <div class="search-bar">
-        <input type="text" id="busca" placeholder="Busque por nome ou bairro..." onkeyup="filtrar()">
-    </div>
-    <div class="status-legend-container">
-        <span class="legend-title">Sistema de Avaliações</span>
-        <div class="status-legend">
-            <span><span class="dot dot-ex"></span>Verde (4.5+) — Excelente</span>
-            <span><span class="dot dot-bom"></span>Amarelo (4.0-4.4) — Bom</span>
-            <span><span class="dot dot-reg"></span>Vermelho (<4.0) — Regular</span>
-        </div>
-    </div>
-</div>
-
-<div class="container" id="lista">
-    <div class="card excelente" data-bairro="Ipanema">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Ipanema</span>
-            <h3>Judice & Araujo</h3>
-            <span class="rating-info">Excelente</span>
-            <a href="https://www.google.com/maps/search/Judice+Araujo+Ipanema+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
-            <p>📍 R. Visconde de Pirajá, 434</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Judice & Araujo', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Leblon">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Leblon</span>
-            <h3>Bossa Nova Sotheby's</h3>
-            <span class="rating-info">Excelente</span>
-            <a href="https://www.google.com/maps/search/Bossa+Nova+Sothebys+Leblon+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
-            <p>📍 Av. Ataulfo de Paiva, 135</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Bossa Nova', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card bom" data-bairro="Ipanema">
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Ipanema</span>
-            <h3>Paulo Rodrigues</h3>
-            <span class="rating-info">Bom</span>
-            <a href="https://www.google.com/maps/search/Paulo+Rodrigues+Imoveis+Ipanema+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
-            <p>📍 R. Visconde de Pirajá, 547</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Paulo Rodrigues', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card excelente" data-bairro="Copacabana">
-        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Copacabana</span>
-            <h3>Sergio Castro</h3>
-            <span class="rating-info">Excelente</span>
-            <a href="https://www.google.com/maps/search/Sergio+Castro+Imoveis+Copacabana+avaliacoes" target="_blank" class="google-link">Ver avaliações no Google →</a>
-            <p>📍 Av. N. Sra. Copacabana, 542</p>
-            <a href="https://wa.me/5521999999999" class="btn-whatsapp">📱 WhatsApp</a>
-            <button class="btn-agendar" onclick="abrirAgendamento('Sergio Castro', '5521999999999')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
-    <div class="card bom" data-bairro="Botafogo">
-        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Botafogo</span>
-            <h3>Julio Bogoricin</h3>
-            <span class="rating-info">Bom</span>
-            <a href="
+        .google-link { font-size: 0.75rem; color: #2563eb; text-decoration: none; display: block; margin-bottom: 15px; }
+        .btn-whatsapp {
