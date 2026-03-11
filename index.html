@@ -3,160 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Imobiliárias Zona Sul</title>
+    <title>Catálogo Oficial Imobiliárias Zona Sul</title>
     <style>
-        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
+        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; --gold: #facc15; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
 
-        /* HERO REDUZIDO PARA FOCO NOS FILTROS */
-        .hero { height: 200px; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1200'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-        
-        /* BARRA DE FILTROS PROFISSIONAL */
-        .filter-section { background: white; padding: 20px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* HERO */
+        .hero { 
+            height: 400px; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; color: white; 
+        }
+        .hero h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 5px; font-weight: bold; }
+        .hero h1 { font-size: 3rem; margin: 0; font-family: 'Georgia', serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; max-width: 650px; margin-top: 15px; opacity: 0.9; }
+
+        /* STATS BAR */
+        .stats-bar { background: var(--primary); color: white; display: flex; justify-content: space-around; padding: 20px 5%; flex-wrap: wrap; gap: 20px; border-bottom: 5px solid var(--gold); }
+        .stat-item { text-align: center; }
+        .stat-item span { display: block; font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; }
+        .stat-item strong { font-size: 1.3rem; }
+
+        /* FILTROS */
+        .filter-section { background: white; padding: 25px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .filter-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* LINHA SUPERIOR: BUSCA */
-        .search-row { margin-bottom: 15px; }
-        input#busca { width: 100%; padding: 14px 25px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; outline: none; transition: 0.3s; box-sizing: border-box; }
-        input#busca:focus { border-color: var(--accent); }
+        .options-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 15px; }
+        input#busca { width: 100%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; outline: none; box-sizing: border-box; }
+        select { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; cursor: pointer; color: var(--text-main); font-weight: 500; }
 
-        /* LINHA INFERIOR: DROPDOWNS */
-        .options-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-        select { padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; color: var(--text-main); cursor: pointer; font-size: 0.85rem; outline: none; }
-        
-        .results-bar { margin-top: 15px; font-size: 0.8rem; color: var(--text-sub); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* GRID DE CARDS */
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-
-        /* CARD ESTILO WHEREINRIO */
-        .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; display: flex; flex-direction: column; }
+        /* GRID E CARDS */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; display: flex; flex-direction: column; transition: 0.3s; }
         .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; border-radius: 12px 12px 0 0; }
         .card.excelente::before { background: #22c55e; }
         
-        .card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 5px; }
-        .card-header h3 { margin: 0; font-family: 'Georgia', serif; font-size: 1.4rem; }
-        .badge { font-size: 0.65rem; font-weight: bold; padding: 4px 8px; border-radius: 5px; text-transform: uppercase; }
-        .excelente .badge { background: #f0fdf4; color: #16a34a; }
+        .card-header { display: flex; justify-content: space-between; align-items: start; }
+        .card-header h3 { margin: 0; font-family: 'Georgia', serif; font-size: 1.4rem; color: #0f172a; }
+        .badge { font-size: 0.65rem; font-weight: bold; padding: 4px 8px; border-radius: 5px; text-transform: uppercase; background: #f0fdf4; color: #16a34a; }
+        
+        .creci { font-size: 0.7rem; color: var(--text-sub); background: #f1f5f9; padding: 3px 8px; border-radius: 4px; display: inline-block; margin: 10px 0; }
+        .address { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 12px; display: block; min-height: 35px; }
+        
+        .specialties-title { font-size: 0.7rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; margin: 15px 0 8px; display: block; }
+        .spec-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; flex-grow: 1; }
+        .tag { background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; color: #64748b; }
 
-        .creci { font-size: 0.7rem; color: var(--text-sub); margin-bottom: 15px; display: block; }
-        .specialties-title { font-size: 0.7rem; font-weight: bold; color: #94a3b8; text-transform: uppercase; margin: 15px 0 8px; }
-        .spec-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; flex-grow: 1; }
-        .tag { background: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; color: #475569; }
-
-        .footer { border-top: 1px solid #f1f5f9; padding-top: 15px; }
-        .phone-link { display: flex; align-items: center; gap: 8px; text-decoration: none; margin-bottom: 5px; font-size: 0.85rem; }
-        .whatsapp { color: #16a34a; font-weight: bold; }
-        .whatsapp img { width: 16px; }
-        .site-link { color: var(--accent); font-weight: bold; text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: block; }
+        .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+        .phone-fixo { color: #475569; font-size: 0.85rem; text-decoration: none; }
+        .phone-whatsapp { color: #16a34a; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .phone-whatsapp img { width: 18px; }
+        .site-link { color: var(--accent); font-weight: bold; text-decoration: none; font-size: 0.9rem; margin-top: 5px; }
     </style>
 </head>
 <body>
 
 <section class="hero">
-    <h1>Encontre a Imobiliária Ideal</h1>
+    <h4>Rio de Janeiro · Zona Sul</h4>
+    <h1>Encontre a Excelência Imobiliária</h1>
+    <p>O amanhecer do seu novo investimento começa aqui. Selecionamos apenas as agências com os melhores históricos da região.</p>
+</section>
+
+<section class="stats-bar">
+    <div class="stat-item"><span>Imobiliárias</span><strong>10 Sedes</strong></div>
+    <div class="stat-item"><span>Imóveis</span><strong>+12.000</strong></div>
+    <div class="stat-item"><span>Média Google</span><strong>4.6★</strong></div>
 </section>
 
 <div class="filter-section">
     <div class="filter-container">
-        <div class="search-row">
-            <input type="text" id="busca" placeholder="Busque por nome ou palavra-chave..." onkeyup="filtrar()">
-        </div>
-        
+        <input type="text" id="busca" placeholder="Busque por nome ou rua..." onkeyup="filtrar()">
         <div class="options-row">
             <select id="f-bairro" onchange="filtrar()">
                 <option value="">Todos os Bairros</option>
                 <option value="Copacabana">Copacabana</option>
                 <option value="Ipanema">Ipanema</option>
                 <option value="Leblon">Leblon</option>
+                <option value="Botafogo">Botafogo</option>
+                <option value="Flamengo">Flamengo</option>
+                <option value="Gávea">Gávea</option>
             </select>
-
-            <select id="f-especialidade" onchange="filtrar()">
-                <option value="">Todas Especialidades</option>
+            <select id="f-espec" onchange="filtrar()">
+                <option value="">Especialidades</option>
+                <option value="Residencial Padrao">Residencial Padrão</option>
                 <option value="Luxo">Alto Padrão / Luxo</option>
-                <option value="Comercial">Imóveis Comerciais</option>
+                <option value="Comercial">Comercial</option>
                 <option value="Lancamento">Lançamentos</option>
             </select>
-
-            <select id="f-status" onchange="filtrar()">
-                <option value="">Todas as Notas</option>
-                <option value="excelente">Excelente (Selo Verde)</option>
-                <option value="bom">Bom (Selo Amarelo)</option>
-            </select>
-
             <select id="f-servico" onchange="filtrar()">
-                <option value="">Venda e Locação</option>
-                <option value="Venda">Foco em Venda</option>
-                <option value="Locacao">Foco em Locação</option>
+                <option value="">Serviços</option>
+                <option value="Venda">Venda</option>
+                <option value="Locacao">Locação</option>
             </select>
         </div>
-
-        <div class="results-bar" id="contador">Carregando agências...</div>
     </div>
 </div>
 
 <div class="container" id="lista">
-    <div class="card excelente" data-bairro="Copacabana" data-status="excelente" data-especialidade="Luxo" data-servico="Venda Locacao">
-        <div class="card-header">
-            <h3>WhereInRio</h3>
-            <span class="badge">Excelente</span>
-        </div>
+    <div class="card excelente" data-bairro="Copacabana" data-espec="Luxo" data-servico="Venda Locacao">
+        <div class="card-header"><h3>WhereInRio</h3><span class="badge">Excelente</span></div>
         <span class="creci">CRECI: 6820-J-RJ</span>
-        
-        <div class="specialties-title">Especialidades</div>
-        <div class="spec-tags">
-            <span class="tag">Luxo</span>
-            <span class="tag">Coberturas</span>
-            <span class="tag">Gestão de Bens</span>
-        </div>
-
-        <div class="footer">
-            <a href="tel:2132530000" class="phone-link" style="color:#64748b;">📞 (21) 3253-0000</a>
-            <a href="#" class="phone-link whatsapp">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 96946-0000
-            </a>
+        <span class="address">📍 Rua Francisco Otaviano, Copacabana</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Coberturas</span><span class="tag">Gestão</span></div>
+        <div class="card-footer">
+            <a href="tel:2132530000" class="phone-fixo">📞 (21) 3253-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 96946-0000</a>
             <a href="#" class="site-link">Visitar o site ↗</a>
         </div>
     </div>
 
+    <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda">
+        <div class="card-header"><h3>Judice & Araujo</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 2544-J-RJ</span>
+        <span class="address">📍 R. Visconde de Pirajá, Ipanema</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Exclusivos</span><span class="tag">Ipanema</span></div>
+        <div class="card-footer">
+            <a href="tel:2125445000" class="phone-fixo">📞 (21) 2544-5000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99625-5150</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
     </div>
+
+    <div class="card excelente" data-bairro="Flamengo" data-espec="Residencial Padrao" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Nova Época</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 5320-J-RJ</span>
+        <span class="address">📍 R. Marquês de Abrantes, Flamengo</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Residencial Padrão</span><span class="tag">Família</span></div>
+        <div class="card-footer">
+            <a href="tel:2125551000" class="phone-fixo">📞 (21) 2555-1000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 98888-0000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Copacabana" data-espec="Comercial" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Sergio Castro</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 1540-J-RJ</span>
+        <span class="address">📍 Av. N. Sra. Copacabana, Copacabana</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Comercial</span><span class="tag">Lojas</span><span class="tag">Prédios</span></div>
+        <div class="card-footer">
+            <a href="tel:2121320000" class="phone-fixo">📞 (21) 2132-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99731-2100</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Botafogo" data-espec="Lancamento" data-servico="Venda">
+        <div class="card-header"><h3>Lopes Rio</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 6010-J-RJ</span>
+        <span class="address">📍 Praia de Botafogo, Botafogo</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Lançamentos</span><span class="tag">Novos</span><span class="tag">Investimento</span></div>
+        <div class="card-footer">
+            <a href="tel:2121550000" class="phone-fixo">📞 (21) 2155-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99841-2280</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Botafogo" data-espec="Residencial Padrao" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Julio Bogoricin</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 2100-J-RJ</span>
+        <span class="address">📍 R. Voluntários da Pátria, Botafogo</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Residencial Padrão</span><span class="tag">Aluguel</span></div>
+        <div class="card-footer">
+            <a href="tel:2125391000" class="phone-fixo">📞 (21) 2539-1000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99851-1260</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Gávea" data-espec="Residencial Padrao" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Gávea Sul</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 3900-J-RJ</span>
+        <span class="address">📍 R. Marquês de São Vicente, Gávea</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Gávea</span><span class="tag">Casas</span><span class="tag">Residencial</span></div>
+        <div class="card-footer">
+            <a href="tel:2125128000" class="phone-fixo">📞 (21) 2512-8000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99874-1240</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Leblon" data-espec="Luxo" data-servico="Venda">
+        <div class="card-header"><h3>Bossa Nova</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 3512-J-RJ</span>
+        <span class="address">📍 Av. Ataulfo de Paiva, Leblon</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Global</span><span class="tag">Design</span></div>
+        <div class="card-footer">
+            <a href="tel:2130610000" class="phone-fixo">📞 (21) 3061-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (11) 3061-0000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Ipanema" data-espec="Residencial Padrao" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Paulo Rodrigues</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 4890-J-RJ</span>
+        <span class="address">📍 R. Visconde de Pirajá, Ipanema</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Residencial Padrão</span><span class="tag">Personalizado</span></div>
+        <div class="card-footer">
+            <a href="tel:2125134000" class="phone-fixo">📞 (21) 2513-4000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99855-5470</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Botafogo" data-espec="Luxo" data-servico="Venda">
+        <div class="card-header"><h3>Ficha Imob</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 7100-J-RJ</span>
+        <span class="address">📍 R. Jardim Botânico, J. Botânico</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Bucólico</span><span class="tag">Casas</span></div>
+        <div class="card-footer">
+            <a href="tel:2135006000" class="phone-fixo">📞 (21) 3500-6000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99863-5000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+</div>
 
 <script>
     function filtrar() {
         const busca = document.getElementById('busca').value.toLowerCase();
         const bairro = document.getElementById('f-bairro').value;
-        const espec = document.getElementById('f-especialidade').value;
-        const status = document.getElementById('f-status').value;
+        const espec = document.getElementById('f-espec').value;
         const servico = document.getElementById('f-servico').value;
-        
         const cards = document.getElementsByClassName('card');
-        let cont = 0;
 
         for (let card of cards) {
-            const txt = card.innerText.toLowerCase();
+            const content = card.innerText.toLowerCase();
             const cBairro = card.getAttribute('data-bairro');
-            const cStatus = card.getAttribute('data-status');
-            const cEspec = card.getAttribute('data-especialidade');
-            const cServico = card.getAttribute('data-servico');
+            const cEspec = card.getAttribute('data-espec');
+            const cServ = card.getAttribute('data-servico');
 
-            const matchBusca = txt.includes(busca);
-            const matchBairro = !bairro || cBairro === bairro;
-            const matchStatus = !status || cStatus === status;
-            const matchEspec = !espec || cEspec.includes(espec);
-            const matchServico = !servico || cServico.includes(servico);
+            const mBusca = content.includes(busca);
+            const mBairro = !bairro || cBairro === bairro;
+            const mEspec = !espec || cEspec.includes(espec);
+            const mServ = !servico || cServ.includes(servico);
 
-            if(matchBusca && matchBairro && matchStatus && matchEspec && matchServico) {
-                card.style.display = "flex";
-                cont++;
-            } else {
-                card.style.display = "none";
-            }
+            card.style.display = (mBusca && mBairro && mEspec && mServ) ? "flex" : "none";
         }
-        document.getElementById('contador').innerText = cont + " imobiliárias encontradas";
     }
-    // Inicia contador
-    filtrar();
 </script>
-
 </body>
 </html>
