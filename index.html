@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imobiliárias Zona Sul RJ | Agendamento</title>
+    <title>Imobiliárias Zona Sul RJ | Agendamento Comercial</title>
     <style>
-        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --star: #fbc02d; --blue: #2563eb; }
+        :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --star: #fbc02d; --blue: #2563eb; --red: #ef4444; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
         
         header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
@@ -22,27 +22,18 @@
         .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; }
         .stars-row { margin: 10px 0 4px; color: var(--star); font-size: 0.8rem; }
 
-        /* Botões */
-        .btn-whatsapp { 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 10px; background: var(--accent); color: white; 
-            border: none; border-radius: 8px; cursor: pointer; font-weight: bold; 
-            text-decoration: none; margin-bottom: 8px; font-size: 0.9rem;
-        }
-        .btn-agendar { 
-            width: 100%; padding: 10px; background: white; color: var(--blue); 
-            border: 2px solid var(--blue); border-radius: 8px; cursor: pointer; 
-            font-weight: bold; font-size: 0.9rem; transition: 0.2s;
-        }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 8px; font-size: 0.9rem; }
+        .btn-agendar { width: 100%; padding: 10px; background: white; color: var(--blue); border: 2px solid var(--blue); border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.2s; }
         .btn-agendar:hover { background: var(--blue); color: white; }
 
-        /* Modal de Agendamento */
+        /* Modal */
         #modal-agendar { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
         .modal-content { background: white; padding: 25px; border-radius: 15px; width: 90%; max-width: 400px; position: relative; }
         .close-btn { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; }
         
         form label { display: block; margin-top: 10px; font-size: 0.85rem; font-weight: bold; }
         form input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .horario-info { font-size: 0.75rem; color: var(--red); margin-top: 4px; font-weight: 600; }
         .submit-agendar { width: 100%; background: var(--blue); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
@@ -50,7 +41,7 @@
 
 <header>
     <h1>Catálogo Zona Sul RJ</h1>
-    <p>Agende sua visita nas melhores imobiliárias</p>
+    <p>Agendamentos exclusivos em horário comercial</p>
 </header>
 
 <div class="top-bar">
@@ -60,7 +51,6 @@
 </div>
 
 <div class="container" id="lista">
-    
     <div class="card" data-bairro="Ipanema">
         <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
         <div class="card-content">
@@ -68,34 +58,17 @@
             <h3>Judice & Araujo</h3>
             <div class="stars-row">★★★★★</div>
             <p>📍 Rua Visconde de Pirajá, 434</p>
-            
             <a href="https://wa.me/5521999999999" target="_blank" class="btn-whatsapp">📱 WhatsApp Direto</a>
-            
             <button class="btn-agendar" onclick="abrirAgendamento('Judice & Araujo', '5521999999999')">📅 Agendar Visita</button>
         </div>
     </div>
-
-    <div class="card" data-bairro="Leblon">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Leblon</span>
-            <h3>Bossa Nova Sotheby's</h3>
-            <div class="stars-row">★★★★★</div>
-            <p>📍 Av. Ataulfo de Paiva, 135</p>
-            
-            <a href="https://wa.me/5521888888888" target="_blank" class="btn-whatsapp">📱 WhatsApp Direto</a>
-            
-            <button class="btn-agendar" onclick="abrirAgendamento('Bossa Nova Sotheby\'s', '5521888888888')">📅 Agendar Visita</button>
-        </div>
-    </div>
-
 </div>
 
 <div id="modal-agendar">
     <div class="modal-content">
         <span class="close-btn" onclick="fecharModal()">&times;</span>
-        <h2 id="modal-titulo" style="margin: 0 0 10px;">Agendar Visita</h2>
-        <p id="modal-subtitulo" style="font-size: 0.9rem; color: #64748b; margin-bottom: 20px;"></p>
+        <h2 style="margin: 0 0 5px;">Agendar Visita</h2>
+        <p id="modal-subtitulo" style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;"></p>
         
         <form id="formAgendamento">
             <label>Seu Nome:</label>
@@ -108,7 +81,8 @@
             <input type="date" id="data_visita" required>
             
             <label>Hora da Visita:</label>
-            <input type="time" id="hora_visita" required>
+            <input type="time" id="hora_visita" min="09:00" max="18:00" required>
+            <div class="horario-info">* Atendimento das 09:00 às 18:00</div>
             
             <button type="submit" class="submit-agendar">Confirmar e Enviar via WhatsApp</button>
         </form>
@@ -135,28 +109,32 @@
         document.getElementById('modal-agendar').style.display = "flex";
     }
 
-    function fecharModal() {
-        document.getElementById('modal-agendar').style.display = "none";
-    }
+    function fecharModal() { document.getElementById('modal-agendar').style.display = "none"; }
 
     document.getElementById('formAgendamento').onsubmit = function(e) {
         e.preventDefault();
         
+        const hora = document.getElementById('hora_visita').value;
+        const horaNumerica = parseInt(hora.split(':')[0]);
+
+        // VALIDAÇÃO DE HORÁRIO COMERCIAL
+        if (horaNumerica < 9 || horaNumerica >= 18) {
+            alert("Desculpe! As visitas só podem ser agendadas entre as 09:00 e as 18:00.");
+            return;
+        }
+
         const nome = document.getElementById('nome_cliente').value;
         const tel = document.getElementById('tel_cliente').value;
         const data = document.getElementById('data_visita').value;
-        const hora = document.getElementById('hora_visita').value;
 
-        // Criar a mensagem para o WhatsApp
-        const mensagem = `Olá! Gostaria de agendar uma visita através do Catálogo Zona Sul:%0A%0A` +
+        const mensagem = `Olá! Gostaria de agendar uma visita pelo Catálogo Zona Sul:%0A%0A` +
                          `*Imobiliária:* ${imobiliariaAtual}%0A` +
                          `*Cliente:* ${nome}%0A` +
                          `*Telefone:* ${tel}%0A` +
                          `*Data:* ${data}%0A` +
                          `*Hora:* ${hora}%0A%0A` +
-                         `Por favor, poderiam confirmar a disponibilidade?`;
+                         `Por favor, poderiam confirmar?`;
 
-        // Abrir link do WhatsApp
         window.open(`https://wa.me/${zapAtual}?text=${mensagem}`, '_blank');
         fecharModal();
     };
