@@ -56,22 +56,36 @@
 
 <div class="filter-section">
     <div class="filter-container">
-        <input type="text" id="busca" placeholder="Busque por nome ou rua..." onkeyup="filtrar()">
+        <input type="text" id="busca" placeholder="Busque por nome, rua ou palavra-chave..." onkeyup="filtrar()">
         <div class="options-row">
             <select id="f-bairro" onchange="filtrar()">
-                <option value="">Todos os Bairros</option>
-                <option value="Copacabana">Copacabana</option>
-                <option value="Ipanema">Ipanema</option>
-                <option value="Leblon">Leblon</option>
+                <option value="">Todos os Bairros (Zona Sul)</option>
                 <option value="Botafogo">Botafogo</option>
+                <option value="Catete">Catete</option>
+                <option value="Copacabana">Copacabana</option>
+                <option value="Cosme Velho">Cosme Velho</option>
                 <option value="Flamengo">Flamengo</option>
+                <option value="Gávea">Gávea</option>
+                <option value="Glória">Glória</option>
+                <option value="Humaitá">Humaitá</option>
+                <option value="Ipanema">Ipanema</option>
+                <option value="Jardim Botânico">Jardim Botânico</option>
+                <option value="Lagoa">Lagoa</option>
+                <option value="Laranjeiras">Laranjeiras</option>
+                <option value="Leblon">Leblon</option>
+                <option value="Leme">Leme</option>
+                <option value="São Conrado">São Conrado</option>
+                <option value="Urca">Urca</option>
             </select>
+
             <select id="f-espec" onchange="filtrar()">
                 <option value="">Especialidades</option>
                 <option value="Residencial Padrao">Residencial Padrão</option>
                 <option value="Luxo">Alto Padrão / Luxo</option>
                 <option value="Comercial">Comercial</option>
+                <option value="Lancamento">Lançamentos</option>
             </select>
+
             <select id="f-servico" onchange="filtrar()">
                 <option value="">Todos os Serviços</option>
                 <option value="Venda">Venda</option>
@@ -83,14 +97,38 @@
 </div>
 
 <div class="container" id="lista">
-    <div class="card excelente" data-bairro="Copacabana" data-espec="Luxo" data-servico="Venda Temporada">
-        <div class="card-header" style="display:flex; justify-content: space-between;">
-            <h3>WhereInRio</h3><span class="badge">Excelente</span>
-        </div>
-        <span class="creci">CRECI: 6820-J-RJ</span>
-        <span class="address" style="font-size: 0.85rem; color: #64748b;">📍 Rua Francisco Otaviano, Copacabana</span>
+    <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda Temporada">
+        <div class="card-header"><h3>Judice & Araujo</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 2544-J-RJ</span>
+        <span class="address">📍 R. Visconde de Pirajá, Ipanema</span>
         <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Gestão de Temporada</span><span class="tag">Investimento</span></div>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Ipanema</span><span class="tag">Gestão de Temporada</span></div>
+        <div class="card-footer">
+            <a href="tel:2125445000" class="phone-fixo">📞 (21) 2544-5000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99625-5150</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Leblon" data-espec="Luxo" data-servico="Venda">
+        <div class="card-header"><h3>Bossa Nova Sotheby's</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 3512-J-RJ</span>
+        <span class="address">📍 Av. Ataulfo de Paiva, Leblon</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Alto Padrão</span><span class="tag">Design</span><span class="tag">Global</span></div>
+        <div class="card-footer">
+            <a href="tel:2130610000" class="phone-fixo">📞 (21) 3061-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 97100-0000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Copacabana" data-espec="Luxo" data-servico="Temporada Venda">
+        <div class="card-header"><h3>WhereInRio</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 6820-J-RJ</span>
+        <span class="address">📍 Rua Francisco Otaviano, Copacabana</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Gestão de Temporada</span><span class="tag">Coberturas</span></div>
         <div class="card-footer">
             <a href="tel:2132530000" class="phone-fixo">📞 (21) 3253-0000</a>
             <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 96946-0000</a>
@@ -99,13 +137,11 @@
     </div>
 
     <div class="card excelente" data-bairro="Flamengo" data-espec="Residencial Padrao" data-servico="Venda Locacao">
-        <div class="card-header" style="display:flex; justify-content: space-between;">
-            <h3>Nova Época</h3><span class="badge">Excelente</span>
-        </div>
+        <div class="card-header"><h3>Nova Época</h3><span class="badge">Excelente</span></div>
         <span class="creci">CRECI: 5320-J-RJ</span>
-        <span class="address" style="font-size: 0.85rem; color: #64748b;">📍 R. Marquês de Abrantes, Flamengo</span>
+        <span class="address">📍 R. Marquês de Abrantes, Flamengo</span>
         <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Residencial Padrão</span><span class="tag">Apartamentos</span><span class="tag">Venda</span></div>
+        <div class="spec-tags"><span class="tag">Residencial Padrão</span><span class="tag">Flamengo</span><span class="tag">Apartamentos</span></div>
         <div class="card-footer">
             <a href="tel:2125551000" class="phone-fixo">📞 (21) 2555-1000</a>
             <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 98888-0000</a>
@@ -113,22 +149,84 @@
         </div>
     </div>
 
-    <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda Temporada">
-        <div class="card-header" style="display:flex; justify-content: space-between;">
-            <h3>Judice & Araujo</h3><span class="badge">Excelente</span>
-        </div>
-        <span class="creci">CRECI: 2544-J-RJ</span>
-        <span class="address" style="font-size: 0.85rem; color: #64748b;">📍 R. Visconde de Pirajá, Ipanema</span>
+    <div class="card excelente" data-bairro="Botafogo" data-espec="Lancamento" data-servico="Venda">
+        <div class="card-header"><h3>Lopes Rio</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 6010-J-RJ</span>
+        <span class="address">📍 Praia de Botafogo, Botafogo</span>
         <span class="specialties-title">Especialidades</span>
-        <div class="spec-tags"><span class="tag">Luxo</span><span class="tag">Exclusivos</span><span class="tag">Gestão de Temporada</span></div>
+        <div class="spec-tags"><span class="tag">Lançamentos</span><span class="tag">Investimento</span><span class="tag">Novos</span></div>
         <div class="card-footer">
-            <a href="tel:2125445000" class="phone-fixo">📞 (21) 2544-5000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99625-5150</a>
+            <a href="tel:2121550000" class="phone-fixo">📞 (21) 2155-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99841-0000</a>
             <a href="#" class="site-link">Visitar o site ↗</a>
         </div>
     </div>
 
+    <div class="card excelente" data-bairro="Lagoa" data-espec="Luxo" data-servico="Venda">
+        <div class="card-header"><h3>Sergio Castro (Premium)</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 1540-J-RJ</span>
+        <span class="address">📍 Av. Epitácio Pessoa, Lagoa</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Vista Lagoa</span><span class="tag">Luxo</span><span class="tag">Tradição</span></div>
+        <div class="card-footer">
+            <a href="tel:2121320000" class="phone-fixo">📞 (21) 2132-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99731-0000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
     </div>
+
+    <div class="card excelente" data-bairro="Gávea" data-espec="Residencial Padrao" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Gávea Sul</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 3900-J-RJ</span>
+        <span class="address">📍 R. Marquês de São Vicente, Gávea</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Gávea</span><span class="tag">Casas</span><span class="tag">Residencial</span></div>
+        <div class="card-footer">
+            <a href="tel:2125128000" class="phone-fixo">📞 (21) 2512-8000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99874-0000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Jardim Botânico" data-espec="Luxo" data-servico="Venda">
+        <div class="card-header"><h3>Ficha Imob</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 7100-J-RJ</span>
+        <span class="address">📍 R. Jardim Botânico, J. Botânico</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Luxo Bucólico</span><span class="tag">Casas</span><span class="tag">Exclusividade</span></div>
+        <div class="card-footer">
+            <a href="tel:2135006000" class="phone-fixo">📞 (21) 3500-6000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99863-0000</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="Urca" data-espec="Comercial" data-servico="Venda Locacao">
+        <div class="card-header"><h3>Imobiliária Urca</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 8200-J-RJ</span>
+        <span class="address">📍 Av. Portugal, Urca</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Urca</span><span class="tag">Comercial</span><span class="tag">Padrão</span></div>
+        <div class="card-footer">
+            <a href="tel:2122750000" class="phone-fixo">📞 (21) 2275-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 99999-1111</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+
+    <div class="card excelente" data-bairro="São Conrado" data-espec="Luxo" data-servico="Venda Temporada">
+        <div class="card-header"><h3>Royal Imóveis</h3><span class="badge">Excelente</span></div>
+        <span class="creci">CRECI: 9100-J-RJ</span>
+        <span class="address">📍 Estrada da Gávea, São Conrado</span>
+        <span class="specialties-title">Especialidades</span>
+        <div class="spec-tags"><span class="tag">Mansões</span><span class="tag">São Conrado</span><span class="tag">Luxo</span></div>
+        <div class="card-footer">
+            <a href="tel:2133220000" class="phone-fixo">📞 (21) 3322-0000</a>
+            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> (21) 98877-6655</a>
+            <a href="#" class="site-link">Visitar o site ↗</a>
+        </div>
+    </div>
+</div>
 
 <script>
     function filtrar() {
