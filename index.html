@@ -3,157 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Oficial Imobiliárias Zona Sul</title>
+    <title>Guia Elite Imobiliária | Zona Sul RJ</title>
     <style>
-        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
+        :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; --gold: #b45309; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); line-height: 1.6; }
 
-        /* HERO */
+        /* HEADER PROFISSIONAL */
+        header { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 2000; }
+        .logo-site { font-family: 'Georgia', serif; font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+        nav a { text-decoration: none; color: var(--text-main); margin-left: 25px; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+        .btn-anunciar { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 6px; }
+
+        /* HERO AJUSTADO */
         .hero { 
-            height: 350px; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+            height: 400px; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
                         url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; color: white; 
+            background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; 
         }
-        .hero h1 { font-size: 2.8rem; margin: 0; font-family: 'Georgia', serif; }
+        .hero h1 { font-size: 3.2rem; margin: 0; font-family: 'Georgia', serif; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; }
 
-        /* FILTROS E DASHBOARD FIXO */
-        .filter-section { background: white; padding: 25px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* SEÇÃO DE VANTAGENS */
+        .vantagens { padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; background: white; text-align: center; }
+        .vantagem-item h3 { color: var(--primary); margin-bottom: 10px; }
+        .vantagem-item p { color: var(--text-sub); font-size: 0.9rem; }
+
+        /* FILTROS E DASHBOARD */
+        .filter-section { background: #f1f5f9; padding: 35px 0; border-bottom: 1px solid var(--border); z-index: 1000; }
         .filter-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        .dashboard-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; }
-        .info-item { display: flex; align-items: center; gap: 12px; }
-        .info-icon { font-size: 1.4rem; background: #eff6ff; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--accent); }
+        .dashboard-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .info-item { display: flex; align-items: center; gap: 12px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .info-icon { font-size: 1.4rem; color: var(--accent); }
         .info-text span { display: block; font-size: 0.7rem; color: var(--text-sub); text-transform: uppercase; font-weight: bold; }
-        .info-text strong { font-size: 1rem; color: var(--primary); }
 
-        /* BOTÕES DE ANÁLISE */
-        .analysis-trigger { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
-        .btn-analysis { background: #f8fafc; border: 1px solid var(--border); padding: 9px 16px; border-radius: 50px; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--primary); transition: 0.3s; }
-        #panel-analysis { display: none; margin-bottom: 20px; background: #fffbeb; border: 1px solid #fef3c7; padding: 20px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; }
-
-        /* BUSCA E SELECTS */
-        .search-row { margin-bottom: 15px; }
-        input#busca { width: 100%; padding: 14px 22px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; box-sizing: border-box; outline: none; }
-        .options-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        select { padding: 11px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; font-weight: 500; font-size: 0.85rem; }
-
-        /* GRID E CARDS */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; display: flex; flex-direction: column; transition: 0.3s; }
-        
-        /* ESPAÇO REDONDO PARA LOGO */
-        .logo-container {
-            width: 60px; height: 60px; background: #f1f5f9; border-radius: 50%;
-            position: absolute; top: 25px; right: 25px; border: 1px solid var(--border);
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
-        }
-        .logo-container img { width: 100%; height: 100%; object-fit: contain; }
-
-        /* CLASSIFICAÇÕES */
+        /* CARDS */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; position: relative; transition: 0.4s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         .card.excelente::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #22c55e; border-radius: 12px 12px 0 0; }
-        .badge-excelente { font-size: 0.65rem; color: #16a34a; background: #f0fdf4; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-top: 5px; }
-        .badge-bom { font-size: 0.65rem; color: #2563eb; background: #eff6ff; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-top: 5px; }
-        .badge-regular { font-size: 0.65rem; color: #92400e; background: #fffbeb; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-top: 5px; }
-
-        .card-header { padding-right: 70px; min-height: 65px; }
-        .card h3 { margin: 0; font-family: 'Georgia', serif; font-size: 1.3rem; }
-        .creci { font-size: 0.65rem; color: var(--text-sub); background: #f1f5f9; padding: 3px 8px; border-radius: 4px; display: inline-block; margin: 10px 0; font-weight: bold; }
-        .address { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 12px; display: block; }
         
-        .card-footer { border-top: 1px solid #f1f5f9; padding-top: 15px; margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
-        .phone-whatsapp { color: #16a34a; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-        .site-link { color: var(--accent); font-weight: bold; text-decoration: none; font-size: 0.9rem; }
+        .logo-container { width: 65px; height: 65px; background: #f8fafc; border-radius: 50%; position: absolute; top: 25px; right: 25px; border: 1px solid var(--border); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .badge-excelente { font-size: 0.65rem; color: #16a34a; background: #f0fdf4; padding: 4px 10px; border-radius: 50px; font-weight: bold; text-transform: uppercase; margin-top: 8px; display: inline-block; }
+
+        /* FOOTER PROFISSIONAL */
+        footer { background: #0f172a; color: #94a3b8; padding: 80px 10% 30px; text-align: center; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; margin-bottom: 50px; }
+        .footer-grid h4 { color: white; margin-bottom: 20px; }
+        .footer-grid ul { list-style: none; padding: 0; }
+        .footer-grid ul li { margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-bottom { border-top: 1px solid #1e293b; padding-top: 30px; font-size: 0.8rem; }
 
         @media (max-width: 600px) {
-            .hero { height: 250px; }
-            .dashboard-info { grid-template-columns: repeat(2, 1fr); }
-            .options-row { grid-template-columns: 1fr; }
-            .filter-section { position: relative; }
+            .hero h1 { font-size: 2rem; }
+            header nav { display: none; } /* Simplicidade no mobile */
         }
     </style>
 </head>
 <body onload="atualizarContador()">
 
+<header>
+    <a href="#" class="logo-site">Elite Zona Sul</a>
+    <nav>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#sobre">Sobre o Guia</a>
+        <a href="#analises">Análises</a>
+        <a href="#" class="btn-anunciar">Anunciar Minha Imobiliária</a>
+    </nav>
+</header>
+
 <section class="hero">
-    <div style="padding: 0 10%;">
-        <h1>Excelência Imobiliária</h1>
-        <p>A elite do mercado imobiliário da Zona Sul carioca.</p>
+    <h1>Excelência Imobiliária</h1>
+    <p>O radar definitivo para investimentos e moradia de alto padrão no Rio de Janeiro.</p>
+</section>
+
+<section class="vantagens" id="sobre">
+    <div class="vantagem-item">
+        <h3>🛡️ Curadoria Rigorosa</h3>
+        <p>Apenas imobiliárias com histórico comprovado e CRECI ativo são listadas.</p>
+    </div>
+    <div class="vantagem-item">
+        <h3>📊 Dados Atualizados</h3>
+        <p>Preço do m² e rentabilidade baseados em transações reais do último trimestre.</p>
+    </div>
+    <div class="vantagem-item">
+        <h3>🎯 Foco Local</h3>
+        <p>Especialistas exclusivos na Zona Sul: do Leme ao Pontal do Leblon.</p>
     </div>
 </section>
 
-<div class="filter-section">
+<div class="filter-section" id="catalogo">
     <div class="filter-container">
         <div class="dashboard-info">
-            <div class="info-item"><div class="info-icon">🏢</div><div class="info-text"><span>Cadastradas</span><strong id="contador-imob">0 Imobiliárias</strong></div></div>
-            <div class="info-item"><div class="info-icon">🏠</div><div class="info-text"><span>Imóveis</span><strong>+12.000</strong></div></div>
-            <div class="info-item"><div class="info-icon">⭐</div><div class="info-text"><span>Google</span><strong>4.6 Estrelas</strong></div></div>
-            <div class="info-item"><div class="info-icon">⏳</div><div class="info-text"><span>Tradição</span><strong>25 Anos</strong></div></div>
+            <div class="info-item"><div class="info-icon">🏢</div><div class="info-text"><span>Base de Dados</span><strong id="contador-imob">0 Imobiliárias</strong></div></div>
+            <div class="info-item"><div class="info-icon">🏠</div><div class="info-text"><span>Oferta Total</span><strong>+12.000 Imóveis</strong></div></div>
+            <div class="info-item"><div class="info-icon">💎</div><div class="info-text"><span>Segmento</span><strong>Alto Padrão</strong></div></div>
         </div>
 
-        <div class="analysis-trigger">
-            <button class="btn-analysis" onclick="toggleAnalysis('preco')">📈 Preço m² p/ Bairro</button>
-            <button class="btn-analysis" onclick="toggleAnalysis('rent')">💰 Airbnb</button>
-            <button class="btn-analysis" onclick="toggleAnalysis('life')">📍 Lifestyle Z.S.</button>
+        <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="toggleAnalysis('preco')" style="padding: 10px 15px; border-radius: 5px; border: 1px solid #cbd5e1; cursor: pointer; background: white;">📈 Tabela de Preços m²</button>
+            <button onclick="toggleAnalysis('life')" style="padding: 10px 15px; border-radius: 5px; border: 1px solid #cbd5e1; cursor: pointer; background: white;">📍 Guia de Bairros</button>
         </div>
+        <div id="panel-analysis" style="display:none; background: #fffbeb; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #fef3c7;"></div>
 
-        <div id="panel-analysis"></div>
-
-        <div class="search-row"><input type="text" id="busca" placeholder="Busque por nome ou rua..." onkeyup="filtrar()"></div>
+        <input type="text" id="busca" placeholder="Busque por nome ou endereço..." onkeyup="filtrar()" style="width:100%; padding:15px; border-radius:8px; border:1px solid #cbd5e1; margin-bottom:15px; outline:none;">
         
-        <div class="options-row">
-            <select id="f-bairro" onchange="filtrar()">
-                <option value="">Todos os Bairros</option>
-                <option value="Leblon">Leblon</option>
-                <option value="Ipanema">Ipanema</option>
-                <option value="Copacabana">Copacabana</option>
-                <option value="Botafogo">Botafogo</option>
-                <option value="Flamengo">Flamengo</option>
-                <option value="Lagoa">Lagoa</option>
-                <option value="Gávea">Gávea</option>
-                <option value="Jardim Botânico">Jardim Botânico</option>
-                <option value="Urca">Urca</option>
-                <option value="São Conrado">São Conrado</option>
-            </select>
-            <select id="f-espec" onchange="filtrar()">
-                <option value="">Especialidades</option>
-                <option value="Luxo">Alto Padrão / Luxo</option>
-                <option value="Padrao">Residencial Padrão</option>
-                <option value="Comercial">Comercial</option>
-            </select>
-            <select id="f-servico" onchange="filtrar()">
-                <option value="">Serviços</option>
-                <option value="Venda">Venda</option>
-                <option value="Locacao">Locação</option>
-                <option value="Temporada">Temporada</option>
-            </select>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+            <select id="f-bairro" onchange="filtrar()"><option value="">Todos os Bairros</option><option value="Leblon">Leblon</option><option value="Ipanema">Ipanema</option></select>
+            <select id="f-espec" onchange="filtrar()"><option value="">Especialidade</option><option value="Luxo">Luxo</option><option value="Padrao">Padrão</option></select>
+            <select id="f-servico" onchange="filtrar()"><option value="">Serviço</option><option value="Venda">Venda</option><option value="Locacao">Locação</option></select>
         </div>
     </div>
 </div>
 
 <div class="container" id="lista">
-    
-    <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda Temporada">
-        <div class="logo-container">
-            <span style="font-size: 1.5rem; color: #cbd5e1;">🏢</span>
-        </div>
-
+    <div class="card excelente" data-bairro="Ipanema" data-espec="Luxo" data-servico="Venda">
+        <div class="logo-container"><span style="font-size: 1.5rem; color: #cbd5e1;">🏢</span></div>
         <div class="card-header">
             <h3>Judice & Araujo</h3>
             <span class="badge-excelente">Excelente</span>
         </div>
-
         <span class="creci">CRECI: 2544-J-RJ</span>
         <span class="address">📍 R. Visconde de Pirajá, Ipanema</span>
-        
         <div class="card-footer">
-            <a href="tel:2125445000" style="text-decoration:none; color:#475569; font-size:0.85rem;">📞 (21) 2544-5000</a>
-            <a href="#" class="phone-whatsapp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="16"> (21) 99625-5150</a>
-            <a href="#" class="site-link">Visitar o site ↗</a>
+            <a href="#" class="phone-whatsapp">🟢 (21) 99625-5150</a>
+            <a href="#" class="site-link">Ver Portfólio Completo ↗</a>
         </div>
     </div>
-
 </div>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h4>Elite Zona Sul</h4>
+            <p style="font-size: 0.85rem;">O maior portal de classificação imobiliária do Rio de Janeiro.</p>
+        </div>
+        <div>
+            <h4>Navegação</h4>
+            <ul>
+                <li>Anunciar Imóvel</li>
+                <li>Seja um Parceiro</li>
+                <li>Termos de Uso</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Contato</h4>
+            <ul>
+                <li>📧 contato@elitezs.com.br</li>
+                <li>📍 Rio de Janeiro, RJ</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Elite Zona Sul - Todos os direitos reservados.
+    </div>
+</footer>
 
 <script>
     function atualizarContador() {
@@ -165,11 +170,10 @@
         const panel = document.getElementById('panel-analysis');
         panel.style.display = 'block';
         const dados = {
-            'preco': '<strong>📊 Preço Médio m²:</strong> Leblon R$ 22.500 | Ipanema R$ 20.200 | Lagoa R$ 17.800 | J. Botânico R$ 15.400 | Gávea R$ 14.900 | Copacabana R$ 12.800 | Botafogo R$ 13.200 | Flamengo R$ 11.500 | Urca R$ 14.200 | São Conrado R$ 11.200.',
-            'rent': '<strong>💰 Rentabilidade Airbnb:</strong> Copacabana e Ipanema lideram liquidez. Yield médio de 0.8% a 1.2% ao mês.',
-            'life': '<strong>📍 Guia Lifestyle:</strong> Leblon (Sofisticado), Urca (Bucólico), Botafogo (Cool), Lagoa (Natureza).'
+            'preco': '<strong>Preços m²:</strong> Leblon R$ 22.5k | Ipanema R$ 20.2k | Lagoa R$ 17.8k | Copacabana R$ 12.8k',
+            'life': '<strong>Bairros:</strong> Leblon (Gastronomia), Ipanema (Charme/Praia), Botafogo (Cultura/Vibe).'
         };
-        panel.innerHTML = dados[tipo] + '<br><button onclick="this.parentElement.style.display=\'none\'" style="margin-top:10px; color:red; border:none; background:none; cursor:pointer; font-weight:bold;">[ FECHAR ]</button>';
+        panel.innerHTML = dados[tipo] + ' <span onclick="this.parentElement.style.display=\'none\'" style="cursor:pointer; color:red; margin-left:15px;">[X]</span>';
     }
 
     function filtrar() {
@@ -184,7 +188,7 @@
             const mEspec = !espec || card.getAttribute('data-espec') === espec;
             const mServ = !servico || card.getAttribute('data-servico').includes(servico);
             const mBusca = card.innerText.toLowerCase().includes(busca);
-            card.style.display = (mBairro && mEspec && mServ && mBusca) ? "flex" : "none";
+            card.style.display = (mBairro && mEspec && mServ && mBusca) ? "block" : "none";
         }
     }
 </script>
