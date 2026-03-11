@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Imobiliárias Zona Sul RJ</title>
+    <title>Imobiliárias Zona Sul RJ | Contato Direto</title>
     <style>
-        :root { --primary: #075985; --accent: #0ea5e9; --bg: #f1f5f9; --success: #22c55e; }
+        :root { --primary: #075985; --accent: #25d366; --bg: #f1f5f9; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
         
-        header { background: var(--primary); color: white; padding: 3rem 1rem; text-align: center; }
+        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
         .search-container { position: sticky; top: 0; z-index: 10; background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .search-bar { max-width: 600px; margin: 0 auto; padding: 0 20px; }
         input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; }
 
         .container { max-width: 1200px; margin: 30px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
         
-        /* Card com Imagem */
         .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
         
         .card-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
         
@@ -26,75 +25,55 @@
         .card h3 { margin: 15px 0 5px; font-size: 1.2rem; }
         .card p { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; }
 
-        .btn-contato { 
+        /* Botão do WhatsApp */
+        .btn-whatsapp { 
+            display: flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 12px; background: var(--accent); color: white; 
             border: none; border-radius: 8px; cursor: pointer; font-weight: bold; 
+            text-decoration: none; font-size: 0.95rem; transition: 0.2s;
         }
-
-        /* Modal */
-        #modal-contato { display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; position: relative; }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; }
-        input, textarea { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .submit-btn { width: 100%; background: var(--success); color: white; border: none; padding: 12px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-whatsapp:hover { background: #128c7e; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Guia Imobiliário Zona Sul</h1>
-    <p>As melhores agências do Rio de Janeiro em um só lugar</p>
+    <p>Chame direto no WhatsApp as melhores agências do Rio</p>
 </header>
 
 <div class="search-container">
     <div class="search-bar">
-        <input type="text" id="busca" placeholder="Busque por Leblon, Ipanema, Gávea..." onkeyup="filtrar()">
+        <input type="text" id="busca" placeholder="Busque por bairro ou nome..." onkeyup="filtrar()">
     </div>
 </div>
 
 <div class="container" id="lista">
+    
     <div class="card" data-bairro="Ipanema">
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" alt="Imobiliária" class="card-img">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400" class="card-img">
         <div class="card-content">
             <span class="tag-bairro">Ipanema</span>
             <h3>Sol & Mar Imóveis</h3>
             <p>📍 Rua Visconde de Pirajá, 500</p>
-            <button class="btn-contato" onclick="abrirModal('Sol & Mar')">Enviar Mensagem</button>
+            <a href="https://wa.me/5521999999999?text=Olá! Vi a Sol e Mar no catálogo da Zona Sul e gostaria de informações." target="_blank" class="btn-whatsapp">
+                📱 Chamar no WhatsApp
+            </a>
         </div>
     </div>
 
     <div class="card" data-bairro="Leblon">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" alt="Imobiliária" class="card-img">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400" class="card-img">
         <div class="card-content">
             <span class="tag-bairro">Leblon</span>
             <h3>Leblon Prime</h3>
             <p>📍 Av. Ataulfo de Paiva, 200</p>
-            <button class="btn-contato" onclick="abrirModal('Leblon Prime')">Enviar Mensagem</button>
+            <a href="https://wa.me/5521992025698?text=Olá! Vi a Leblon Prime no catálogo da Zona Sul e gostaria de informações." target="_blank" class="btn-whatsapp">
+                📱 Chamar no WhatsApp
+            </a>
         </div>
     </div>
 
-    <div class="card" data-bairro="Copacabana">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" alt="Imobiliária" class="card-img">
-        <div class="card-content">
-            <span class="tag-bairro">Copacabana</span>
-            <h3>Litoral Rio</h3>
-            <p>📍 Av. Atlântica, 1200</p>
-            <button class="btn-contato" onclick="abrirModal('Litoral Rio')">Enviar Mensagem</button>
-        </div>
-    </div>
-</div>
-
-<div id="modal-contato">
-    <div class="modal-content">
-        <span class="close-btn" onclick="fecharModal()">&times;</span>
-        <h2 id="modal-titulo" style="margin-top: 0;">Contato</h2>
-        <form id="formLead">
-            <input type="text" placeholder="Seu Nome" required>
-            <input type="email" placeholder="Seu E-mail" required>
-            <textarea placeholder="Mensagem..." rows="3"></textarea>
-            <button type="submit" class="submit-btn">Enviar Agora</button>
-        </form>
-    </div>
 </div>
 
 <script>
@@ -106,14 +85,6 @@
             card.style.display = info.includes(input) ? "flex" : "none";
         }
     }
-
-    const modal = document.getElementById('modal-contato');
-    function abrirModal(nome) {
-        document.getElementById('modal-titulo').innerText = "Falar com " + nome;
-        modal.style.display = "flex";
-    }
-    function fecharModal() { modal.style.display = "none"; }
-    window.onclick = (e) => { if(e.target == modal) fecharModal(); }
 </script>
 
 </body>
