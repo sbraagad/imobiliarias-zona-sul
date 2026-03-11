@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imobiliárias Zona Sul RJ | Contato Direto</title>
+    <title>Imobiliárias Zona Sul RJ | Avaliações</title>
     <style>
-        :root { --primary: #075985; --accent: #25d366; --bg: #f1f5f9; }
+        :root { --primary: #075985; --accent: #25d366; --bg: #f1f5f9; --star: #fbc02d; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
         
         header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
-        .search-container { position: sticky; top: 0; z-index: 10; background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .search-bar { max-width: 600px; margin: 0 auto; padding: 0 20px; }
-        input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; }
+        
+        /* Barra de Busca e Avaliação */
+        .top-bar { position: sticky; top: 0; z-index: 10; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .search-bar { max-width: 600px; margin: 0 auto; padding: 15px 20px 5px; }
+        input#busca { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #cbd5e1; outline: none; }
 
-        .container { max-width: 1200px; margin: 30px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        /* Nova Barra de Sistema de Avaliações */
+        .rating-summary { 
+            display: flex; justify-content: center; align-items: center; gap: 20px;
+            padding: 10px; background: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 0.85rem; font-weight: 600;
+        }
+        .rating-summary span { display: flex; align-items: center; gap: 5px; }
+        .star-icon { color: var(--star); font-size: 1.1rem; }
+
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
         
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
-        
-        .card-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
-        
+        /* Card Atualizado */
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .card-img { width: 100%; height: 160px; object-fit: cover; }
         .card-content { padding: 20px; flex-grow: 1; }
-        .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        .card h3 { margin: 15px 0 5px; font-size: 1.2rem; }
-        .card p { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; }
+        
+        .tag-bairro { background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; }
+        
+        /* Estrelas no Card */
+        .stars-row { margin: 10px 0; color: var(--star); font-size: 0.9rem; }
+        .rating-count { color: #94a3b8; font-size: 0.8rem; margin-left: 5px; }
 
-        /* Botão do WhatsApp */
         .btn-whatsapp { 
             display: flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 12px; background: var(--accent); color: white; 
             border: none; border-radius: 8px; cursor: pointer; font-weight: bold; 
-            text-decoration: none; font-size: 0.95rem; transition: 0.2s;
+            text-decoration: none; transition: 0.2s;
         }
         .btn-whatsapp:hover { background: #128c7e; }
     </style>
@@ -39,12 +49,19 @@
 
 <header>
     <h1>Guia Imobiliário Zona Sul</h1>
-    <p>Chame direto no WhatsApp as melhores agências do Rio</p>
+    <p>As agências mais bem avaliadas do Rio</p>
 </header>
 
-<div class="search-container">
+<div class="top-bar">
     <div class="search-bar">
-        <input type="text" id="busca" placeholder="Busque por bairro ou nome..." onkeyup="filtrar()">
+        <input type="text" id="busca" placeholder="Busque bairro ou nome..." onkeyup="filtrar()">
+    </div>
+    <div class="rating-summary">
+        <span>Média do Catálogo: <strong class="star-icon">★</strong> 4.8/5.0</span>
+        <span>•</span>
+        <span>85 Imobiliárias Verificadas</span>
+        <span>•</span>
+        <span>+1.200 Avaliações</span>
     </div>
 </div>
 
@@ -55,9 +72,10 @@
         <div class="card-content">
             <span class="tag-bairro">Ipanema</span>
             <h3>Sol & Mar Imóveis</h3>
+            <div class="stars-row">★★★★★ <span class="rating-count">(142 avaliações)</span></div>
             <p>📍 Rua Visconde de Pirajá, 500</p>
-            <a href="https://wa.me/5521999999999?text=Olá! Vi a Sol e Mar no catálogo da Zona Sul e gostaria de informações." target="_blank" class="btn-whatsapp">
-                📱 Chamar no WhatsApp
+            <a href="https://wa.me/5521999999999?text=Vi a Sol e Mar no Guia Zona Sul!" target="_blank" class="btn-whatsapp">
+                📱 WhatsApp
             </a>
         </div>
     </div>
@@ -67,9 +85,10 @@
         <div class="card-content">
             <span class="tag-bairro">Leblon</span>
             <h3>Leblon Prime</h3>
+            <div class="stars-row">★★★★☆ <span class="rating-count">(89 avaliações)</span></div>
             <p>📍 Av. Ataulfo de Paiva, 200</p>
-            <a href="https://wa.me/5521992025698?text=Olá! Vi a Leblon Prime no catálogo da Zona Sul e gostaria de informações." target="_blank" class="btn-whatsapp">
-                📱 Chamar no WhatsApp
+            <a href="https://wa.me/5521888888888?text=Vi a Leblon Prime no Guia Zona Sul!" target="_blank" class="btn-whatsapp">
+                📱 WhatsApp
             </a>
         </div>
     </div>
