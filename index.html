@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imobiliárias Zona Sul RJ | Agendamento Comercial</title>
+    <title>Imobiliárias Zona Sul RJ | Agendamento Profissional</title>
     <style>
         :root { --primary: #075985; --accent: #25d366; --bg: #f8fafc; --star: #fbc02d; --blue: #2563eb; --red: #ef4444; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #334155; }
@@ -41,7 +41,7 @@
 
 <header>
     <h1>Catálogo Zona Sul RJ</h1>
-    <p>Agendamentos exclusivos em horário comercial</p>
+    <p>Agendamentos: Segunda a Sexta, 09h às 18h</p>
 </header>
 
 <div class="top-bar">
@@ -82,7 +82,7 @@
             
             <label>Hora da Visita:</label>
             <input type="time" id="hora_visita" min="09:00" max="18:00" required>
-            <div class="horario-info">* Atendimento das 09:00 às 18:00</div>
+            <div class="horario-info">* Somente Seg a Sex, das 09:00 às 18:00</div>
             
             <button type="submit" class="submit-agendar">Confirmar e Enviar via WhatsApp</button>
         </form>
@@ -92,6 +92,10 @@
 <script>
     let imobiliariaAtual = "";
     let zapAtual = "";
+
+    // Bloqueia datas passadas no calendário
+    const hoje = new Date().toISOString().split('T')[0];
+    document.getElementById('data_visita').setAttribute('min', hoje);
 
     function filtrar() {
         let input = document.getElementById('busca').value.toLowerCase();
@@ -114,10 +118,20 @@
     document.getElementById('formAgendamento').onsubmit = function(e) {
         e.preventDefault();
         
-        const hora = document.getElementById('hora_visita').value;
-        const horaNumerica = parseInt(hora.split(':')[0]);
+        const dataInput = document.getElementById('data_visita').value;
+        const horaInput = document.getElementById('hora_visita').value;
+        
+        // 1. Validação de Dia da Semana (0 = Domingo, 6 = Sábado)
+        const dataSelecionada = new Date(dataInput + 'T00:00:00');
+        const diaDaSemana = dataSelecionada.getDay();
 
-        // VALIDAÇÃO DE HORÁRIO COMERCIAL
+        if (diaDaSemana === 0 || diaDaSemana === 6) {
+            alert("Desculpe! Agendamentos de visita são realizados apenas de Segunda a Sexta-feira.");
+            return;
+        }
+
+        // 2. Validação de Horário Comercial
+        const horaNumerica = parseInt(horaInput.split(':')[0]);
         if (horaNumerica < 9 || horaNumerica >= 18) {
             alert("Desculpe! As visitas só podem ser agendadas entre as 09:00 e as 18:00.");
             return;
@@ -125,14 +139,16 @@
 
         const nome = document.getElementById('nome_cliente').value;
         const tel = document.getElementById('tel_cliente').value;
-        const data = document.getElementById('data_visita').value;
+
+        // Formatação da data para o usuário (pt-BR)
+        const dataFormatada = dataSelecionada.toLocaleDateString('pt-BR');
 
         const mensagem = `Olá! Gostaria de agendar uma visita pelo Catálogo Zona Sul:%0A%0A` +
                          `*Imobiliária:* ${imobiliariaAtual}%0A` +
                          `*Cliente:* ${nome}%0A` +
                          `*Telefone:* ${tel}%0A` +
-                         `*Data:* ${data}%0A` +
-                         `*Hora:* ${hora}%0A%0A` +
+                         `*Data:* ${dataFormatada}%0A` +
+                         `*Hora:* ${horaInput}%0A%0A` +
                          `Por favor, poderiam confirmar?`;
 
         window.open(`https://wa.me/${zapAtual}?text=${mensagem}`, '_blank');
