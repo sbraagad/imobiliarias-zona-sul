@@ -303,6 +303,8 @@ Fonte: <a href="https://www.fipe.org.br/pt-br/indices/fipezap/" target="_blank">
 
 if(tipo === "rent"){
 panel.innerHTML = `
+<button class="close-panel" onclick="fecharAnalise()">✕</button>
+
 <h3>Rentabilidade média Airbnb — Zona Sul RJ</h3>
 
 <p><strong>Leblon:</strong> 0.45% ao mês</p>
@@ -320,6 +322,8 @@ AirDNA Market Data
 
 if(tipo === "life"){
 panel.innerHTML = `
+<button class="close-panel" onclick="fecharAnalise()">✕</button>
+
 <h3>Lifestyle — Zona Sul do Rio</h3>
 
 <p><strong>Leblon:</strong> bairro de alto padrão com gastronomia sofisticada e praia exclusiva.</p>
@@ -347,3 +351,4 @@ panel.style.display = "none";
 
 </body>
 </html>
+
