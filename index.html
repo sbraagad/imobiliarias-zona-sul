@@ -129,10 +129,73 @@ footer { background: #0f172a; color: #94a3b8; padding: 60px 10% 30px; text-align
 .options-row { grid-template-columns: 1fr; }
 .filter-section { position: relative; }
 }
+.top-menu{
+background:#0f172a;
+padding:10px 30px;
+display:flex;
+justify-content:flex-end;
+}
+
+.menu-user{
+position:relative;
+}
+
+.menu-user a{
+color:#cbd5f5;
+text-decoration:none;
+font-size:0.85rem;
+font-weight:500;
+}
+
+.menu-user:hover .dropdown{
+display:block;
+}
+
+.dropdown{
+display:none;
+position:absolute;
+top:28px;
+right:0;
+background:white;
+border:1px solid #e2e8f0;
+border-radius:8px;
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+min-width:160px;
+overflow:hidden;
+}
+
+.dropdown a{
+display:flex;
+align-items:center;
+gap:8px;
+padding:10px 14px;
+font-size:0.85rem;
+color:#1e293b;
+}
+
+.dropdown a:hover{
+background:#f1f5f9;
+}
 </style>
 </head>
 
 <body>
+
+<div class="top-menu">
+
+<div class="menu-user">
+<a href="#">👤 Entrar</a>
+
+<div class="dropdown">
+<a href="#">🔑 Login</a>
+<a href="#">📝 Criar conta</a>
+</div>
+
+</div>
+
+</div>
+
+<section class="hero">
 
 <section class="hero">
 <h1>Todas as imobiliárias do Rio em um só lugar</h1>
@@ -378,6 +441,7 @@ panel.style.display = "none";
 
 </body>
 </html>
+
 
 
 
