@@ -92,12 +92,13 @@ input#busca { width: 100%; padding: 14px 22px; border-radius: 50px; border: 1px 
 .options-row{
 display:flex;
 gap:10px;
-flex-wrap:nowrap;
-align-items:center;
+flex-wrap:wrap;
+justify-content:space-between;
 }
 
 .options-row select{
-width:180px;
+flex:1;
+min-width:150px;
 }
 
 select { padding: 11px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; font-weight: 500; font-size: 0.85rem; }
@@ -328,7 +329,8 @@ color:black;
 </select>
 
 <select id="f-bairro" onchange="filtrar()">
-<option value="">Todos os Bairros</option>
+<option value="">Bairro</option>
+<option value="">Todos</option>
 <option value="Leblon">Leblon</option>
 <option value="Ipanema">Ipanema</option>
 <option value="Copacabana">Copacabana</option>
@@ -498,6 +500,7 @@ panel.style.display = "none";
 
 </body>
 </html>
+
 
 
 
