@@ -644,36 +644,6 @@ const panel = document.getElementById("panel-analysis");
 panel.style.display = "none";
 }
 
-<script>
-
-function atualizarBairros(){
-
-let regiao = document.getElementById("f-regiao").value;
-let bairros = document.querySelectorAll("#f-bairro option");
-
-bairros.forEach(function(bairro){
-
-if(bairro.value === "" || bairro.textContent === "Bairro" || bairro.textContent === "Todos"){
-bairro.style.display="block";
-return;
-}
-
-if(regiao === ""){
-bairro.style.display="block";
-}
-else if(bairro.dataset.regiao === regiao){
-bairro.style.display="block";
-}
-else{
-bairro.style.display="none";
-}
-
-});
-
-}
-
-<script>
-
 function atualizarBairros(){
 
 let regiao = document.getElementById("f-regiao").value;
