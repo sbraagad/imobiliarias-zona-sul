@@ -93,12 +93,11 @@ input#busca { width: 100%; padding: 14px 22px; border-radius: 50px; border: 1px 
 display:flex;
 gap:10px;
 flex-wrap:wrap;
-justify-content:space-between;
 }
 
 .options-row select{
 flex:1;
-min-width:150px;
+min-width:120px;
 }
 
 select { padding: 11px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; font-weight: 500; font-size: 0.85rem; }
@@ -665,9 +664,14 @@ grupo.style.display="none";
 
 }
 
+window.onload = function(){
+atualizarBairros();
+}
+
 </script>
 </body>
 </html>
+
 
 
 
