@@ -320,11 +320,14 @@ color:black;
 <div class="options-row">
 
 <select id="f-regiao" onchange="atualizarBairros(); filtrar();">
-  <option value="">Regiões</option>
-  <option value="zona-sul">Zona Sul</option>
-  <option value="zona-norte">Zona Norte</option>
-  <option value="zona-oeste">Zona Oeste</option>
-  <option value="centro">Centro</option>
+
+<option value="">Região</option>
+
+<option value="Zona Sul">Zona Sul</option>
+<option value="Centro">Centro</option>
+<option value="Zona Norte">Zona Norte</option>
+<option value="Zona Oeste">Zona Oeste</option>
+
 </select>
 
 <select id="f-bairro" onchange="filtrar()">
@@ -669,9 +672,33 @@ bairro.style.display="none";
 
 }
 
+<script>
+
+function atualizarBairros(){
+
+let regiao = document.getElementById("f-regiao").value;
+let grupos = document.querySelectorAll("#f-bairro optgroup");
+
+grupos.forEach(function(grupo){
+
+if(regiao === ""){
+grupo.style.display="block";
+}
+else if(grupo.label === regiao){
+grupo.style.display="block";
+}
+else{
+grupo.style.display="none";
+}
+
+});
+
+}
+
 </script>
 </body>
 </html>
+
 
 
 
