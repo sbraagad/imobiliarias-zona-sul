@@ -309,6 +309,14 @@ color:black;
 
 <div class="options-row">
 
+<select id="f-regiao" onchange="filtrar()">
+<option value="">Todas as Regiões</option>
+<option value="Zona Sul">Zona Sul</option>
+<option value="Zona Norte">Zona Norte</option>
+<option value="Zona Oeste">Zona Oeste</option>
+<option value="Centro">Centro</option>
+</select>
+
 <select id="f-bairro" onchange="filtrar()">
 <option value="">Todos os Bairros</option>
 <option value="Leblon">Leblon</option>
@@ -322,6 +330,8 @@ color:black;
 <option value="Urca">Urca</option>
 <option value="São Conrado">São Conrado</option>
 </select>
+
+</div>
 
 <select id="f-espec" onchange="filtrar()">
 
@@ -478,6 +488,7 @@ panel.style.display = "none";
 
 </body>
 </html>
+
 
 
 
