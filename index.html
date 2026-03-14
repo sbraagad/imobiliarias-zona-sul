@@ -319,179 +319,99 @@ color:black;
 <div class="options-row">
 
 <select id="f-regiao" onchange="atualizarBairros(); filtrar();">
-
 <option value="">Região</option>
-
 <option value="Zona Sul">Zona Sul</option>
 <option value="Centro">Centro</option>
 <option value="Zona Norte">Zona Norte</option>
 <option value="Zona Oeste">Zona Oeste</option>
-
 </select>
 
 <select id="f-bairro" onchange="filtrar()">
-
 <option value="">Bairro</option>
 <option value="">Todos</option>
 
 <optgroup label="Zona Sul">
-<option data-regiao="zona-sul">Botafogo</option>
-<option data-regiao="zona-sul">Catete</option>
-<option data-regiao="zona-sul">Copacabana</option>
-<option data-regiao="zona-sul">Cosme Velho</option>
-<option data-regiao="zona-sul">Flamengo</option>
-<option data-regiao="zona-sul">Gávea</option>
-<option data-regiao="zona-sul">Glória</option>
-<option data-regiao="zona-sul">Humaitá</option>
-<option data-regiao="zona-sul">Ipanema</option>
-<option data-regiao="zona-sul">Jardim Botânico</option>
-<option data-regiao="zona-sul">Lagoa</option>
-<option data-regiao="zona-sul">Laranjeiras</option>
-<option data-regiao="zona-sul">Leblon</option>
-<option data-regiao="zona-sul">Leme</option>
-<option data-regiao="zona-sul">São Conrado</option>
-<option data-regiao="zona-sul">Urca</option>
-<option data-regiao="zona-sul">Vidigal</option>
+<option>Copacabana</option>
+<option>Ipanema</option>
+<option>Leblon</option>
+<option>Botafogo</option>
+<option>Flamengo</option>
+<option>Laranjeiras</option>
+<option>Catete</option>
+<option>Glória</option>
+<option>Humaitá</option>
+<option>Urca</option>
+<option>Lagoa</option>
+<option>Jardim Botânico</option>
+<option>Gávea</option>
+<option>São Conrado</option>
+<option>Vidigal</option>
+<option>Rocinha</option>
 </optgroup>
 
 <optgroup label="Centro">
-<option data-regiao="centro">Bairro de Fátima</option>
-<option data-regiao="centro">Catumbi</option>
-<option data-regiao="centro">Centro</option>
-<option data-regiao="centro">Cidade Nova</option>
-<option data-regiao="centro">Estácio</option>
-<option data-regiao="centro">Gamboa</option>
-<option data-regiao="centro">Lapa</option>
-<option data-regiao="centro">Praça da Bandeira</option>
-<option data-regiao="centro">Rio Comprido</option>
-<option data-regiao="centro">Santa Teresa</option>
-<option data-regiao="centro">Santo Cristo</option>
-<option data-regiao="centro">Saúde</option>
+<option>Centro</option>
+<option>Lapa</option>
+<option>Santa Teresa</option>
+<option>Bairro de Fátima</option>
+<option>Praça Mauá</option>
+<option>Saúde</option>
+<option>Gamboa</option>
+<option>Santo Cristo</option>
 </optgroup>
 
 <optgroup label="Zona Norte">
-<option data-regiao="zona-norte">Abolição</option>
-<option data-regiao="zona-norte">Acari</option>
-<option data-regiao="zona-norte">Água Santa</option>
-<option data-regiao="zona-norte">Andaraí</option>
-<option data-regiao="zona-norte">Bancários</option>
-<option data-regiao="zona-norte">Barros Filho</option>
-<option data-regiao="zona-norte">Benfica</option>
-<option data-regiao="zona-norte">Bonsucesso</option>
-<option data-regiao="zona-norte">Brás de Pina</option>
-<option data-regiao="zona-norte">Cachambi</option>
-<option data-regiao="zona-norte">Cacuia</option>
-<option data-regiao="zona-norte">Caju</option>
-<option data-regiao="zona-norte">Campinho</option>
-<option data-regiao="zona-norte">Cascadura</option>
-<option data-regiao="zona-norte">Cavalcanti</option>
-<option data-regiao="zona-norte">Cidade Universitária</option>
-<option data-regiao="zona-norte">Cocotá</option>
-<option data-regiao="zona-norte">Colégio</option>
-<option data-regiao="zona-norte">Complexo do Alemão</option>
-<option data-regiao="zona-norte">Cordovil</option>
-<option data-regiao="zona-norte">Costa Barros</option>
-<option data-regiao="zona-norte">Del Castilho</option>
-<option data-regiao="zona-norte">Encantado</option>
-<option data-regiao="zona-norte">Engenho da Rainha</option>
-<option data-regiao="zona-norte">Engenho de Dentro</option>
-<option data-regiao="zona-norte">Engenho Novo</option>
-<option data-regiao="zona-norte">Freguesia (Ilha)</option>
-<option data-regiao="zona-norte">Galeão</option>
-<option data-regiao="zona-norte">Grajaú</option>
-<option data-regiao="zona-norte">Guadalupe</option>
-<option data-regiao="zona-norte">Higienópolis</option>
-<option data-regiao="zona-norte">Honório Gurgel</option>
-<option data-regiao="zona-norte">Inhaúma</option>
-<option data-regiao="zona-norte">Irajá</option>
-<option data-regiao="zona-norte">Jacaré</option>
-<option data-regiao="zona-norte">Jacarezinho</option>
-<option data-regiao="zona-norte">Jardim América</option>
-<option data-regiao="zona-norte">Jardim Carioca</option>
-<option data-regiao="zona-norte">Jardim Guanabara</option>
-<option data-regiao="zona-norte">Lins de Vasconcelos</option>
-<option data-regiao="zona-norte">Madureira</option>
-<option data-regiao="zona-norte">Mangueira</option>
-<option data-regiao="zona-norte">Maracanã</option>
-<option data-regiao="zona-norte">Marechal Hermes</option>
-<option data-regiao="zona-norte">Maria da Graça</option>
-<option data-regiao="zona-norte">Méier</option>
-<option data-regiao="zona-norte">Moneró</option>
-<option data-regiao="zona-norte">Olaria</option>
-<option data-regiao="zona-norte">Oswaldo Cruz</option>
-<option data-regiao="zona-norte">Parada de Lucas</option>
-<option data-regiao="zona-norte">Penha</option>
-<option data-regiao="zona-norte">Penha Circular</option>
-<option data-regiao="zona-norte">Piedade</option>
-<option data-regiao="zona-norte">Pilares</option>
-<option data-regiao="zona-norte">Portuguesa</option>
-<option data-regiao="zona-norte">Praça da Bandeira</option>
-<option data-regiao="zona-norte">Quintino Bocaiuva</option>
-<option data-regiao="zona-norte">Ramos</option>
-<option data-regiao="zona-norte">Riachuelo</option>
-<option data-regiao="zona-norte">Rocha</option>
-<option data-regiao="zona-norte">Rocha Miranda</option>
-<option data-regiao="zona-norte">Sampaio</option>
-<option data-regiao="zona-norte">São Cristóvão</option>
-<option data-regiao="zona-norte">Tauá</option>
-<option data-regiao="zona-norte">Todos os Santos</option>
-<option data-regiao="zona-norte">Tomás Coelho</option>
-<option data-regiao="zona-norte">Turiaçu</option>
-<option data-regiao="zona-norte">Vaz Lobo</option>
-<option data-regiao="zona-norte">Vicente de Carvalho</option>
-<option data-regiao="zona-norte">Vigário Geral</option>
-<option data-regiao="zona-norte">Vila da Penha</option>
-<option data-regiao="zona-norte">Vila Isabel</option>
-<option data-regiao="zona-norte">Vila Kosmos</option>
-<option data-regiao="zona-norte">Vista Alegre</option>
-<option data-regiao="zona-norte">Zumbi</option>
+<option>Tijuca</option>
+<option>Maracanã</option>
+<option>Vila Isabel</option>
+<option>Grajaú</option>
+<option>Andaraí</option>
+<option>Méier</option>
+<option>Engenho Novo</option>
+<option>Del Castilho</option>
+<option>Madureira</option>
+<option>Penha</option>
+<option>Olaria</option>
+<option>Bonsucesso</option>
+<option>Ramos</option>
+<option>Ilha do Governador</option>
 </optgroup>
 
 <optgroup label="Zona Oeste">
-<option data-regiao="zona-oeste">Anil</option>
-<option data-regiao="zona-oeste">Bangu</option>
-<option data-regiao="zona-oeste">Barra da Tijuca</option>
-<option data-regiao="zona-oeste">Barra de Guaratiba</option>
-<option data-regiao="zona-oeste">Bento Ribeiro</option>
-<option data-regiao="zona-oeste">Boa Esperança</option>
-<option data-regiao="zona-oeste">Camorim</option>
-<option data-regiao="zona-oeste">Campo Grande</option>
-<option data-regiao="zona-oeste">Cidade de Deus</option>
-<option data-regiao="zona-oeste">Cosmos</option>
-<option data-regiao="zona-oeste">Curicica</option>
-<option data-regiao="zona-oeste">Deodoro</option>
-<option data-regiao="zona-oeste">Freguesia (Jacarepaguá)</option>
-<option data-regiao="zona-oeste">Gardênia Azul</option>
-<option data-regiao="zona-oeste">Guaratiba</option>
-<option data-regiao="zona-oeste">Inhoaíba</option>
-<option data-regiao="zona-oeste">Jacarepaguá</option>
-<option data-regiao="zona-oeste">Jardim Sulacap</option>
-<option data-regiao="zona-oeste">Joá</option>
-<option data-regiao="zona-oeste">Magalhães Bastos</option>
-<option data-regiao="zona-oeste">Padre Miguel</option>
-<option data-regiao="zona-oeste">Paciência</option>
-<option data-regiao="zona-oeste">Pechincha</option>
-<option data-regiao="zona-oeste">Pedra de Guaratiba</option>
-<option data-regiao="zona-oeste">Praça Seca</option>
-<option data-regiao="zona-oeste">Realengo</option>
-<option data-regiao="zona-oeste">Recreio dos Bandeirantes</option>
-<option data-regiao="zona-oeste">Rio da Prata</option>
-<option data-regiao="zona-oeste">Santa Cruz</option>
-<option data-regiao="zona-oeste">Santíssimo</option>
-<option data-regiao="zona-oeste">Senador Camará</option>
-<option data-regiao="zona-oeste">Senador Vasconcelos</option>
-<option data-regiao="zona-oeste">Sepetiba</option>
-<option data-regiao="zona-oeste">Taquara</option>
-<option data-regiao="zona-oeste">Tanque</option>
-<option data-regiao="zona-oeste">Vargem Grande</option>
-<option data-regiao="zona-oeste">Vargem Pequena</option>
-<option data-regiao="zona-oeste">Vila Kennedy</option>
-<option data-regiao="zona-oeste">Vila Militar</option>
+<option>Barra da Tijuca</option>
+<option>Recreio</option>
+<option>Vargem Grande</option>
+<option>Vargem Pequena</option>
+<option>Jacarepaguá</option>
+<option>Freguesia</option>
+<option>Anil</option>
+<option>Taquara</option>
+<option>Curicica</option>
+<option>Campo Grande</option>
+<option>Santa Cruz</option>
+<option>Guaratiba</option>
 </optgroup>
 
 </select>
-</div>
 
+<select id="f-espec" onchange="filtrar()">
+<option value="">Especialidades</option>
+<option value="Luxo">Alto Padrão / Luxo</option>
+<option value="Residencial">Residencial</option>
+<option value="Comercial">Comercial</option>
+<option value="Lancamentos">Lançamentos</option>
+<option value="Investimento">Investimento / Renda</option>
+</select>
+
+<select id="f-servico" onchange="filtrar()">
+<option value="">Serviços</option>
+<option value="Venda">Venda</option>
+<option value="Compra">Compra</option>
+<option value="Aluguel">Aluguel</option>
+<option value="Administração por Temporada">Administração por Temporada</option>
+</select>
+
+</div>
 <select id="f-espec" onchange="filtrar()">
 
 <option value="">Especialidades</option>
