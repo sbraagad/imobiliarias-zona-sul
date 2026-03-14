@@ -90,14 +90,14 @@ to{opacity:1; transform:translateY(0);}
 input#busca { width: 100%; padding: 14px 22px; border-radius: 50px; border: 1px solid var(--border); font-size: 1rem; box-sizing: border-box; outline: none; margin-bottom: 15px; }
 
 .options-row{
-display:flex !important;
-flex-wrap:nowrap !important;
+display:flex;
 gap:10px;
 }
 
 .options-row select{
-width:25% !important;
+flex:1;
 height:40px;
+min-width:0;
 }
 
 select { padding: 11px; border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; font-weight: 500; font-size: 0.85rem; }
@@ -319,6 +319,22 @@ color:black;
 <div class="options-row">
 
 <select id="f-regiao" onchange="atualizarBairros(); filtrar();">
+<option value="">Região</option>
+</select>
+
+<select id="f-bairro" onchange="filtrar();">
+<option value="">Bairro</option>
+</select>
+
+<select id="f-especialidade" onchange="filtrar();">
+<option value="">Especialidades</option>
+</select>
+
+<select id="f-servico" onchange="filtrar();">
+<option value="">Serviços</option>
+</select>
+
+</div>
 
 <option value="">Região</option>
 
