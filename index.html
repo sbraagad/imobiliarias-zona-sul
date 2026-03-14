@@ -650,20 +650,25 @@ let grupos = document.querySelectorAll("#f-bairro optgroup");
 
 grupos.forEach(function(grupo){
 
+let bairroOptions = grupo.querySelectorAll("option");
+
+bairroOptions.forEach(function(option){
+
 if(regiao === ""){
-grupo.style.display="block";
+option.style.display = "block";
 }
 else if(grupo.label === regiao){
-grupo.style.display="block";
+option.style.display = "block";
 }
 else{
-grupo.style.display="none";
+option.style.display = "none";
 }
 
 });
 
-}
+});
 
+}
 document.addEventListener("DOMContentLoaded", function(){
 atualizarBairros();
 });
@@ -671,6 +676,7 @@ atualizarBairros();
 </script>
 </body>
 </html>
+
 
 
 
