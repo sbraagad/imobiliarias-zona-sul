@@ -91,8 +91,18 @@ input#busca { width: 100%; padding: 14px 22px; border-radius: 50px; border: 1px 
 
 .options-row{
 display:flex;
+flex-direction:column;
 gap:10px;
-width:100%;
+}
+
+.linha-filtros{
+display:flex;
+gap:10px;
+}
+
+.linha-filtros select{
+flex:1;
+height:38px;
 }
 
 .options-row select{
@@ -319,10 +329,21 @@ color:black;
 
 <div class="options-row">
 
+<div class="linha-filtros">
+[ Região ] [ Bairro ]
+</div>
+
+<div class="linha-filtros">
+[ Especialidades ] [ Serviços ]
+</div>
+
+<select id="f-especialidade" onchange="filtrar();">
+<option value="">Especialidades</option>
+</select>
+
 <select id="f-regiao" onchange="atualizarBairros(); filtrar();">
 
 <option value="">Região</option>
-
 <option value="Zona Sul">Zona Sul</option>
 <option value="Centro">Centro</option>
 <option value="Zona Norte">Zona Norte</option>
@@ -331,9 +352,11 @@ color:black;
 </select>
 
 <select id="f-bairro" onchange="filtrar()">
-
 <option value="">Bairro</option>
 <option value="">Todos</option>
+</select>
+
+</div>
 
 <optgroup label="Zona Sul">
 <option data-regiao="zona-sul">Botafogo</option>
@@ -683,6 +706,7 @@ atualizarBairros();
 </script>
 </body>
 </html>
+
 
 
 
