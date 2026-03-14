@@ -221,30 +221,6 @@ margin-bottom:6px;
 background:white;
 color:black;
 }
-
-/* FILTROS LADO A LADO */
-
-.options-row{
-display:flex;
-gap:10px;
-}
-
-.options-row select{
-flex:1;
-height:40px;
-padding:5px;
-}
-
-/* RESPONSIVO CELULAR */
-
-@media (max-width:768px){
-
-.options-row{
-flex-direction:column;
-}
-
-}
-
 </style>
 </head>
 
@@ -341,24 +317,6 @@ flex-direction:column;
 </div>
 
 <div class="options-row">
-
-<select id="regiao">
-<option>Região</option>
-</select>
-
-<select id="bairro">
-<option>Bairro</option>
-</select>
-
-<select id="especialidade">
-<option>Especialidades</option>
-</select>
-
-<select id="servico">
-<option>Serviços</option>
-</select>
-
-</div>
 
 <select id="f-regiao" onchange="atualizarBairros(); filtrar();">
 
@@ -724,48 +682,3 @@ atualizarBairros();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
