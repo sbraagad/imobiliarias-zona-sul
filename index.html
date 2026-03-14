@@ -643,30 +643,26 @@ const panel = document.getElementById("panel-analysis");
 panel.style.display = "none";
 }
 
-function atualizarBairros(){
+function atualizarBairros() {
 
 let regiao = document.getElementById("f-regiao").value;
-let grupos = document.querySelectorAll("#f-bairro optgroup");
+let selectBairro = document.getElementById("f-bairro");
 
-grupos.forEach(function(grupo){
+let grupos = selectBairro.getElementsByTagName("optgroup");
 
-let bairroOptions = grupo.querySelectorAll("option");
+for (let i = 0; i < grupos.length; i++) {
 
-bairroOptions.forEach(function(option){
+if (regiao === "" || grupos[i].label === regiao) {
 
-if(regiao === ""){
-option.style.display = "block";
-}
-else if(grupo.label === regiao){
-option.style.display = "block";
-}
-else{
-option.style.display = "none";
+grupos[i].style.display = "block";
+
+} else {
+
+grupos[i].style.display = "none";
+
 }
 
-});
-
-});
+}
 
 }
 document.addEventListener("DOMContentLoaded", function(){
@@ -676,6 +672,7 @@ atualizarBairros();
 </script>
 </body>
 </html>
+
 
 
 
