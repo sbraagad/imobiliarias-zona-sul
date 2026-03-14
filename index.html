@@ -648,21 +648,28 @@ function atualizarBairros(){
 let regiao = document.getElementById("f-regiao").value;
 let bairroSelect = document.getElementById("f-bairro");
 
-let opcoes = bairroSelect.querySelectorAll("option");
+let grupos = bairroSelect.querySelectorAll("optgroup");
 
-opcoes.forEach(function(opcao){
+grupos.forEach(function(grupo){
 
-let grupo = opcao.parentElement;
-
-if(opcao.value === ""){
-opcao.style.display = "block";
-return;
-}
+let opcoes = grupo.querySelectorAll("option");
 
 if(regiao === "" || grupo.label === regiao){
+
+grupo.style.display = "block";
+
+opcoes.forEach(function(opcao){
 opcao.style.display = "block";
+});
+
 }else{
+
+grupo.style.display = "none";
+
+opcoes.forEach(function(opcao){
 opcao.style.display = "none";
+});
+
 }
 
 });
@@ -675,6 +682,7 @@ atualizarBairros();
 </script>
 </body>
 </html>
+
 
 
 
