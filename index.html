@@ -165,44 +165,26 @@ z-index:1000;
 display:flex;
 gap:10px;
 }
-
 .menu-user{
-position:relative;
-display:inline-block;
-}
-
-.dropdown{
-display:none;
-position:absolute;
-top:calc(100% + 6px);
-right:0;
-background:transparent;
-border-radius:8px;
-box-shadow:none;
-}
-
-.menu-user:hover .dropdown{
-display:block;
-}
-
-.dropdown a{
 display:flex;
+gap:12px;
 align-items:center;
-gap:6px;
-padding:4px 8px;
-color:black;
+}
+
+.anunciar{
+background:#2563eb;
+color:white;
+padding:7px 14px;
+border-radius:20px;
 text-decoration:none;
 font-size:0.9rem;
-background:white;
-border-radius:6px;
-margin-bottom:4px;
-white-space:nowrap;
+font-weight:600;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-.dropdown a:hover{
-background:#f1f1f1;
+.anunciar:hover{
+background:#1e40af;
 }
-
 /* BOTÃO ENTRAR */
 
 .menu-user a{
@@ -232,13 +214,7 @@ color:black;
 <div class="menu-user">
 
 <a href="#">👤 Entrar</a>
-
-<div class="dropdown">
-<a href="#">🔑 Login</a>
-<a href="#">📝 Criar conta</a>
-</div>
-
-</div>
+<a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
 
 </div>
 
@@ -246,6 +222,7 @@ color:black;
 
 <h1>Todas as imobiliárias do Rio em um só lugar</h1>
 <p><em>Descubra e compare as principais imobiliárias confiáveis do Rio de Janeiro.</em></p>
+
 </section>
 
 <section class="vantagens">
