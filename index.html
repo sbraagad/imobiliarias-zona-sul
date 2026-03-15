@@ -7,7 +7,65 @@
 
 <style>
 :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
+
 body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); line-height: 1.6; }
+
+/* MENU */
+
+.menu{
+background:#ffffff;
+border-bottom:1px solid #e5e7eb;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.container-menu{
+max-width:1200px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px;
+}
+
+.links-menu{
+display:flex;
+gap:20px;
+}
+
+.links-menu a{
+text-decoration:none;
+color:#374151;
+font-weight:500;
+}
+
+.links-menu a:hover{
+color:#2563eb;
+}
+
+.menu-acoes{
+display:flex;
+gap:10px;
+}
+
+.btn-anunciar{
+background:#2563eb;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+}
+
+.btn-login{
+border:1px solid #d1d5db;
+padding:8px 14px;
+border-radius:6px;
+text-decoration:none;
+color:#374151;
+}
+</style>
 
 .hero{
 position:relative;
@@ -205,8 +263,29 @@ color:black;
 }
 </style>
 </head>
-
 <body>
+<header class="menu">
+  <div class="container-menu">
+
+    <div class="logo">
+      <strong>ImobiliáriasRJ</strong>
+    </div>
+
+    <nav class="links-menu">
+      <a href="#">Início</a>
+      <a href="#">Imobiliárias</a>
+      <a href="#">Bairros</a>
+      <a href="#">Preços m²</a>
+      <a href="#">Blog</a>
+    </nav>
+
+    <div class="menu-acoes">
+      <a class="btn-anunciar" href="#">Anunciar imobiliária</a>
+      <a class="btn-login" href="#">Entrar</a>
+    </div>
+
+  </div>
+</header>
 
 <section class="hero">
 <div class="top-menu">
