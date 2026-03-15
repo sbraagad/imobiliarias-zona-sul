@@ -5,6 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Site Imobiliárias do Rio de Janeiro</title>
 
+.topo {
+background:#ffffff;
+border-bottom:1px solid #e2e8f0;
+padding:15px 30px;
+}
+
+.menu-horizontal{
+display:flex;
+align-items:center;
+gap:30px;
+font-weight:500;
+}
+
+.menu-horizontal a{
+text-decoration:none;
+color:#1e293b;
+}
+
+.logo{
+font-weight:700;
+font-size:20px;
+margin-right:20px;
+}
+
 <style>
 :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
 
@@ -264,27 +288,18 @@ color:black;
 </style>
 </head>
 <body>
-<header class="menu">
-  <div class="container-menu">
+<header class="topo">
+<div class="menu-horizontal">
 
-    <div class="logo">
-      <strong>ImobiliáriasRJ</strong>
-    </div>
+<div class="logo">ImobiliáriasRJ</div>
 
-    <nav class="links-menu">
-      <a href="#">Início</a>
-      <a href="#">Imobiliárias</a>
-      <a href="#">Bairros</a>
-      <a href="#">Preços m²</a>
-      <a href="#">Blog</a>
-    </nav>
+<a href="#">Início</a>
+<a href="#">Imobiliárias</a>
+<a href="#">Bairros</a>
+<a href="#">Preços m²</a>
+<a href="#">Blog</a>
 
-    <div class="menu-acoes">
-      <a class="btn-anunciar" href="#">Anunciar imobiliária</a>
-      <a class="btn-login" href="#">Entrar</a>
-    </div>
-
-  </div>
+</div>
 </header>
 
 <section class="hero">
