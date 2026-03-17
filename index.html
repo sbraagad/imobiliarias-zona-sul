@@ -6,6 +6,8 @@
 
 <title>O maior site de Imobiliárias do Rio de Janeiro - ImobiliáriasRJ</title>
 
+<style>
+
 /* MENU MOBILE */
 
 .menu-mobile{
@@ -36,7 +38,6 @@ border-bottom:none;
 .menu-mobile.ativo{
 display:flex;
 }
-<style>
 
 .topo{
 background:rgba(255,255,255,0.85);
@@ -398,10 +399,8 @@ cursor:pointer;
 </style>
 
 </head>
-
 <body>
 
-<header>...</header>
 <div class="menu-mobile" id="menu-mobile">
   <a href="#">Início</a>
   <a href="#">Imobiliárias</a>
@@ -412,16 +411,6 @@ cursor:pointer;
   <a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
 </div>  
 
-<script>
-const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu-mobile");
-
-toggle.addEventListener("click", () => {
-  menu.classList.toggle("ativo");
-});
-</script>
-
-<body>
 <header class="topo">
   <div class="menu-horizontal">
 
@@ -449,6 +438,8 @@ toggle.addEventListener("click", () => {
     <div class="menu-toggle" id="menu-toggle">☰</div>
 
   </div>
+</header>
+
 <section class="hero">
 
 <h1>Todas as imobiliárias do Rio em um só lugar</h1>
@@ -481,5 +472,6 @@ toggle.addEventListener("click", () => {
   menu.classList.toggle("ativo");
 });
 </script>
+
 </body>
 </html>
