@@ -26,6 +26,7 @@ max-width:1200px;
 margin:auto;
 display:flex;
 align-items:center;
+justify-content:space-between; /* 👈 AQUI */
 gap:30px;
 padding:0 20px;
 }
@@ -57,62 +58,6 @@ margin-left:2px;
 :root { --primary: #1e3a8a; --bg: #f8fafc; --text-main: #1e293b; --text-sub: #64748b; --border: #e2e8f0; --accent: #2563eb; }
 
 body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); line-height: 1.6; }
-
-/* MENU */
-
-.menu{
-background:#ffffff;
-border-bottom:1px solid #e5e7eb;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.container-menu{
-max-width:1200px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px;
-}
-
-.links-menu{
-display:flex;
-gap:20px;
-}
-
-.links-menu a{
-text-decoration:none;
-color:#374151;
-font-weight:500;
-}
-
-.links-menu a:hover{
-color:#2563eb;
-}
-
-.menu-acoes{
-display:flex;
-gap:10px;
-}
-
-.btn-anunciar{
-background:#2563eb;
-color:white;
-padding:8px 14px;
-border-radius:6px;
-text-decoration:none;
-font-weight:600;
-}
-
-.btn-login{
-border:1px solid #d1d5db;
-padding:8px 14px;
-border-radius:6px;
-text-decoration:none;
-color:#374151;
-}
 
 .hero{
 background:
@@ -295,11 +240,6 @@ font-size:0.9rem;
 font-weight:600;
 box-shadow:0 4px 10px rgba(0,0,0,0.2);
 transition:0.2s;
-}
-
-.anunciar:hover{
-background:#1e40af;
-transform:translateY(-1px);
 }
 
 .anunciar:hover{
