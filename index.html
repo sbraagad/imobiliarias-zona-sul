@@ -116,8 +116,9 @@ color:#374151;
 }
 
 .hero{
-position:relative;
-height:420px;
+text-align:center;
+padding:80px 20px;
+}
 background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.35)),
 url('cristo-rio.jpg');
 background-size:cover;
@@ -130,16 +131,14 @@ text-align:center;
 color:white;
 }
 
-.hero h1 { 
-font-size: 3.2rem; 
-margin: 0; 
-font-family: 'Georgia', serif; 
+.hero h1{
+font-size:2rem;
+margin-bottom:10px;
 }
 
-.hero p { 
-font-size: 1.2rem; 
-opacity: 0.9; 
-max-width: 650px; 
+.hero p{
+margin-bottom:20px;
+color:#555;
 }
 
 .hero h1 { font-size: 3.2rem; margin: 0; font-family: 'Georgia', serif; }
@@ -385,7 +384,18 @@ Imobiliárias<span>RJ</span>
 <section class="hero">
 
 <h1>Todas as imobiliárias do Rio em um só lugar</h1>
+
 <p><em>Descubra e compare as principais imobiliárias confiáveis do Rio de Janeiro.</em></p>
+
+<div class="busca-hero">
+
+<input type="text" placeholder="🔎 Buscar imobiliária">
+
+<input type="text" placeholder="📍 Buscar bairro">
+
+<button>Buscar</button>
+
+</div>
 
 </section>
 
