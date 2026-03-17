@@ -6,6 +6,36 @@
 
 <title>O maior site de Imobiliárias do Rio de Janeiro - ImobiliáriasRJ</title>
 
+/* MENU MOBILE */
+
+.menu-mobile{
+display:none;
+flex-direction:column;
+background:white;
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+padding:20px;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+z-index:999;
+}
+
+.menu-mobile a{
+padding:12px 0;
+border-bottom:1px solid #e2e8f0;
+text-decoration:none;
+color:#1e293b;
+font-weight:500;
+}
+
+.menu-mobile a:last-child{
+border-bottom:none;
+}
+
+.menu-mobile.ativo{
+display:flex;
+}
 <style>
 
 .topo{
@@ -366,34 +396,7 @@ cursor:pointer;
 }
 
 </style>
-.menu-mobile{
-display:none;
-flex-direction:column;
-background:white;
-position:absolute;
-top:70px;
-left:0;
-width:100%;
-padding:20px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-z-index:999;
-}
 
-.menu-mobile a{
-padding:12px 0;
-border-bottom:1px solid #e2e8f0;
-text-decoration:none;
-color:#1e293b;
-font-weight:500;
-}
-
-.menu-mobile a:last-child{
-border-bottom:none;
-}
-
-.menu-mobile.ativo{
-display:flex;
-}
 </head>
 <div class="menu-mobile" id="menu-mobile">
   <a href="#">Início</a>
@@ -443,7 +446,15 @@ toggle.addEventListener("click", () => {
 
   </div>
 </header>
-
+<div class="menu-mobile" id="menu-mobile">
+  <a href="#">Início</a>
+  <a href="#">Imobiliárias</a>
+  <a href="#">Bairros</a>
+  <a href="#">Preços m²</a>
+  <a href="#">Blog</a>
+  <a href="#">Entrar</a>
+  <a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
+</div>
 <section class="hero">
 
 <h1>Todas as imobiliárias do Rio em um só lugar</h1>
@@ -468,5 +479,13 @@ toggle.addEventListener("click", () => {
 
 </section>
 
+<script>
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu-mobile");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("ativo");
+});
+</script>
 </body>
 </html>
