@@ -14,12 +14,14 @@
 display:none;
 flex-direction:column;
 background:white;
-position:fixed; /* 👈 MUDANÇA IMPORTANTE */
+position:fixed;
 top:0;
-right:-100%; /* começa escondido */
+right:-100%;
 width:75%;
 height:100%;
 padding:25px;
+padding-bottom:40px; /* 👈 ADICIONA AQUI */
+gap:8px; /* 👈 ADICIONA AQUI */
 box-shadow:-5px 0 20px rgba(0,0,0,0.15);
 z-index:999;
 transition:0.3s;
@@ -319,6 +321,17 @@ font-size:0.9rem;
 font-weight:600;
 box-shadow:0 4px 10px rgba(0,0,0,0.2);
 transition:0.2s;
+}
+
+.menu-mobile .anunciar{
+background:#2563eb;
+color:white !important;
+padding:12px;
+border-radius:10px;
+text-align:center;
+margin-top:20px;
+font-weight:600;
+display:block;
 }
 
 .anunciar:hover{
