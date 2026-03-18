@@ -14,13 +14,20 @@
 display:none;
 flex-direction:column;
 background:white;
-position:absolute;
-top:70px;
-left:0;
-width:100%;
-padding:20px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
+position:fixed; /* 👈 MUDANÇA IMPORTANTE */
+top:0;
+right:-100%; /* começa escondido */
+width:75%;
+height:100%;
+padding:25px;
+box-shadow:-5px 0 20px rgba(0,0,0,0.15);
 z-index:999;
+transition:0.3s;
+}
+
+.menu-mobile.ativo{
+right:0; /* desliza */
+display:flex;
 }
 
 .menu-mobile a{
