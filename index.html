@@ -51,13 +51,50 @@ display:flex;
 
 .menu-toggle{
 display:none;
-font-size:28px;
+width:30px;
+height:22px;
+position:relative;
 cursor:pointer;
-color:#1e293b;
+margin-left:auto;
+}
+
+.menu-toggle span{
+position:absolute;
+left:0;
+width:100%;
+height:3px;
+background:#1e293b;
+border-radius:3px;
+transition:0.3s;
+}
+
+.menu-toggle span:nth-child(1){
+top:0;
+}
+
+.menu-toggle span:nth-child(2){
+top:9px;
+}
+
+.menu-toggle span:nth-child(3){
+top:18px;
+}
+
+.menu-toggle.ativo span:nth-child(1){
+transform:rotate(45deg);
+top:9px;
+}
+
+.menu-toggle.ativo span:nth-child(2){
+opacity:0;
+}
+
+.menu-toggle.ativo span:nth-child(3){
+transform:rotate(-45deg);
+top:9px;
 }
 
 @media (max-width: 768px){
-
 .menu-links,
 .menu-busca,
 .menu-direita{
@@ -66,9 +103,7 @@ display:none;
 
 .menu-toggle{
 display:block !important;
-margin-left:auto;
 }
-
 }
 
 .overlay{
@@ -506,7 +541,11 @@ display:none;
       <a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <div class="menu-toggle" id="menu-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
   </div>
 </header>
@@ -543,11 +582,13 @@ const overlay = document.getElementById("overlay");
 toggle.addEventListener("click", () => {
   menu.classList.toggle("ativo");
   overlay.classList.toggle("ativo");
+  toggle.classList.toggle("ativo");
 });
 
 overlay.addEventListener("click", () => {
   menu.classList.remove("ativo");
   overlay.classList.remove("ativo");
+  toggle.classList.remove("ativo");
 });
 </script>
 
