@@ -11,25 +11,26 @@
 /* MENU MOBILE */
 
 .menu-mobile{
-display:none;
+display:flex;
 flex-direction:column;
-background:white;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
 position:fixed;
 top:0;
 right:-100%;
-width:75%;
+width:78%;
+max-width:320px;
 height:100%;
-padding:25px;
-padding-bottom:40px; /* 👈 ADICIONA AQUI */
-gap:8px; /* 👈 ADICIONA AQUI */
-box-shadow:-5px 0 20px rgba(0,0,0,0.15);
+padding:28px 22px 40px;
+gap:8px;
+box-shadow:-12px 0 30px rgba(0,0,0,0.18);
 z-index:999;
-transition:0.3s;
+transition:right 0.35s ease;
 }
 
 .menu-mobile.ativo{
-right:0; /* desliza */
-display:flex;
+right:0;
 }
 
 .menu-mobile a{
@@ -43,6 +44,46 @@ font-size:16px;
 
 .menu-mobile a:last-child{
 border-bottom:none;
+}
+
+.menu-mobile a{
+padding:15px 0;
+border-bottom:1px solid #e2e8f0;
+text-decoration:none;
+color:#1e293b;
+font-weight:500;
+font-size:16px;
+transition:0.2s;
+}
+
+.menu-mobile a:hover{
+color:#2563eb;
+padding-left:4px;
+}
+
+.menu-mobile .anunciar{
+background:#2563eb;
+color:white !important;
+padding:12px;
+border-radius:10px;
+text-align:center;
+margin-top:20px;
+font-weight:600;
+display:block;
+border:none;
+box-shadow:0 8px 18px rgba(37,99,235,0.25);
+transition:all 0.2s ease;
+}
+
+.menu-mobile .anunciar:hover{
+background:#1e40af;
+transform:translateY(-1px);
+padding-left:12px;
+}
+
+.menu-mobile .anunciar:active{
+transform:scale(0.97);
+background:#1e3a8a;
 }
 
 .menu-mobile.ativo{
@@ -112,10 +153,12 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.4);
+background:rgba(15,23,42,0.35);
+backdrop-filter:blur(2px);
+-webkit-backdrop-filter:blur(2px);
 opacity:0;
 pointer-events:none;
-transition:0.3s;
+transition:opacity 0.3s ease;
 z-index:998;
 }
 
