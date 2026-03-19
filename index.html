@@ -13,17 +13,17 @@
 .menu-mobile{
 display:flex;
 flex-direction:column;
-background:rgba(255,255,255,0.96);
+background:rgba(255,255,255,0.98);
 backdrop-filter:blur(10px);
 -webkit-backdrop-filter:blur(10px);
 position:fixed;
-top:74px;
+top:72px;
 right:-100%;
-width:78%;
-max-width:320px;
-height:calc(100% - 74px);
-padding:22px 22px 40px;
-gap:8px;
+width:72%;
+max-width:300px;
+height:calc(100% - 72px);
+padding:18px 20px 32px;
+gap:6px;
 box-shadow:-12px 0 30px rgba(0,0,0,0.18);
 z-index:1001;
 transition:right 0.35s ease;
@@ -35,25 +35,12 @@ right:0;
 }
 
 .menu-mobile a{
-padding:15px 0;
+padding:16px 0;
 border-bottom:1px solid #e2e8f0;
 text-decoration:none;
 color:#1e293b;
-font-weight:500;
-font-size:16px;
-}
-
-.menu-mobile a:last-child{
-border-bottom:none;
-}
-
-.menu-mobile a{
-padding:15px 0;
-border-bottom:1px solid #e2e8f0;
-text-decoration:none;
-color:#1e293b;
-font-weight:500;
-font-size:16px;
+font-weight:600;
+font-size:15px;
 transition:0.2s;
 }
 
@@ -62,17 +49,22 @@ color:#2563eb;
 padding-left:4px;
 }
 
+.menu-mobile a:last-child{
+border-bottom:none;
+}
+
 .menu-mobile .anunciar{
 background:#2563eb;
 color:white !important;
-padding:12px;
-border-radius:10px;
+padding:11px 12px;
+border-radius:12px;
 text-align:center;
-margin-top:20px;
+margin-top:18px;
 font-weight:600;
+font-size:15px;
 display:block;
 border:none;
-box-shadow:0 8px 18px rgba(37,99,235,0.25);
+box-shadow:0 8px 18px rgba(37,99,235,0.22);
 transition:all 0.2s ease;
 }
 
@@ -87,73 +79,12 @@ transform:scale(0.97);
 background:#1e3a8a;
 }
 
-.menu-mobile.ativo{
-display:flex;
-}
-
-.menu-toggle{
-display:none;
-width:30px;
-height:22px;
-position:relative;
-cursor:pointer;
-margin-left:auto;
-}
-
-.menu-toggle span{
-position:absolute;
-left:0;
-width:100%;
-height:3px;
-background:#1e293b;
-border-radius:3px;
-transition:0.3s;
-}
-
-.menu-toggle span:nth-child(1){
-top:0;
-}
-
-.menu-toggle span:nth-child(2){
-top:9px;
-}
-
-.menu-toggle span:nth-child(3){
-top:18px;
-}
-
-.menu-toggle.ativo span:nth-child(1){
-transform:rotate(45deg);
-top:9px;
-}
-
-.menu-toggle.ativo span:nth-child(2){
-opacity:0;
-}
-
-.menu-toggle.ativo span:nth-child(3){
-transform:rotate(-45deg);
-top:9px;
-}
-
-@media (max-width: 768px){
-.menu-links,
-.menu-busca,
-.menu-direita{
-display:none;
-}
-
-.menu-toggle{
-display:block !important;
-}
-}
-
 .overlay{
 position:fixed;
-top:74px;
+top:72px;
 left:0;
 width:100%;
-height:calc(100% - 74px);
+height:calc(100% - 72px);
 background:rgba(15,23,42,0.35);
 backdrop-filter:blur(2px);
 -webkit-backdrop-filter:blur(2px);
@@ -550,14 +481,14 @@ display:none;
 <body>
 
 <div class="menu-mobile" id="menu-mobile">
-  <a href="#">Início</a>
-  <a href="#">Imobiliárias</a>
-  <a href="#">Bairros</a>
-  <a href="#">Preços m²</a>
-  <a href="#">Blog</a>
-  <a href="#">Entrar</a>
-  <a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
-</div>  
+  <a href="#">🏠 Início</a>
+  <a href="#">🏢 Imobiliárias</a>
+  <a href="#">📍 Bairros</a>
+  <a href="#">📈 Preços m²</a>
+  <a href="#">📰 Blog</a>
+  <a href="#">👤 Entrar</a>
+  <a href="#" class="anunciar">📣 Anunciar Imobiliária</a>
+</div>
 
 <div class="overlay" id="overlay"></div>
 
