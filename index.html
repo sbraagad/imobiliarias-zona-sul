@@ -501,13 +501,10 @@ margin-left:10px;
 display:flex;
 flex-wrap:nowrap;
 gap:10px;
-
 background:white;
 padding:18px 30px;
 border-radius:12px;
-
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
-
 max-width:1000px;
 width:100%;
 justify-content:center;
@@ -527,12 +524,20 @@ min-width:140px;
 
 .busca-hero select{
 flex:1;
-min-width:180px; /* 👈 AUMENTA ESPAÇO */
+min-width:0; /* 👈 troca importante */
 }
 
 .busca-hero button{
-flex:0.7; /* botão menor */
+flex:0.8;
 min-width:120px;
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
 .busca-hero input:focus,
