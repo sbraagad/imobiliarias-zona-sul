@@ -300,9 +300,12 @@ box-sizing:border-box;
 .titulo-banners{
 font-size:22px;
 font-weight:600;
-margin-bottom:15px;
-line-height:1.3;
-padding:0 15px;
+color:#0f172a;
+margin:0;
+letter-spacing:-0.2px;
+white-space:nowrap; /* 👈 NÃO QUEBRA LINHA */
+overflow:hidden;
+text-overflow:ellipsis;
 }
 
 .sub-banners{
@@ -890,8 +893,8 @@ em um só lugar
 <div class="bloco-banners">
   <div class="bloco-banners-topo">
     <h2 class="titulo-banners">
-      Imobiliárias em destaque no Rio
-    </h2>
+Destaques do mercado <span>imobiliário</span> no Rio de Janeiro
+</h2>
 
     <span class="selo-patrocinado">Patrocinado</span>
   </div>
