@@ -531,13 +531,10 @@ margin-left:10px;
 display:flex;
 flex-wrap:nowrap;
 gap:10px;
-
 background:white;
 padding:18px;
 border-radius:12px;
-
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
-
 max-width:980px;
 box-sizing:border-box;
 align-items:center;
@@ -566,14 +563,6 @@ min-width:0;
 .busca-hero button{
 flex:0 0 130px;
 min-width:130px;
-}
-
-.busca-hero input:focus,
-.busca-hero select:focus{
-border-color:#2563eb;
-}
-
-.busca-hero button{
 background:#2563eb;
 color:white;
 border:none;
@@ -584,6 +573,11 @@ cursor:pointer;
 transition:0.3s;
 }
 
+.busca-hero input:focus,
+.busca-hero select:focus{
+border-color:#2563eb;
+}
+
 .busca-hero button:hover{
 background:#1e40af;
 }
@@ -591,9 +585,26 @@ background:#1e40af;
 @media (max-width: 768px){
 
 .busca-hero{
+display:flex;
+flex-direction:column;
+flex-wrap:nowrap;
+width:calc(100% - 24px);
+max-width:none;
+padding:12px;
+gap:12px;
+margin:0 auto 30px;
 top:30px;
-margin-bottom:30px;
-flex-wrap:wrap;
+box-sizing:border-box;
+}
+
+.busca-hero input,
+.busca-hero select,
+.busca-hero button{
+width:100%;
+min-width:0;
+flex:none;
+display:block;
+box-sizing:border-box;
 }
 
 .menu-links,
@@ -611,30 +622,23 @@ justify-content:flex-start;
 padding-top:90px;
 }
 
-/* 👇 mantém */
 .quebra{
 display:block;
 }
 
-/* 👇 SUBSTITUI ESSE BLOCO */
 .hero h1{
 text-align:center;
 line-height:1.3;
-max-width:260px; /* 👈 AQUI ESTÁ A MÁGICA */
+max-width:260px;
 margin:0 auto;
 }
 
-/* 👇 mantém */
 .hero p{
-white-space: normal;
+white-space:normal;
 max-width:90%;
 }
 
 }
-
-} /* 👈 ESSE FECHA O @media */
-
-} /* 👈 ESSE É OUTRO BLOCO DO SEU CSS (não mexe) */
 </style>
 
 </head>
