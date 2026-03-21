@@ -241,13 +241,19 @@ font-weight:800;
 }
 
 .hero p{
-font-size:clamp(14px, 2.5vw, 18px);
+font-size:clamp(16px, 2.5vw, 20px);
 opacity:0.9;
-max-width:650px;
-margin-top:40px;
-line-height:1.4;
+max-width:600px;
+
+margin:40px auto 20px;
+
+line-height:1.5;
 text-align:center;
 padding:0 10px;
+
+font-weight:400;
+
+white-space: nowrap; /* 👈 ISSO AQUI */
 }
 
 .vantagens { padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; background: white; text-align: center; }
