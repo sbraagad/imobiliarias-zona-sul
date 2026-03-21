@@ -420,6 +420,15 @@ font-weight:600;
 box-shadow:0 4px 10px rgba(0,0,0,0.2);
 margin-bottom:6px;
 }
+.btn-entrar{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.btn-entrar svg{
+display:block;
+}
 
 .menu-user a:hover{
 background:white;
@@ -624,12 +633,23 @@ padding-top:90px;
     </div>
 
     <div class="menu-direita">
-      <a href="#" class="btn-entrar">
-       <span class="icone-user"></span>
-       Entrar
-    </a>
-    <a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
-  </div>
+  <a href="#" class="btn-entrar">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" 
+    width="20" height="20" 
+    viewBox="0 0 24 24" 
+    aria-hidden="true">
+    <path fill-rule="evenodd" 
+    d="M20.75,21 C20.75,21.4142136 20.4142136,21.75 20,21.75 C19.5857864,21.75 19.25,21.4142136 19.25,21 L19.25,19 C19.25,17.2050746 17.7949254,15.75 16,15.75 L8,15.75 C6.20507456,15.75 4.75,17.2050746 4.75,19 L4.75,21 C4.75,21.4142136 4.41421356,21.75 4,21.75 C3.58578644,21.75 3.25,21.4142136 3.25,21 L3.25,19 C3.25,16.3766474 5.37664744,14.25 8,14.25 L16,14.25 C18.6233526,14.25 20.75,16.3766474 20.75,19 L20.75,21 Z M12,11.75 C9.37664744,11.75 7.25,9.62335256 7.25,7 C7.25,4.37664744 9.37664744,2.25 12,2.25 C14.6233526,2.25 16.75,4.37664744 16.75,7 C16.75,9.62335256 14.6233526,11.75 12,11.75 Z M12,10.25 C13.7949254,10.25 15.25,8.79492544 15.25,7 C15.25,5.20507456 13.7949254,3.75 12,3.75 C10.2050746,3.75 8.75,5.20507456 8.75,7 C8.75,8.79492544 10.2050746,10.25 12,10.25 Z" 
+    fill="currentColor">
+    </path>
+    </svg>
+
+    Entrar
+  </a>
+
+  <a href="#" class="anunciar">🏢 Anunciar Imobiliária</a>
+</div>
 
     <div class="menu-toggle" id="menu-toggle">
   <span></span>
