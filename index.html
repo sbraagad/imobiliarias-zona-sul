@@ -639,11 +639,13 @@ white-space:normal;
 max-width:90%;
 }
 
-/* 🔽 COLE O CSS DO BANNER AQUI */
+} /* 👈 FECHA O @media */
+
+/* 🔥 COLE AQUI */
 
 .banner-ads{
-background:#fff;
-padding:40px 0;
+background:#ffffff;
+padding:32px 0 40px;
 overflow:hidden;
 }
 
@@ -656,37 +658,52 @@ overflow:hidden;
 
 .banner-track{
 display:flex;
-gap:20px;
-animation:scrollBanner 25s linear infinite;
+gap:18px;
+width:max-content;
+animation:scrollBanner 22s linear infinite;
 }
 
-.banner-track img{
-width:260px;
-height:100px;
-object-fit:cover;
-border-radius:10px;
-flex-shrink:0;
-display:block;
+.banner-item{
+width:280px;
+height:110px;
+flex:0 0 280px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+font-weight:700;
+font-size:20px;
+color:#1e293b;
+background:linear-gradient(135deg,#eff6ff,#dbeafe);
+border:1px solid #bfdbfe;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+white-space:nowrap;
 }
 
-/* 🔥 ISSO AQUI CORRIGE O BUG PRINCIPAL */
-.banner-track{
-min-width:100%;
+.banner-item:hover{
+transform:translateY(-2px);
+transition:0.3s;
 }
 
 @keyframes scrollBanner{
-0%{
-transform:translateX(0);
-}
-100%{
-transform:translateX(-50%);
-}
+0%{transform:translateX(0);}
+100%{transform:translateX(-1192px);}
 }
 
 @media (max-width: 768px){
-.banner-track img{
+.banner-ads{padding:24px 0 30px;}
+
+.banner-item{
 width:220px;
 height:90px;
+flex:0 0 220px;
+font-size:16px;
+}
+
+@keyframes scrollBanner{
+0%{transform:translateX(0);}
+100%{transform:translateX(-952px);}
 }
 }
 
@@ -796,22 +813,19 @@ em um só lugar
 
 </section>
 
-</section>
-
 <section class="banner-ads">
   <div class="banner-container">
     <div class="banner-track">
 
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+1" alt="Banner Imobiliária 1">
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+2" alt="Banner Imobiliária 2">
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+3" alt="Banner Imobiliária 3">
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+4" alt="Banner Imobiliária 4">
+      <a href="#" class="banner-item">Banner Imobiliária 1</a>
+      <a href="#" class="banner-item">Banner Imobiliária 2</a>
+      <a href="#" class="banner-item">Banner Imobiliária 3</a>
+      <a href="#" class="banner-item">Banner Imobiliária 4</a>
 
-      <!-- repetidos para criar o efeito infinito -->
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+1" alt="Banner Imobiliária 1">
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+2" alt="Banner Imobiliária 2">
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+3" alt="Banner Imobiliária 3">
-      <img src="https://via.placeholder.com/300x120?text=Imobiliaria+4" alt="Banner Imobiliária 4">
+      <a href="#" class="banner-item">Banner Imobiliária 1</a>
+      <a href="#" class="banner-item">Banner Imobiliária 2</a>
+      <a href="#" class="banner-item">Banner Imobiliária 3</a>
+      <a href="#" class="banner-item">Banner Imobiliária 4</a>
 
     </div>
   </div>
