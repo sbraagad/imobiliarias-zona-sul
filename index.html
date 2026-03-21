@@ -239,6 +239,11 @@ color:#2563eb;
 }
 
 /* 👇 COLOCA AQUI */
+.linha-mobile{
+display:inline;
+}
+
+/* 👇 COLOCA AQUI */
 .quebra{
 display:none;
 }
@@ -255,9 +260,45 @@ white-space: nowrap;
 }
 
 @media (max-width: 768px){
-.hero p{
-white-space: normal; /* mobile pode quebrar */
+
+.busca-hero{
+top:30px;
+margin-bottom:30px;
+flex-wrap:wrap;
 }
+
+.menu-links,
+.menu-busca,
+.menu-direita{
+display:none;
+}
+
+.menu-toggle{
+display:block !important;
+}
+
+.hero{
+justify-content:flex-start;
+padding-top:90px;
+}
+
+.hero h1{
+text-align:center;
+line-height:1.3;
+margin:0 auto;
+max-width:100%;
+}
+
+/* 👇 ESSA É A CHAVE */
+.linha-mobile{
+display:block;
+}
+
+.hero p{
+white-space: normal;
+max-width:90%;
+}
+
 }
 
 .vantagens { padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; background: white; text-align: center; }
@@ -652,9 +693,9 @@ Entrar
 <section class="hero">
 
 <h1>
-Todas as <span class="destaque">imobiliárias</span><span class="quebra"></span>
-do Rio e seus <span class="destaque">imóveis</span><span class="quebra"></span>
-em um só lugar.
+  <span class="linha-mobile">Todas as <span class="destaque">imobiliárias</span></span>
+  <span class="linha-mobile">do Rio e seus <span class="destaque">imóveis</span></span>
+  <span class="linha-mobile">em um só lugar.</span>
 </h1>
 
 <p><em>Descubra e compare as principais imobiliárias confiáveis da cidade do Rio de Janeiro.</em></p>
