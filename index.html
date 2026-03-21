@@ -519,7 +519,9 @@ border-radius:12px;
 
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 
-max-width:750px;
+max-width:980px;
+box-sizing:border-box;
+align-items:center;
 width:100%;
 justify-content:center;
 position:relative;
@@ -533,17 +535,18 @@ border:1px solid #ddd;
 border-radius:8px;
 outline:none;
 font-size:14px;
-min-width:140px;
+min-width:0;
+box-sizing:border-box;
 }
 
 .busca-hero select{
-flex:1;
-min-width:200px; /* 👈 AUMENTA ESPAÇO */
+flex:1 1 0;
+min-width:0;
 }
 
 .busca-hero button{
-flex:0.7; /* botão menor */
-min-width:120px;
+flex:0 0 130px;
+min-width:130px;
 }
 
 .busca-hero input:focus,
