@@ -699,21 +699,54 @@ letter-spacing:0.4px;
 .banner-ads{
 background:#ffffff;
 padding:10px 0 30px;
-overflow:hidden;
 }
 
-.banner-container{
+.banner-slider{
 max-width:1200px;
 margin:0 auto;
 padding:0 20px;
+position:relative;
+}
+
+.banner-nav{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-bottom:14px;
+}
+
+.banner-arrow{
+width:42px;
+height:42px;
+border-radius:50%;
+border:1px solid #cbd5e1;
+background:#fff;
+color:#2563eb;
+font-size:24px;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:0.25s;
+box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.banner-arrow:hover{
+background:#eff6ff;
+border-color:#93c5fd;
+}
+
+.banner-container{
 overflow:hidden;
+border-radius:12px;
 }
 
 .banner-track{
 display:flex;
 gap:18px;
-width:max-content;
-animation:scrollBanner 22s linear infinite;
+transition:transform 0.45s ease;
+will-change:transform;
 }
 
 .banner-item{
@@ -734,24 +767,78 @@ box-shadow:0 6px 18px rgba(0,0,0,0.08);
 white-space:nowrap;
 }
 
-.banner-item:hover{
-transform:translateY(-2px);
-transition:0.3s;
+.banner-progress{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-top:14px;
 }
 
-@keyframes scrollBanner{
-0%{transform:translateX(0);}
-100%{transform:translateX(-1192px);}
+.progress-bar{
+width:85px;
+height:4px;
+background:#cbd5e1;
+border-radius:999px;
+overflow:hidden;
+position:relative;
+}
+
+.progress-fill{
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:0%;
+background:#2563eb;
+border-radius:999px;
+transition:none;
+}
+
+.progress-bar.active .progress-fill{
+animation:fillProgress 5s linear forwards;
+}
+
+@keyframes fillProgress{
+from{width:0%;}
+to{width:100%;}
 }
 
 @media (max-width: 768px){
-.banner-ads{padding:24px 0 30px;}
+.banner-ads{
+padding:24px 0 30px;
+}
+
+.banner-slider{
+padding:0 16px;
+}
+
+.banner-nav{
+margin-bottom:10px;
+gap:8px;
+}
+
+.banner-arrow{
+width:38px;
+height:38px;
+font-size:21px;
+}
 
 .banner-item{
 width:220px;
 height:90px;
 flex:0 0 220px;
 font-size:16px;
+}
+
+.banner-progress{
+gap:6px;
+margin-top:12px;
+}
+
+.progress-bar{
+width:42px;
+height:4px;
 }
 
 .bloco-banners{
@@ -777,7 +864,6 @@ text-overflow:ellipsis;
 font-size:11px;
 padding:5px 10px;
 }
-
 }
 
 @keyframes scrollBanner{
@@ -920,39 +1006,55 @@ Destaques do mercado <span>imobiliário</span> no Rio de Janeiro
 </div>
 
 <section class="banner-ads">
-  <div class="banner-container">
-    <div class="banner-track">
+  <div class="banner-slider">
 
-      <a href="#" class="banner-item">Banner Imobiliária 1</a>
-      <a href="#" class="banner-item">Banner Imobiliária 2</a>
-      <a href="#" class="banner-item">Banner Imobiliária 3</a>
-      <a href="#" class="banner-item">Banner Imobiliária 4</a>
-
-      <a href="#" class="banner-item">Banner Imobiliária 1</a>
-      <a href="#" class="banner-item">Banner Imobiliária 2</a>
-      <a href="#" class="banner-item">Banner Imobiliária 3</a>
-      <a href="#" class="banner-item">Banner Imobiliária 4</a>
-
+    <div class="banner-nav">
+      <button class="banner-arrow" id="banner-prev" aria-label="Banner anterior">‹</button>
+      <button class="banner-arrow" id="banner-next" aria-label="Próximo banner">›</button>
     </div>
+
+    <div class="banner-container">
+      <div class="banner-track" id="banner-track">
+        <a href="#" class="banner-item">Banner Imobiliária 1</a>
+        <a href="#" class="banner-item">Banner Imobiliária 2</a>
+        <a href="#" class="banner-item">Banner Imobiliária 3</a>
+        <a href="#" class="banner-item">Banner Imobiliária 4</a>
+      </div>
+    </div>
+
+    <div class="banner-progress" id="banner-progress">
+      <div class="progress-bar active"><div class="progress-fill"></div></div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
   </div>
 </section>
 
-<script>
-const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu-mobile");
-const overlay = document.getElementById("overlay");
+function resetAutoSlide() {
+  clearInterval(autoSlide);
+  autoSlide = setInterval(() => {
+    currentIndex = (currentIndex + 1) % banners.length;
+    updateBannerPosition();
+    restartProgress();
+  }, 5000);
+}
 
-toggle.addEventListener("click", () => {
-  menu.classList.toggle("ativo");
-  overlay.classList.toggle("ativo");
-  toggle.classList.toggle("ativo");
+nextBtn.addEventListener("click", nextBanner);
+prevBtn.addEventListener("click", prevBanner);
+
+progressBars.forEach((bar, index) => {
+  bar.addEventListener("click", () => {
+    goToBanner(index);
+    resetAutoSlide();
+  });
 });
 
-overlay.addEventListener("click", () => {
-  menu.classList.remove("ativo");
-  overlay.classList.remove("ativo");
-  toggle.classList.remove("ativo");
-});
+window.addEventListener("resize", updateBannerPosition);
+
+goToBanner(0);
+resetAutoSlide();
 </script>
 
 </body>
