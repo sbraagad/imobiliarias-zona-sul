@@ -713,6 +713,8 @@ display:flex;
 justify-content:flex-end;
 gap:10px;
 margin-bottom:14px;
+position:relative;
+z-index:5;
 }
 
 .banner-arrow{
@@ -745,6 +747,7 @@ border-radius:12px;
 .banner-track{
 display:flex;
 gap:18px;
+width:max-content;
 transition:transform 0.45s ease;
 will-change:transform;
 }
@@ -1032,29 +1035,100 @@ Destaques do mercado <span>imobiliário</span> no Rio de Janeiro
   </div>
 </section>
 
-function resetAutoSlide() {
+<script>
+/* MENU MOBILE */
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu-mobile");
+const overlay = document.getElementById("overlay");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("ativo");
+  overlay.classList.toggle("ativo");
+  toggle.classList.toggle("ativo");
+});
+
+overlay.addEventListener("click", () => {
+  menu.classList.remove("ativo");
+  overlay.classList.remove("ativo");
+  toggle.classList.remove("ativo");
+});
+
+/* BANNER */
+const track = document.getElementById("banner-track");
+const prevBtn = document.getElementById("banner-prev");
+const nextBtn = document.getElementById("banner-next");
+const progressBars = document.querySelectorAll(".progress-bar");
+const banners = document.querySelectorAll(".banner-item");
+
+let currentIndex = 0;
+let autoSlide;
+
+function updateSlider() {
+  const bannerWidth = banners[0].offsetWidth + 18;
+  track.style.transform = `translateX(-${currentIndex * bannerWidth}px)`;
+}
+
+function resetProgress() {
+  progressBars.forEach((bar, index) => {
+    const fill = bar.querySelector(".progress-fill");
+
+    bar.classList.remove("active");
+    fill.style.animation = "none";
+    void fill.offsetWidth;
+    fill.style.animation = "";
+
+    if(index === currentIndex){
+      bar.classList.add("active");
+    }
+  });
+}
+
+function goToSlide(index){
+  currentIndex = index;
+
+  if(currentIndex >= banners.length) currentIndex = 0;
+  if(currentIndex < 0) currentIndex = banners.length - 1;
+
+  updateSlider();
+  resetProgress();
+}
+
+function nextSlide(){
+  goToSlide(currentIndex + 1);
+}
+
+function prevSlide(){
+  goToSlide(currentIndex - 1);
+}
+
+function startAuto(){
   clearInterval(autoSlide);
   autoSlide = setInterval(() => {
-    currentIndex = (currentIndex + 1) % banners.length;
-    updateBannerPosition();
-    restartProgress();
+    nextSlide();
   }, 5000);
 }
 
-nextBtn.addEventListener("click", nextBanner);
-prevBtn.addEventListener("click", prevBanner);
+nextBtn.addEventListener("click", () => {
+  nextSlide();
+  startAuto();
+});
+
+prevBtn.addEventListener("click", () => {
+  prevSlide();
+  startAuto();
+});
 
 progressBars.forEach((bar, index) => {
   bar.addEventListener("click", () => {
-    goToBanner(index);
-    resetAutoSlide();
+    goToSlide(index);
+    startAuto();
   });
 });
 
-window.addEventListener("resize", updateBannerPosition);
+window.addEventListener("resize", updateSlider);
 
-goToBanner(0);
-resetAutoSlide();
+goToSlide(0);
+startAuto();
 </script>
 
 </body>
